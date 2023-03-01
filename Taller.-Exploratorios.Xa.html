@@ -31,7 +31,6 @@ class: center, middle, inverse, title-slide
 ---
 
 
----
 class: inverse, center, middle
 
 # Empezamos
@@ -313,7 +312,6 @@ class: inverse, center, middle
 ## Correlaciones entre variables
 
 ---
----
 ## 1.) Elipses con colores
 
 Las elipses permiten evaluar relaciones entre múltiples variables.
@@ -476,8 +474,130 @@ Enlace [ggpairs()](https://r-graph-gallery.com/97-correlation-ellipses.html)
 
 
 
+#----
+
+---
+
+class: inverse, center, middle
+# Relaciones (Regresiones)
+## Figuras de dispersión
+
+---
+## 1.) Figuras de dispersión
+
+Son relaciones de dos variables seleccionadas de aquellas que en las figuras de elipses presentaron la mayor relación.
+
+El Paquete **`lattice`** es uno de los que permite realizar las opciones gráficas de dispersión, ingresar a este enlace:
+[lattice](http://www.sthda.com/english/wiki/lattice-graphs)
 
 
+El Paquete **`ggplot2`** presenta opciones más estéticas y robustas para estas y muchas más figuras, ingresar a este enlace:
+[Enlace1](https://r-charts.com/es/correlacion/grafico-dispersion-ggplot2/)
+[Enlace2](https://soka.gitlab.io/blog/post/2019-04-25-r-ggplot2-scatterplot/)
+
+
+
+--
+A continuación se presenta la estructura básica de estas figuras
+
+````markdown
+
+# Figura de dispersión en `ggplot2`
+ggplot(datos,aes(x = pH,y = Efem)) +   
+  geom_point() +  
+  geom_smooth()
+```
+
+--
+
+````markdown
+
+# Figura de dispersión con regresiones (`smooth`)
+ggplot(datos,aes(x = pH,y = Efem)) +   
+  geom_point(aes(color = cuenca), size = 3) +  
+  geom_smooth(method= "lm")
+
+```
+
+
+---
+## 1.) Elipses con colores 
+A partir de esta figura, se deben identificar las relaciones
+
+
+```r
+# Elipses con colores  (Obj1 - Reación v.biol vs. v.f.q)
+M &lt;- cor(datos[,2:9])               # Matriz de Correlación (M)
+corrplot(M, method = "ellipse")     # Figura de correlaciones con elipses
+```
+
+![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+
+
+--
+
+# Librerías Requeridas
+
+
+```r
+library(lattice)
+library(tidyverse)
+```
+
+```
+# ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+# ✔ ggplot2 3.4.0     ✔ purrr   1.0.1
+# ✔ tibble  3.1.8     ✔ dplyr   1.1.0
+# ✔ tidyr   1.3.0     ✔ stringr 1.5.0
+# ✔ readr   2.1.4     ✔ forcats 1.0.0
+# ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+# ✖ dplyr::filter() masks stats::filter()
+# ✖ dplyr::lag()    masks stats::lag()
+```
+
+```r
+library(ggplot2)
+```
+
+**Nota** La base de datos **`Insectos.csv`** debe cargarse desde el directorio de trabajo.
+
+---
+## 1.) Regresiones (Esquema básico)
+
+
+```r
+ggplot(datos,aes(x = pH,y = Efem)) +   
+  geom_point(aes(color = cuenca), size = 3) +  
+  geom_smooth(method= "lm")
+```
+
+![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+
+
+---
+## 1.) Regresiones
+
+
+```r
+ggplot(datos,aes(x = pH, y = Efem)) +   
+  geom_point(aes(color = cuenca), size = 3) +  
+  geom_smooth()
+```
+
+![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+
+
+---
+## 1.) Regresiones
+
+
+```r
+ggplot(datos,aes(x = pH, y = Efem)) +   
+  geom_point(aes(color = cuenca), size = 3) +  
+  geom_smooth(se = FALSE, span = 0.4)
+```
+
+![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
