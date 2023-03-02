@@ -104,8 +104,7 @@ str(datos)   # estructura de la base "datos"
 
 
 ---
-## Librerías Requeridas
-
+### Librerías Requeridas
 
 ```r
 library(lattice)   # No se requiere instalar
@@ -157,8 +156,8 @@ summary(datos)
 ##  Max.   :37.00   Max.   :39.00   Max.   :21.00   Max.   :104.00
 ```
 
----
 
+---
 class: inverse, center, middle
 # Exploración gráfica
 
@@ -260,7 +259,7 @@ class: inverse, center, middle
 
 
 --
-**Objetivo 1**. Relaciones o Correlaciones entre variables (Ej. Bióticas vs. Ambientales)
+**Objetivo 1**. **Relaciones** o **Correlaciones** entre variables (Ej. Bióticas vs. Ambientales)
 
 **Exploratorios**. Figuras de elipses, de dispersión, ...
 
@@ -283,9 +282,9 @@ class: inverse, center, middle
 
 --
 
-**Objetivo 2**. Diferencias de las variables entre grupos de observaciones (Factor)
+**Objetivo 2**. **Diferencias** de las variables entre grupos de observaciones (Factor)
 
-**Exploratorios**. Figuras de cajas y bigotes, de promedios y desviaciones, ...
+**Exploratorios**. Figuras de **cajas y bigotes**, de promedios y desviaciones, ...
 
 
 
@@ -332,27 +331,27 @@ Las elipses permiten evaluar relaciones entre múltiples variables.
 El Paquete **Corrplot** es el que permite realizar las opciones gráficas de elipses a color, ingresar a este enlace:
 [corrplot](http://www.sthda.com/english/wiki/visualize-correlation-matrix-using-correlogram)
 
-O ete otro enlace:
+O ete otro enlace a **corrplot**:
 [corrplot](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html)
-
-
 
 --
 A continuación se presenta la estructura básica de estas figuras
 
 ````markdown
-M &lt;- cor(datos[,2:9])  # Matriz de Correlación (M)
+# Matriz de Correlación (M)
+M &lt;- cor(datos[,2:9])  
 M
+
 ```
 
 --
 
 ````markdown
-
 # Figura de correlaciones con elipses
 corrplot(M, method = "ellipse")  
 
 ```
+
 
 
 ---
@@ -368,6 +367,8 @@ corrplot(M, method = "ellipse")     # Figura de correlaciones con elipses
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
 
 
+
+
 ---
 ## 1.) Elipses con colores (*Cont.*)
 
@@ -381,33 +382,42 @@ corrplot(log10(M+1), method = "ellipse")  # Figura de correlaciones con elipses
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
 
 
+
+
 ---
 ## 1.) Elipses con colores (*Cont.*)
 
-El Paquete **Corrplot** es el que permite realizar las opciones gráficas de elipses a color
+El Paquete **Corrplot** es el que permite realizar diferentes opciones gráficas de elipses a color, como las del siguiente enlace: 
 [corrplot](http://www.sthda.com/english/wiki/visualize-correlation-matrix-using-correlogram)
 
 --
 ### Otras opciones de elipses
 
 ````markdown
+# Figura de correlaciones con círculos
 corrplot(M, method = "circle")     
 corrplot.mixed(M, upper="ellipse")
 ```
 
 --
-**M** es la matriz de correlación de pearson
-**circle** es la figura con la matriz de circulos
-**corrplot.mixed** combina elipses y circulos
-**upper=ellipse** coloca las elipses encima
+**`M`** es la matriz de correlación de pearson
+
+**`circle`** es la figura con la matriz de circulos
+
+**`corrplot.mixed`** combina elipses y circulos
+
+**`upper=ellipse`** coloca las elipses encima
+
+
 
 ---
 ### Otras opciones de elipses
 
 .pull-left[
 
-Figura con **circulos**
-Azul representa relaciones positivas y rojo a las negativas
+Figura de correlaciones con **circulos**
+
+**Azul** representa relaciones positivas y **rojo** a las negativas
 
 
 ```r
@@ -428,7 +438,8 @@ class:inverse
 .pull-left[
 
 Figura de **elipses** con coeficientes de correlación de pearson.
-Azul representa relaciones positivas y rojo a las negativas
+
+**Azul** representa relaciones positivas y **rojo** a las negativas
 
 
 ```r
@@ -442,23 +453,27 @@ Figura generada
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 ]
 
-
-
 --
-Algunas modificaciones de ggplot permiten hacer figuras de elipses, pueden explorarse en el siguiente enlace:
+Algunas modificaciones de **ggplot2** permiten hacer figuras de elipses, pueden explorarse en el siguiente enlace:
 
-[ggpairs()](https://r-graph-gallery.com/97-correlation-ellipses.html)
+[paquete ggpairs](https://r-graph-gallery.com/97-correlation-ellipses.html)
+
+
+
 
 ---
 
 ## Fuente de esta figura
-Enlace [ggpairs()](https://r-graph-gallery.com/97-correlation-ellipses.html)
+[paquete ggpairs](https://r-graph-gallery.com/97-correlation-ellipses.html)
 
 &lt;div&gt;
 &lt;p style = 'text-align:center;'&gt;
 &lt;img src="https://r-graph-gallery.com/97-correlation-ellipses_files/figure-html/thecode-1.png" alt="JuveYell" width="500px"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
+
+
+
 
 
 ---
@@ -471,9 +486,9 @@ Enlace [ggpairs()](https://r-graph-gallery.com/97-correlation-ellipses.html)
 
 .right-column[
 
-- Permiten visualizar relaciones lineales positivas o negativas entre parejas de variables.
-- Permiten realizar realaciones y correlaciones entre variables biológicas.
-- Permiten correlacionar a variables biológicas y ambientales.
+- Permiten visualizar **relaciones** lineales positivas o negativas entre parejas de variables.
+- Permiten realizar **realaciones y correlaciones** entre variables biológicas.
+- Permiten **correlacionar** a variables biológicas y ambientales.
 
 ]
 
@@ -498,23 +513,24 @@ class: inverse, center, middle
 ---
 ## 1.) Figuras de dispersión
 
-Son relaciones de dos variables seleccionadas de aquellas que en las figuras de elipses presentaron la mayor relación.
+Preden relaciones de **dos variables** seleccionadas de aquellas que en las figuras de elipses presentaron la mayor relación.
 
+--
 El Paquete **`lattice`** es uno de los que permite realizar las opciones gráficas de dispersión, ingresar a este enlace:
 [lattice](http://www.sthda.com/english/wiki/lattice-graphs)
 
-
+--
 El Paquete **`ggplot2`** presenta opciones más estéticas y robustas para estas y muchas más figuras, ingresar a este enlace:
 [Enlace1](https://r-charts.com/es/correlacion/grafico-dispersion-ggplot2/)
     [Enlace2](https://soka.gitlab.io/blog/post/2019-04-25-r-ggplot2-scatterplot/)
     
-    
+--  
 El Paquete **`ggppairs`** presenta opciones para relacionar diferentes variables:
 [ggpairs in R](https://www.r-bloggers.com/2022/11/ggpairs-in-r/?utm_source=phpList&amp;utm_medium=email&amp;utm_campaign=R-bloggers-daily&amp;utm_content=HTML)
 
 
 
---
+---
 A continuación se presenta la estructura básica de estas figuras
 
 ````markdown
@@ -538,8 +554,7 @@ ggplot(datos,aes(x = pH,y = Efem)) +
 
 
 ---
-### 1.) Elipses con colores 
-A partir de esta figura, se deben identificar las relaciones **(Ej. pH vs. Efemerópteros)**
+### 1.) Elipses con colores (Ver relación Efm vs. pH)
 
 
 ```r
@@ -551,32 +566,21 @@ corrplot(M, method = "ellipse")     # Figura de correlaciones con elipses
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
 
 
---
 
+
+---
 # Librerías Requeridas
 
 
 ```r
 library(lattice)
 library(tidyverse)
-```
-
-```
-# ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-# ✔ ggplot2 3.4.0     ✔ purrr   1.0.1
-# ✔ tibble  3.1.8     ✔ dplyr   1.1.0
-# ✔ tidyr   1.3.0     ✔ stringr 1.5.0
-# ✔ readr   2.1.4     ✔ forcats 1.0.0
-# ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-# ✖ dplyr::filter() masks stats::filter()
-# ✖ dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(ggplot2)
 ```
 
 **Nota** La base de datos **`Insectos.csv`** debe cargarse desde el directorio de trabajo.
+
+
 
 ---
 ## 1.) Regresiones lineales (Esquema básico)
@@ -646,15 +650,13 @@ class: inverse, center, middle
 
 Se valoran las diferencias en los patrones de las variables entre grupos (definidos por uno o más factores).
 
+--
 El Paquete **`lattice`** es uno de los que permite realizar las opciones gráficas de cajas, ingresar a este enlace:
 [How to make a boxplot in R](https://www.r-bloggers.com/2022/04/how-to-make-a-boxplot-in-r/?utm_source=phpList&amp;utm_medium=email&amp;utm_campaign=R-bloggers-daily&amp;utm_content=HTML)
-
 
 El Paquete **`ggplot2`** presenta opciones más estéticas y robustas para estas y muchas más figuras, ingresar a este enlace:
 [Enlace1](https://r-charts.com/es/correlacion/grafico-dispersion-ggplot2/)
     [Enlace2](https://soka.gitlab.io/blog/post/2019-04-25-r-ggplot2-scatterplot/)
-
-
 
 --
 A continuación se presenta la estructura básica de estas figuras
@@ -697,7 +699,10 @@ library(ggforce)
 
 **Nota** La base de datos **`Insectos.csv`** debe cargarse con tidyverse.
 
-## Cargar base de datos
+
+
+---
+#### Cargar base de datos
 
 
 ```r
@@ -751,6 +756,9 @@ str(datos)   # estructura de la base "datos"
 ```
 
 
+
+
+
 ---
 ## 1.) Figura de cajas - 1 variable
 
@@ -761,6 +769,9 @@ ggplot(datos, aes(x=cuenca, y=Ab)) +
 ```
 
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+
+
+
 
 
 ---
@@ -777,6 +788,8 @@ ggplot(datos, aes(x=cuenca, y=Ab)) +
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
 
 
+
+
 ---
 ## Multiples variables
 
@@ -788,6 +801,8 @@ ggplot(melt(datos[,c(2,5:10)]), aes(x=variable, y=value)) +
 ```
 
 ![](Taller.-Exploratorios.Xa_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+
+
 
 
 ---
