@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Javier Rodríguez Barrios">
-<meta name="dcterms.date" content="2023-03-13">
+<meta name="dcterms.date" content="2023-03-14">
 
 <title>Taller 4.1 Análisis de Componentes Principales - PCA</title>
 <style>
@@ -149,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 13, 2023</p>
+      <p class="date">March 14, 2023</p>
     </div>
   </div>
   
@@ -220,33 +220,33 @@ Salinidad   0.37 -0.19    -0.16 -0.03      1.00       0.02   -0.15
 CapaFotica -0.77  0.61     0.01  0.97      0.02       1.00    0.56</code></pre>
 </div>
 </div>
-<p>La <a href="#fig-mtscatter1">Figura&nbsp;1</a> muestra la relación entre las variables, a partir de figuras de elipses.</p>
+<p>La <a href="#fig-fig1">Figura&nbsp;1</a> muestra la relación entre las variables, a partir de figuras de elipses.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">x11</span>()                            <span class="co"># Panel gráfico adicional</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method =</span> <span class="st">"ellipse"</span>)  <span class="co"># Figura de correlaciones con elipses</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter1" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter1-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig1-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;1: Relación de variables ambientales en las siete bahías estudiadas.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>La <a href="#fig-mtscatter2">Figura&nbsp;2</a> muestra la relación entre las variables, a partir de figuras de elipses y coeficientes de correlación de Pearson.</p>
+<p>La <a href="#fig-fig2">Figura&nbsp;2</a> muestra la relación entre las variables, a partir de figuras de elipses y coeficientes de correlación de Pearson.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">X11</span>()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(M, <span class="at">upper=</span><span class="st">"ellipse"</span>)  <span class="co"># Figura con coeficientes de correlación</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter2" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter2-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig2-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;2: Relación de variables ambientales en las siete bahías estudiadas.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>La <a href="#fig-mtscatter3">Figura&nbsp;3</a> otra forma de mostrar la relación entre las variables, a partir de figuras de elipses y coeficientes de correlación de Pearson.</p>
+<p>La <a href="#fig-fig3">Figura&nbsp;3</a> otra forma de mostrar la relación entre las variables, a partir de figuras de elipses y coeficientes de correlación de Pearson.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">x11</span>()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M,  <span class="at">method =</span> <span class="st">"circle"</span>,            <span class="co"># Correlaciones con circulos</span></span>
@@ -256,9 +256,9 @@ CapaFotica -0.77  0.61     0.01  0.97      0.02       1.00    0.56</code></pre>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span>,                 <span class="co"># Tamaño del texto</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">COL2</span>(<span class="st">"RdYlBu"</span>, <span class="dv">200</span>))        <span class="co"># Transparencia de los circulos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter3" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter3-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig3-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;3: Relación de variables ambientales en las siete bahías estudiadas.</figcaption><p></p>
 </figure>
 </div>
@@ -331,15 +331,15 @@ Aeropuerto   2.33   1.64   1.38  -0.36  -0.22   0.01      0</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>1.4) Contribución de los ejes del pca</strong> </b></p>
-<p>La <a href="#fig-mtscatter4">Figura&nbsp;4</a> muestra la manera de graficar a la varinza que captura cada componente principal.</p>
+<p>La <a href="#fig-fig4">Figura&nbsp;4</a> muestra la manera de graficar a la varinza que captura cada componente principal.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">x11</span>()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(pca1,<span class="at">ylab=</span><span class="st">"Varianza"</span>,<span class="at">main=</span><span class="st">""</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">cex.lab=</span><span class="fl">1.5</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter4" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter4-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig4-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;4: Varianza capturada o representada por cada componente principal.</figcaption><p></p>
 </figure>
 </div>
@@ -347,15 +347,15 @@ Aeropuerto   2.33   1.64   1.38  -0.36  -0.22   0.01      0</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>1.5) Opciones de <code>biplot</code>, por combinaciones de ejes.</strong> </b></p>
-<p>La <a href="#fig-mtscatter5">Figura&nbsp;5</a> muestra la ordenación de las locaidades y las variables ambientales en las 7 bahías evaluadas (gráfico de biplot).</p>
+<p>La <a href="#fig-fig5">Figura&nbsp;5</a> muestra la ordenación de las locaidades y las variables ambientales en las 7 bahías evaluadas (gráfico de biplot).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca1,<span class="at">choices =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">cex=</span><span class="fl">0.9</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>, <span class="at">col=</span><span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter5" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig5" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter5-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig5-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;5: Figura del “Biplot” del análisis de componentes principales.</figcaption><p></p>
 </figure>
 </div>
@@ -391,16 +391,16 @@ Aeropuerto   2.33   1.64   1.38  -0.36  -0.22   0.01      0</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>2.2) Figura del PCA</strong> </b></p>
-<p>La <a href="#fig-mtscatter6">Figura&nbsp;6</a> muestra la ordenación de las locaidades en las 7 bahías evaluadas (gráfico de biplot).</p>
+<p>La <a href="#fig-fig6">Figura&nbsp;6</a> muestra la ordenación de las locaidades en las 7 bahías evaluadas (gráfico de biplot).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura del pca realizado (grafica de observaciones)</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.PCA</span>(pca2, <span class="at">axes=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">choix=</span><span class="st">"ind"</span>, <span class="at">habillage=</span><span class="st">"none"</span>, <span class="at">col.ind=</span><span class="st">"black"</span>, </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col.ind.sup=</span><span class="st">"blue"</span>, <span class="at">col.quali=</span><span class="st">"magenta"</span>, </span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">label=</span><span class="fu">c</span>(<span class="st">"ind"</span>, <span class="st">"ind.sup"</span>, <span class="st">"quali"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter6" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig6" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter6-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig6-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;6: Figura del “Plot” del análisis de componentes principales.</figcaption><p></p>
 </figure>
 </div>
@@ -408,15 +408,15 @@ Aeropuerto   2.33   1.64   1.38  -0.36  -0.22   0.01      0</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>2.3) Circulo de contribuciones de las variables</strong> </b></p>
-<p>La <a href="#fig-mtscatter7">Figura&nbsp;7</a> muestra el circulo de contribuciones para identificar a las variables con mayor aporte por cada componente principal del análisis.</p>
+<p>La <a href="#fig-fig7">Figura&nbsp;7</a> muestra el circulo de contribuciones para identificar a las variables con mayor aporte por cada componente principal del análisis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Circulo de contribuciones</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.PCA</span>(pca2, <span class="at">axes=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">choix=</span><span class="st">"var"</span>, <span class="at">col.var=</span><span class="st">"#ff0000"</span>, <span class="at">new.plot=</span>T,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col.quanti.sup=</span><span class="st">"blue"</span>, <span class="at">label=</span><span class="fu">c</span>(<span class="st">"var"</span>, <span class="st">"quanti.sup"</span>), <span class="at">lim.cos2.var=</span><span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter7" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig7" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter7-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig7-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;7: Figura del circuo de contribuciones del PCA.</figcaption><p></p>
 </figure>
 </div>
@@ -509,7 +509,7 @@ Aeropuerto  1.2166 -1.42828 -1.3407 -0.3694 -0.3161 -0.03060</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>3.3) Figura del PCA</strong> </b></p>
-<p>La <a href="#fig-mtscatter8">Figura&nbsp;8</a> muestra dos opciones de visualizar los resultados del pca “<code>scaling 1</code>” y “<code>scaling 2</code>”.</p>
+<p>La <a href="#fig-fig8">Figura&nbsp;8</a> muestra dos opciones de visualizar los resultados del pca “<code>scaling 1</code>” y “<code>scaling 2</code>”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel con dos figuras del pca</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">x11</span>(<span class="dv">12</span>,<span class="dv">6</span>)</span>
@@ -517,9 +517,9 @@ Aeropuerto  1.2166 -1.42828 -1.3407 -0.3694 -0.3161 -0.03060</code></pre>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca3, <span class="at">scaling=</span><span class="dv">1</span>, <span class="at">main=</span><span class="st">"PCA - scaling 1"</span>)</span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca3, <span class="at">main=</span><span class="st">"PCA - scaling 2"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter8" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig8" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter8-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig8-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;8: dos copciones de figuras del PCA - “scaling 1” y “scaling 2”.</figcaption><p></p>
 </figure>
 </div>
@@ -551,7 +551,7 @@ Aeropuerto  1.2166 -1.42828 -1.3407 -0.3694 -0.3161 -0.03060</code></pre>
 <h3 class="anchored" data-anchor-id="combinación-de-clasificación-y-ordenación">Combinación de clasificación y ordenación</h3>
 <p>Tomado de <a href="https://link-springer-com.biblioteca.unimagdalena.edu.co/chapter/10.1007/978-3-319-71404-2_5">5.3.2.6 Combining Clustering and Ordination Results</a> del libro de Borcard et al.&nbsp;(2018), el cual se encuentra en la base de la Biblioteca de Unimagdalena.</p>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
-</b><p><b style="color:#d95f02;">**4.1) Generación de grupos con la distancia euclídea y el agrupamiento de Ward* </b></p>
+</b><p><b style="color:#d95f02;"><strong>4.1) Generación de grupos con la distancia euclídea y el agrupamiento de Ward</strong> </b></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)   <span class="co"># Identificación de las variables cuantitativas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -586,7 +586,7 @@ Aeropuerto  1.2166 -1.42828 -1.3407 -0.3694 -0.3161 -0.03060</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>4.5) PCA con simbolos y colores por cada grupo</strong> </b></p>
-<p>La <a href="#fig-mtscatter9">Figura&nbsp;9</a> muestra los dos grupos de bahías generados en el pca.</p>
+<p>La <a href="#fig-fig9">Figura&nbsp;9</a> muestra los dos grupos de bahías generados en el pca.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">x11</span>()</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pc4 <span class="ot">&lt;-</span> <span class="fu">plot</span>(pca3,  <span class="at">display =</span> <span class="st">"wa"</span>,  <span class="at">scaling =</span> <span class="dv">1</span>,  <span class="at">type =</span> <span class="st">"n"</span>,</span>
@@ -614,9 +614,9 @@ Aeropuerto  1.2166 -1.42828 -1.3407 -0.3694 -0.3161 -0.03060</code></pre>
 <span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(grl)),</span>
 <span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">pt.cex =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter9" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig9" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter9-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig9-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;9: dos grupos de bahías generados en el PCA.</figcaption><p></p>
 </figure>
 </div>
@@ -633,38 +633,38 @@ Aeropuerto  1.2166 -1.42828 -1.3407 -0.3694 -0.3161 -0.03060</code></pre>
 </div>
 <p><b style="color:#d95f02;"></b></p><b style="color:#d95f02;">
 </b><p><b style="color:#d95f02;"><strong>5.1) Figuras del pca por tipo de grupo</strong> </b></p>
-<p>La <a href="#fig-mtscatter10">Figura&nbsp;10</a> muestra el agrupamiento por elipses en el pca.</p>
+<p>La <a href="#fig-fig10">Figura&nbsp;10</a> muestra el agrupamiento por elipses en el pca.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">s.class</span>(pca5<span class="sc">$</span>li,datos.gr<span class="sc">$</span>gr, <span class="at">cpoi =</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter10" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig10" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter10-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig10-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;10: agrupamiento por elipses en el PCA.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>La <a href="#fig-mtscatter11">Figura&nbsp;11</a> muestra el agrupamiento por líneas en el pca.</p>
+<p>La <a href="#fig-fig11">Figura&nbsp;11</a> muestra el agrupamiento por líneas en el pca.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">s.class</span>(pca5<span class="sc">$</span>li,datos.gr<span class="sc">$</span>gr, <span class="at">cell =</span> <span class="dv">0</span>, <span class="at">cstar =</span> <span class="fl">0.5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter11" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig11" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter11-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig11-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;11: agrupamiento por líneas en el PCA.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>La <a href="#fig-mtscatter12">Figura&nbsp;12</a> muestra el agrupamiento por triangulos en el pca.</p>
+<p>La <a href="#fig-fig12">Figura&nbsp;12</a> muestra el agrupamiento por triangulos en el pca.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>coul <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red"</span>,  <span class="st">"blue"</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">s.chull</span>(pca5<span class="sc">$</span>li,datos.gr<span class="sc">$</span>gr, <span class="at">cpoi =</span> <span class="dv">1</span>, <span class="at">col =</span> coul)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-mtscatter12" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-fig12" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="Taller4.1.pca.marino_files/figure-html/fig-mtscatter12-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="Taller4.1.pca.marino_files/figure-html/fig-fig12-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figura&nbsp;12: agrupamiento por triangulos en el PCA.</figcaption><p></p>
 </figure>
 </div>
@@ -805,6 +805,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/^(?:http:|https:)\/\/www\.quarto\.org\/custom/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->
