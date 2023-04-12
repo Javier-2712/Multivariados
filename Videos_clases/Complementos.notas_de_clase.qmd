@@ -1,0 +1,161 @@
+---
+title: "Videos de las clases"
+subtitle: "Asignatura: Análisis Multivariado"
+author: "Javier Rodríguez Barrios"
+date: 'Actualizado: `r Sys.Date()`'
+lang: "es-ES"
+format:
+  html:
+    toc: true
+    toc-title: Contents
+    toc-depth: 3
+    toc-location: left
+    html-math-method: katex
+    css: styles.css  
+    link-external-icon: true
+    link-external-newwindow: true
+
+---
+
+Los siguientes videos en su mayoría fueron realizados en el 2021, pero aún presentan vigencia, con relación a lo que venimos revisando en las clases. Sugiero que este material sea complementado con el resto de documentos que he entregado, en especial lo siguiente: 
+
+[Diapositivas Intro](https://javier-2712.github.io/Multivariados_MSc/Clase1.-Introducci%C3%B3n.html#1), [Diapositivas Exploratorios](https://javier-2712.github.io/Multivariados_MSc/Clase3.-Exploratorios.html#1), [Taller Exploratorios](https://javier-2712.github.io/Multivariados_MSc/Taller3.explor.resum.html), [Taller PCA_1](https://javier-2712.github.io/Multivariados/Taller4_PCA/Taller4.1.pca.marino.html), [Taler PCA2](https://javier-2712.github.io/Multivariados/Taller4_PCA/Taller4.2.pca.tayrona.html), [Taller de NMDS](https://javier-2712.github.io/Multivariados_MSc/Taller5.1.nmds.malezas.html)
+
+De igual forma, los videos que se presentan a continuación, pueden complementarse con el libro del docente, cuya versión impresa se encuentra en la biblioteca de la Universidad.
+
+Ejercicio tomado de: **Rodríguez-Barrios (2023)** [Enlace del libro](https://www.editdiazdesantos.com/libros/9788490524817/Rodr%C3%ADguez-Barrios-An%C3%A1lisis-de-datos-ecol%C3%B3gicos-y-ambientales-aplicaciones-con-el-programa-R.html?isbn=978849052481)
+
+[Enlace de los archivos del libro](https://www.editdiazdesantos.com/libros/lanza_anejo.php?isbn=9788490524817&formato=.zip)
+
+
+
+<b style='color:#1f78b4;'>
+
+# Videos de la semana 1
+
+</b>
+
+
+
+## <b style='color:#d95f02;'> 1. Introducción a la asignatura </b> 
+
+- [1.1 Introducción a Multivariados](https://web.microsoftstream.com/video/1ea3c920-03dc-4061-8730-1044d997acbc)
+
+- [1.2 Introducción a RStudio Parte 1](https://web.microsoftstream.com/video/eb6eb2d9-e065-40c7-ad4f-d90ce1003731)  
+
+
+
+
+
+## <b style='color:#d95f02;'> 2. Exploración Gráfica </b> 
+
+- [Exploración en Excel - Parte 1](https://web.microsoftstream.com/video/0032db7c-af28-4139-80ba-68b66adcba3f) 
+
+- [Exploración en Excel - Parte 2](https://web.microsoftstream.com/video/1f64215f-e483-44cd-af7a-86c8fc3897c8)
+
+
+- [Exploración en Excel - Parte 3](https://web.microsoftstream.com/video/9de0cd09-0ba3-4c23-8ede-50ed07af76b3)
+
+
+- [Exploración en Excel - Parte 4](https://web.microsoftstream.com/video/9de0cd09-0ba3-4c23-8ede-50ed07af76b3)
+
+
+
+
+- [RStudio - Cargar la base de datos](https://web.microsoftstream.com/video/784dda7e-d129-4d84-b2fd-e3831c3006b2) 
+
+- [Figuras de Pares y Elipses](https://web.microsoftstream.com/video/867c9668-6f00-4f5c-afd0-2ee945913fe2)
+
+- [RStudio - Cargar la base de datos](https://web.microsoftstream.com/video/784dda7e-d129-4d84-b2fd-e3831c3006b2) 
+
+- [Figuras de Pares y Elipses](https://web.microsoftstream.com/video/0032db7c-af28-4139-80ba-68b66adcba3f )
+
+- [Otras figuras de pares](https://web.microsoftstream.com/video/b2c6b123-167c-416d-8e5c-b6024459d663) 
+
+- [Figuras Coplots](https://web.microsoftstream.com/video/3db58f9e-b5f2-4b45-b760-d827d511788f)
+
+- [Histogramas](https://web.microsoftstream.com/video/f74cb6da-5d0f-4c49-8492-332b0f4e231b )
+
+
+
+
+## <b style='color:#d95f02;'> 3. Ordenación multivariada - PCA </b> 
+
+- [Ordenación - Generalidades](https://web.microsoftstream.com/video/ccc3e8fd-2bcf-45a2-adb9-ee756c728d05) 
+
+- [Componentes principales - PCA](https://web.microsoftstream.com/video/5778a0b8-2d63-402a-856a-fd17d4730e0b) 
+
+- [Estudios de caso de PCA](https://web.microsoftstream.com/video/be09e940-e0e0-46ef-bfbe-2b675df9a6f8) 
+
+- [Ejemplos de PCA](https://web.microsoftstream.com/video/003d9227-5c07-42ff-86b4-f1fe2bc57b8d) 
+
+
+
+
+
+## <b style='color:#d95f02;'> 4. Ordenación multivariada - NMDS </b> 
+
+- [Clase del sábado](https://universidadmag.sharepoint.com/sites/MultivariadosMSc.2023/_layouts/15/stream.aspx?id=%2Fsites%2FMultivariadosMSc%2E2023%2FDocumentos%20compartidos%2FGeneral%2FRecordings%2FAn%C3%A1lisis%20de%20Escalamiento%20Multidimensional%2D20230311%5F110852%2DGrabaci%C3%B3n%20de%20la%20reuni%C3%B3n%2Emp4) 
+
+- [Escalamiento multidimensional](https://web.microsoftstream.com/video/690c80fd-2f5e-4e48-8757-6f680a7e7116) 
+
+- [Ejercicios parte 1](https://web.microsoftstream.com/video/5ff9e9ca-6d8f-4dc9-98ee-0b034e4f6e29) 
+
+- [Ejercicios parte 2](https://web.microsoftstream.com/video/f259b32d-5146-44aa-a6c8-739d0ba1f5a9)
+
+
+
+
+
+<b style='color:#1f78b4;'>
+
+# Videos de la semana 2
+
+</b>
+
+
+
+
+## <b style='color:#d95f02;'> 4. Ordenación multivariada - RDA y CCA </b> 
+
+- [Teoría CA, RDA y ACC](https://web.microsoftstream.com/video/939bc2b1-e6f7-441d-b704-c12d1b571b8f)
+
+- [Ejemplo en las diapositivas](https://web.microsoftstream.com/video/7da87199-bf3f-4fd5-a998-3ad4e33057f0)
+
+- [Ejemplo en R del RDA](https://web.microsoftstream.com/video/0f7570d7-19b0-42a9-be07-9bc8e1b0546a)
+
+
+- [Ejemplo en R del CCA](https://web.microsoftstream.com/video/4d785060-b901-471e-9163-c8fc5da9fac6)
+
+
+
+## <b style='color:#d95f02;'> 4. Clasificación Multivariada - CLA </b> 
+
+
+- [Teoría CLA](https://web.microsoftstream.com/video/f1a0de1c-6679-46e7-90dc-1c02881d3771)
+
+- [Ejercicio en clase](https://web.microsoftstream.com/video/7c455384-c09f-4210-81d7-df6de8664c7b)
+
+
+
+
+## <b style='color:#d95f02;'> 4. Clasificación Multivariada - LDA </b> 
+
+
+- [Teoría LDA](https://web.microsoftstream.com/video/2f4a8239-3276-4dbf-9a9d-bbc48392fbad)
+
+
+- [Ejemplo1 AD](https://web.microsoftstream.com/video/6fc00d0e-f415-4eb4-acfe-23634403de6f)
+
+
+- [Ejemplo2 AD](https://web.microsoftstream.com/video/3749cf8d-847a-4366-96fe-9a40646adf99)
+
+
+
+
+
+
+
+
+
+
