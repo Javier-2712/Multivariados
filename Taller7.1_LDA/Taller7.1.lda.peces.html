@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Javier Rodríguez Barrios">
-<meta name="dcterms.date" content="2023-05-02">
+<meta name="dcterms.date" content="2023-05-03">
 
 <title>Taller 7.1 Análisis Discriminante Lineal - LDA</title>
 <style>
@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 2, 2023</p>
+      <p class="date">May 3, 2023</p>
     </div>
   </div>
   
@@ -177,14 +177,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
 <p><strong>Objetivo de la actividad:</strong></p>
 </b><p><b style="color:#1f78b4;"></b></p>
-<p>La base de datos que se utilizará es la de medidas morfométricas de peces de un estudio realizado con peces de la india por <strong>Gupta et al.&nbsp;(2018)</strong> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6203374/">Articulo fuente</a> en los que se validó la taxonomía de peces de la subfamilia Barbinae, utilizando 19 variables morfométricas y 19 variables meristicas, correspondientes a 5 Especie de la familia en mención.</p>
+<p>La base de datos que se utilizará es la de medidas morfométricas de peces de un estudio realizado con peces de la india por <strong>Gupta et al.&nbsp;(2018)</strong> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6203374/">Articulo fuente</a> en los que se validó la taxonomía de peces de la subfamilia Barbinae, utilizando 19 variables morfométricas y 19 variables meristicas, correspondientes a 5 especies de la familia en mención.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6203374/bin/pone.0206031.g002.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
 <p></p><figcaption class="figure-caption"><n style="color:#1f78b4;"> Imágen tomada de <em>Gupta et al.&nbsp;(2018)</em> (a) <em>S . Sarana</em> (b) <em>P . ticto</em> (c) <em>P . sóforo</em> , (d) <em>P . conconio</em> y (e) <em>P . chola</em> </n></figcaption><p></p>
 </figure>
 </div>
-<p>El <strong>objetivo</strong> de este ejercicio consiste en identificar a las variables morfométricas que mejor discriminan a las Especie de peces y si dichas Especie se encuentran bien discriminadas en sus grupos taxonómicos asignados. De igual forma se construirá un modelo lineal en el que se puedan incluir nuevos individuos tomados de la misma muestra de peces y puedan ser discriminados de manera eficiente. La base de datos que se utilizará es <strong>peces.csv</strong>.</p>
+<p>El <strong>objetivo</strong> de este ejercicio consiste en identificar a las variables morfométricas que mejor discriminan a las especies de peces y si dichas especies se encuentran bien discriminadas en sus grupos taxonómicos asignados. De igual forma se construirá un modelo lineal en el que se puedan incluir nuevos individuos tomados de la misma muestra de peces y puedan ser discriminados de manera eficiente. La base de datos que se utilizará es <strong>peces.csv</strong>.</p>
 <p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
 </b><section id="referencias-bibliográficas-de-apoyo." class="level2"><b style="color:#1f78b4;">
 <h2 class="anchored" data-anchor-id="referencias-bibliográficas-de-apoyo.">Referencias bibliográficas de apoyo.</h2>
@@ -219,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </b><section id="cargar-o-importar-la-base-de-datos" class="level3"><b style="color:#1f78b4;">
 <h3 class="anchored" data-anchor-id="cargar-o-importar-la-base-de-datos">Cargar o importar la base de datos</h3>
 </b><p><b style="color:#1f78b4;"></b></p>
-<p>La presente base de datos se encuentra en formato plano de <code>csv</code>, presenta una columna <code>Especie</code> que agrupa a las 5 Especie de peces, otra columna <code>Grupo</code>, que asigna un número a cada especie y posteriormente a las 19 variables morfométricas y 10 variables meristicas, de las cuales se selecionarán las 19 morfométricas para este ejercicio <code>M.1</code> a <code>M.19</code>.</p>
+<p>La presente base de datos se encuentra en formato plano de <code>csv</code>, presenta una columna <code>Especie</code> que agrupa a las 5 especies de peces, otra columna <code>Grupo</code>, que asigna un número a cada especie y posteriormente a las 19 variables morfométricas y 10 variables meristicas, de las cuales se selecionarán las 19 morfométricas para este ejercicio <code>M.1</code> a <code>M.19</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base de datos</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>peces<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(<span class="st">"peces.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
@@ -237,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </b><section id="exploración-de-los-datos" class="level3"><b style="color:#1f78b4;">
 <h3 class="anchored" data-anchor-id="exploración-de-los-datos">Exploración de los datos</h3>
 </b><p><b style="color:#1f78b4;"></b></p>
-<p>Para este ejemplo se urtilizarán figuras que relacionan parejas de variables y figuras de cajas que permitan visualizar diferencias entre las Especie de peces de acuerdo a su morfometría. *Para facilidad del ejercicio se seleccionarán algunas variables morfométricas - <code>peces1</code>, debido a que son las que presentan mejores patrones lineales.</p>
+<p>Para este ejemplo se urtilizarán figuras que relacionan parejas de variables y figuras de cajas que permitan visualizar diferencias entre las especies de peces de acuerdo a su morfometría. *Para facilidad del ejercicio se seleccionarán algunas variables morfométricas - <code>peces1</code>, debido a que son las que presentan mejores patrones lineales.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores con variables morfométricas</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>peces1 <span class="ot">&lt;-</span> peces[,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>)]</span>
@@ -372,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="st">"row"</span>,      <span class="co"># Estandariza variables diferentes.</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="fu">bluered</span>(<span class="dv">100</span>),                 <span class="co"># Colores del mapa de calor</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab =</span><span class="st">"Variables morfométricas"</span>, </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span> <span class="st">"Especie de Peces"</span>, </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span> <span class="st">"Especies de Peces"</span>, </span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Clasificación de Peces"</span>,   </span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">trace =</span> <span class="st">"none"</span>, </span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">density.info =</span> <span class="st">"none"</span>,</span>
@@ -399,17 +399,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </b><section id="paso-1.-pruebas-de-supuestos" class="level2"><b style="color:#1f78b4;">
 <h2 class="anchored" data-anchor-id="paso-1.-pruebas-de-supuestos">Paso 1. Pruebas de supuestos</h2>
 </b><p><b style="color:#1f78b4;"></b></p>
-<p>Para que el análisis discriminante lineal sea considerado como un modelo lineal, debe cumplir con los supuestos de normalidad multivariada y de homogeneidad de covarianzas. Para el caso del presente ejercicio, dichos supuestos no alcanzan a cumplirse con los diagnosticos utilizados (valor p &lt; 0.05), motivo por el cual, el lda de este ejercicio será tomado como una técnica de exploración moltivariada para saber que tan bien discriminados quedan los individuos de cada especie, basado en las 10 variables morfomètricas seleccionadas.</p>
+<p>Para que el análisis discriminante lineal sea considerado como un modelo lineal, debe cumplir con los supuestos de normalidad multivariada y de homogeneidad de covarianzas. Para el caso del presente ejercicio, dichos supuestos no alcanzan a cumplirse con los diagnosticos utilizados (valor p &gt; 0.05), motivo por el cual, el lda de este ejercicio será tomado como una técnica de exploración moltivariada para saber que tan bien discriminados quedan los individuos de cada especie, basado en las 10 variables morfométricas seleccionadas.</p>
 <p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
 </b><section id="supuesto-de-normalidad" class="level3"><b style="color:#1f78b4;">
 <h3 class="anchored" data-anchor-id="supuesto-de-normalidad">1.1 Supuesto de normalidad</h3>
 </b><p><b style="color:#1f78b4;"></b></p>
-<p>El supuesto de normalidad multivariada será evaluado con el paquete <code>mvnormtest</code>, el cual utiliza el estadìstico de <code>Shapiro Wilks Multivariado</code>. Para ello se realizarà esta prueba en cada uno de los grupos o especies en comparación.</p>
+<p>El supuesto de normalidad multivariada será evaluado con el paquete <code>mvnormtest</code>, el cual utiliza el estadístico de <code>Shapiro Wilks Multivariado</code>. Para ello se realizará esta prueba en cada uno de los grupos o especies en comparación.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagnóstico de normalidad por cada tipo de Especie</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvnormtest)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Los siguientes generan los dataframes de cada especie con las 10 variables seleccionadas, convirtiendola ademàs en formato matricial.</p>
+<p>Los siguientes generan los dataframes de cada especie con las 10 variables seleccionadas, convirtiendola además en formato matricial.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataframe por cada especie</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter</span>(Especie <span class="sc">==</span> <span class="st">"S. sarana"</span>) <span class="sc">%&gt;%</span>       </span>
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>             <span class="fu">subset</span>(<span class="at">select =</span> <span class="fu">c</span>(<span class="st">"M.1"</span>,<span class="st">"M.2"</span>,<span class="st">"M.3"</span>,<span class="st">"M.4"</span>,<span class="st">"M.5"</span>,<span class="st">"M.6"</span>,<span class="st">"M.7"</span>,<span class="st">"M.13"</span>,<span class="st">"M.15"</span>,<span class="st">"M.18"</span>)) <span class="sc">%&gt;%</span>              <span class="fu">as.matrix</span>()  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Vale la pena resaltar que los datos de las especies P. chola y P. sophore, son singulares, por lo cual no puede calcularse su supuesto de normalidad multivariada. Con el objeto de continuar en el ejercicio, las matrices que representan a las especies en menciòn, seràn desactivadas con <code>#</code>.</p>
+<p>Vale la pena resaltar que los datos de las especies P. chola y P. sophore, son singulares, por lo cual no puede calcularse su supuesto de normalidad multivariada. Con el objeto de continuar en el ejercicio, las matrices que representan a las especies en mención, serán desactivadas con <code>#</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prueba de normalidad para cada especie</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -448,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>norm4   <span class="ot">&lt;-</span> <span class="fu">mshapiro.test</span>(<span class="fu">t</span>(P.ticto))</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>norm5   <span class="ot">&lt;-</span> <span class="fu">mshapiro.test</span>(<span class="fu">t</span>(S.sarana))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A continuación se resume el resultado de los tres diagnósticos de normalidad multivariada realizados. Vale la pena mencionar que ninguna especie cumple con dicho supuesto estadóstico (valores p &lt; 0.05), aunque existe la posibilidad de probar con alguna transformación.</p>
+<p>A continuación se resume el resultado de los tres diagnósticos de normalidad multivariada realizados. Vale la pena mencionar que ninguna especie cumple con dicho supuesto estadístico (valores p &lt; 0.05), aunque existe la posibilidad de probar con alguna transformación.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de el diagnóstico de normalidad</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">normalidad =</span> <span class="fu">data.frame</span>(<span class="at">Norm.P.concho =</span> norm2<span class="sc">$</span>p.value,</span>
@@ -470,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>peces.d <span class="ot">&lt;-</span> <span class="fu">dist</span>(peces[,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>)])                <span class="co"># Matriz de distancias</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>peces.homoge <span class="ot">&lt;-</span> <span class="fu">betadisper</span>(peces.d, peces<span class="sc">$</span>Especie)      <span class="co"># Permutest</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Con la siguiente <code>anova</code> se obtiene un valor p de 0.016*, lo cual indica que no se cumple el supuesto de homogeneidad de covarianzas (valor p &lt; 0.05).</p>
+<p>Con la siguiente <code>anova</code> se obtiene un valor p de 0.016*, lo cual indica que NO se cumple el supuesto de homogeneidad de covarianzas (valor p &lt; 0.05).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Prueba con anova permutacional</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(peces.homoge)  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -485,7 +485,7 @@ Residuals 65 0.098082 0.0015090
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Con el <code>permutest</code> se obtiene un valor p de 0.015*, lo cual indica que tampoco se cumple el supuesto de homogeneidad de covarianzas (valor p &lt; 0.05).</p>
+<p>Con el <code>permutest</code> se obtiene un valor p de 0.016*, lo cual indica que tampoco se cumple el supuesto de homogeneidad de covarianzas (valor p &lt; 0.05).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Prueba permutacional</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">permutest</span>(peces.homoge)   <span class="co"># Se cumple el supuesto de homogeneidad </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -497,7 +497,7 @@ Number of permutations: 999
 
 Response: Distances
           Df   Sum Sq   Mean Sq     F N.Perm Pr(&gt;F)  
-Groups     4 0.019804 0.0049509 3.281    999  0.023 *
+Groups     4 0.019804 0.0049509 3.281    999  0.021 *
 Residuals 65 0.098082 0.0015090                      
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
@@ -528,8 +528,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
           0.17           0.11           0.09           0.29           0.34 </code></pre>
 </div>
 </div>
-<p>“<em>Prior probabilities of groups</em>” corresponde a la probabilidad de clasificación para cada grupo que dependerá del número de peces que lo conforman, aqueyas especies con mayor número de individuos censados, presentarán mayor probabilidad de discriminación.</p>
-<p>Prbabilidad de clasificar indv. de los cinco grupos: P. chola P. conchonious P. sophore P. ticto S. sarana 0.17 0.11 0.08 0.28 0.34</p>
+<p>“<em>Prior probabilities of groups</em>” corresponde a la probabilidad de clasificación para cada grupo que dependerá del número de peces que lo conforman, aquellas especies con mayor número de individuos censados, presentarán mayor probabilidad de discriminación.</p>
+<p>Prbabilidad de clasificar indv. de los cinco grupos: P. chola P. conchonious P. sophore P. ticto S. sarana 0.17 0.11 0.09 0.29 0.34</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Insumos del AD </span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(dis)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -715,7 +715,7 @@ Especie          P. chola P. conchonious P. sophore P. ticto S. sarana
 <div id="fig-figura7" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Taller7.1.lda.peces_files/figure-html/fig-figura7-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figura&nbsp;7: Mapa de calor que relaciona a las variables morfométricas y a las especies de peces.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;7: Discriminante de las especies de peces con un eje canónico.</figcaption><p></p>
 </figure>
 </div>
 </div>
