@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Javier Rodríguez_Barrios - Universidad del Magdalena">
-<meta name="dcterms.date" content="2023-09-13">
+<meta name="dcterms.date" content="2023-09-14">
 
 <title>Taller 5 Seminario de distancias y coeficientes de similitud</title>
 <style>
@@ -100,7 +100,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="Taller5.seminario.distancias_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -143,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 13, 2023</p>
+      <p class="date">September 14, 2023</p>
     </div>
   </div>
   
@@ -170,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="https://media.springernature.com/full/springer-static/cover-hires/book/978-3-319-71404-2?as=webp.png" class="img-fluid" width="97"></p>
 <p>Libro <em>Coeficientes de asociación</em> (Rodríguez-Salazar et al.&nbsp;2001) <a href="https://elibro-net.biblioteca.unimagdalena.edu.co/es/ereader/unimagdalena/73338?page=1">ENLACE DEL LIBRO</a></p>
 <p><img src="https://www.plazayvaldes.es/upload/portadas/2001/resized/360_968-856-901-1.jpg" class="img-fluid" width="95"></p>
-<p>Capitulo 7 de Rodríguez-Barrios, J. (2023) <a href="#0">ENLACE DEL LIBRO</a></p>
+<p>Capitulo 7 de Rodríguez-Barrios, J. (2023) <a href="https://www-ebooks7-24-com.biblioteca.unimagdalena.edu.co/?il=26489&amp;pg=215">ENLACE DEL LIBRO</a></p>
 <p><img src="https://www.editdiazdesantos.com/images/covers/9788490524817.jpg" class="img-fluid" width="97"></p>
 </section>
 <section id="section" class="level2">
@@ -190,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Los trabajos con mayor revisión bibliográfica tendrán un puntaje superior.</p></li>
 <li><p><strong>Aplicar las figuras relacionadas</strong> a la distancia o coeficiente seleccionado, como las que se realizan en Borcard et al.&nbsp;(2018) o en Rodríguez-Barrios (2023).</p></li>
 </ol>
-<p><strong>Nota:</strong> Para el requisito 2, se debe trabajar el ejercicio con los datos del archivo “<code>efem.csv</code>” que corresponde a datos de abundancia de 8 géneros de larvas de Efemerópteros, colectadas en el Río Gaira, Santa Marta (<em>Rodriguez et al.&nbsp;2011</em>) ENLACE. Se cuenta con 28 observaciones (columna 1), que relacionan a tres lugares del río (A, B y C) con hasta diez muestreos por cada sitio (descritos en las columnas 2 y 3).</p>
+<p><strong>Nota 1:</strong> Para el requisito 2, se debe trabajar el ejercicio con los datos del archivo “<code>efem.csv</code>” <a href="https://javier-2712.github.io/Multivariados/Taller5_Seminarios.distancias/efem.csv">enlace_archivo_csv</a> que corresponde a datos de abundancia de 8 géneros de larvas de Efemerópteros, colectadas en el Río Gaira, Santa Marta (<em>Rodriguez et al.&nbsp;2011</em>) <a href="https://www.scielo.sa.cr/scielo.php?script=sci_arttext&amp;pid=S0034-77442011000400009">ENLACE_ARTÍCULO</a>. Se cuenta con 28 observaciones (columna 1), que relacionan a tres lugares del río (A, B y C) con hasta diez muestreos por cada sitio (descritos en las columnas 2 y 3).</p>
 <p>En caso de que haya seleccionado alguno de los temas de exposición 1 al 3: El siguiente procedimiento muestra una manera en que se puede transformar la base de datos “<code>efem</code>” a binaria (comando <code>ifelse</code>), este procedimiento es para el caso en que el coeficiente asignado sea <code>binario</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Llamar en R a la base de datos “efem.csv” y asignarla como “datos”.</span></span>
@@ -218,8 +217,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Coeficientes de similitud y distancias a seleccionar por cada grupo de estudiantes</p>
 <table class="table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 56%">
+<col style="width: 23%">
+<col style="width: 53%">
 <col style="width: 23%">
 </colgroup>
 <thead>
@@ -232,43 +231,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td><strong>Semejanza ecológica</strong></td>
-<td>Introducción, Análisis Q y R, Coeficientes de Asociación (Modo Q y R). Modo Q: Coeficientes de Similitud binarios simétricos y asimétricos S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub> (simple matching coefficient). Ejemplos.</td>
+<td>Introducción, Análisis Q y R, Coeficientes de Asociación (<code>Modo Q y R</code>). Modo Q: Coeficientes de Similitud binarios simétricos y asimétricos <code>S1</code>, <code>S2</code>, <code>S3</code> (simple matching coefficient). Ejemplos.</td>
 <td></td>
 </tr>
 <tr class="even">
 <td><strong>Coeficientes asimétricos binarios</strong></td>
-<td>Introducción, Coeficientes S<sub>7</sub> (Jaccard), S<sub>8</sub>(Sorensen), S<sub>15</sub> (Gower). Ejemplos.</td>
+<td>Introducción, Coeficientes <code>S7</code> (Jaccard), <code>S8</code>(Sorensen), <code>S15</code> (Gower). Ejemplos.</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><strong>Coeficientes asimétricos binarios</strong></td>
-<td>Introducción, Coeficientes S<sub>14</sub> (Ochiai), S<sub>18</sub> (kulczynski cuantitativo). Ejemplos.</td>
+<td>Introducción, Coeficientes <code>S14</code> (Ochiai), <code>S18</code> (kulczynski cuantitativo). Ejemplos.</td>
 <td></td>
 </tr>
 <tr class="even">
 <td><strong>Modo Q</strong>: Coeficientes de distancia</td>
-<td>Introducción al Modo Q, Diferencias entre Distancias Métricas, Semi-métricas y no métricas, D<sub>1</sub> (Euclídea), D<sub>14</sub> (Bray Curtis). Ejemplos.</td>
+<td>Introducción al Modo Q, Diferencias entre Distancias Métricas, Semi-métricas y no métricas, <code>D1</code> (Euclídea), <code>D14</code> (Bray Curtis). Ejemplos.</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><strong>Modo Q</strong>: Coeficientes de distancia</td>
-<td>Introducción, D<sub>17</sub> (Distancia Hellinger), D<sub>16</sub> (Distancia Chi Cuadrado), D<sub>3</sub> (Distancia Cuerda). Ejemplos.</td>
+<td>Introducción, <code>D17</code> (Distancia Hellinger), <code>D1</code><sub>6</sub> (Distancia Chi Cuadrado), D<sub>3</sub> (Distancia Cuerda). Ejemplos.</td>
 <td></td>
 </tr>
 <tr class="even">
 <td><strong>Modo Q</strong>: Coeficientes de distancia</td>
-<td>Introducción al Modo Q, D<sub>5</sub> (Distancia generalizada de Mahalanobish) y su aplicación en comparación de muestras multivariadas</td>
+<td>Introducción al Modo Q, <code>D5</code> (Distancia generalizada de Mahalanobish) y su aplicación en comparación de muestras multivariadas</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><strong>Modo R</strong>: Asociación de variables.</td>
-<td>Introducción al Modo R, Diferencias con el modo Q. Coeficientes de Pearson, Spearman y Kendall. ejemplos.</td>
+<td>Introducción al <code>Modo R</code>, Diferencias con el modo Q. Coeficientes de <code>Pearson</code>, <code>Spearman</code> y <code>Kendall</code>. ejemplos.</td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Nota 2.</strong> Los responsables de los temas 1 al 3, deben explicar los coeficientes, basados en la siguiente matriz, p.&nbsp;254 (Legendre y Legendre 1998), p.&nbsp;22 (Rodríguez-Salazar et al.&nbsp;2001) u otros referentes:</p>
-<p><img src="Figuras/Figura1.png" class="img-fluid" width="327"></p>
+<p><img src="Figuras/Figura1.png" class="img-fluid" width="286"></p>
 <p>Explicar en que consisten los diferentes elementos de la matriz anterior (observaciones, 0, 1, a, b, c, d), incluidas las variables binarias que se analizan.</p>
 </section>
 
@@ -405,22 +404,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 </div> <!-- /content -->
