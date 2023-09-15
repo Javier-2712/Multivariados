@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Javier Rodríguez_Barrios - Universidad del Magdalena">
-<meta name="dcterms.date" content="2023-09-14">
+<meta name="dcterms.date" content="2023-09-15">
 
 <title>Taller 5 Seminario de distancias y coeficientes de similitud</title>
 <style>
@@ -100,6 +100,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="Taller5.seminario.distancias_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -142,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 14, 2023</p>
+      <p class="date">September 15, 2023</p>
     </div>
   </div>
   
@@ -189,21 +190,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Los trabajos con mayor revisión bibliográfica tendrán un puntaje superior.</p></li>
 <li><p><strong>Aplicar las figuras relacionadas</strong> a la distancia o coeficiente seleccionado, como las que se realizan en Borcard et al.&nbsp;(2018) o en Rodríguez-Barrios (2023).</p></li>
 </ol>
-<p><strong>Nota 1:</strong> Para el requisito 2, se debe trabajar el ejercicio con los datos del archivo “<code>efem.csv</code>” <a href="https://javier-2712.github.io/Multivariados/Taller5_Seminarios.distancias/efem.csv">enlace_archivo_csv</a> que corresponde a datos de abundancia de 8 géneros de larvas de Efemerópteros, colectadas en el Río Gaira, Santa Marta (<em>Rodriguez et al.&nbsp;2011</em>) <a href="https://www.scielo.sa.cr/scielo.php?script=sci_arttext&amp;pid=S0034-77442011000400009">ENLACE_ARTÍCULO</a>. Se cuenta con 28 observaciones (columna 1), que relacionan a tres lugares del río (A, B y C) con hasta diez muestreos por cada sitio (descritos en las columnas 2 y 3).</p>
-<p>En caso de que haya seleccionado alguno de los temas de exposición 1 al 3: El siguiente procedimiento muestra una manera en que se puede transformar la base de datos “<code>efem</code>” a binaria (comando <code>ifelse</code>), este procedimiento es para el caso en que el coeficiente asignado sea <code>binario</code>.</p>
+<p><strong>Nota 1:</strong> Para el requisito 2, se debe trabajar el ejercicio con los datos del archivo “<code>insectos.csv</code>” <a href="https://javier-2712.github.io/Multivariados/Taller5_Seminarios.distancias/insectos.csv">enlace_archivo_csv</a> que corresponde a datos de abundancia de 5 órdenes de insectoscolectados en el río Gaira, Santa Marta (<em>Rodriguez et al.&nbsp;2011</em>).</p>
+<p>En caso de que haya seleccionado alguno de los temas de exposición 1 al 3: El siguiente procedimiento muestra una manera en que se puede transformar la base de datos “<code>insectos</code>” a binaria (comando <code>ifelse</code>), este procedimiento es para el caso en que el coeficiente asignado sea <code>binario</code>. (<em>Para más detalles ver: ejemplo de la página 227 del libro guía</em> <strong>Rodríguez-Barrios</strong> <a href="https://www-ebooks7-24-com.biblioteca.unimagdalena.edu.co/?il=26489&amp;pg=221">ENLACE</a>).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Llamar en R a la base de datos “efem.csv” y asignarla como “datos”.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(<span class="st">"efem.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos<span class="ot">&lt;-</span><span class="fu">read.csv2</span>(<span class="st">"insectos.csv"</span>,<span class="at">row.names=</span><span class="dv">1</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(datos)        <span class="co"># Visualizar nombres de las variables a transformar </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Batds<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Batds<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Batds)     <span class="co"># Primera variable transformada en binaria.</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Lpthy<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Lpthy<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Lpthy)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Trcry<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Trcry<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Trcry)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Prbtd<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Prbtd<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Prbtd)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Cmlbt<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Cmlbt<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Cmlbt)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Thrld<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Thrld<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Thrld)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Lchln<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Lchln<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Lchln)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Trpds<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Trpds<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Trpds)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)      <span class="co"># Nueva estructura binaria</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Efemeroptera<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Efemeroptera<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Efemeroptera)    <span class="co"># Primera variable transformada en binaria.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Plecoptera<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Plecoptera<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Plecoptera)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Trichoptera<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Trichoptera<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Trichoptera)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Diptera<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Diptera<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Diptera)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>Coleoptera<span class="ot">=</span><span class="fu">ifelse</span>(datos<span class="sc">$</span>Coleoptera<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,datos<span class="sc">$</span>Coleoptera)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>datos</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(datos)      <span class="co"># Nueva estructura binaria</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-1" class="level2">
@@ -217,9 +216,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Coeficientes de similitud y distancias a seleccionar por cada grupo de estudiantes</p>
 <table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 53%">
-<col style="width: 23%">
+<col style="width: 25%">
+<col style="width: 50%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -404,6 +403,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->
