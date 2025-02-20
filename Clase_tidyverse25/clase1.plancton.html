@@ -345,53 +345,341 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="abreviar-nombres-de-grupos-biológicos">Abreviar nombres de grupos biológicos</h2>
 <p>Para facilitar la visualización y manipulación de datos, podemos <strong>abreviar</strong> los nombres de los grupos biológicos utilizando <code>abbreviate()</code>. Esto es útil cuando trabajamos con nombres largos que dificultan la lectura en gráficos y tablas. Se crea una nueva columna (<strong>Abrev</strong>) con abreviaciones de los nombres de los grupos taxonómicos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Genera una nueva columna con valores abreviados en Biol</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>biol <span class="ot">&lt;-</span> </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  biol <span class="sc">%&gt;%</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Abrev =</span> <span class="fu">abbreviate</span>(Groups, <span class="at">minlength =</span> <span class="dv">4</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear la tabla con nombres completos y abreviados de los Groups</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>biol <span class="ot">&lt;-</span> biol <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Abrev =</span> <span class="fu">abbreviate</span>(Groups, <span class="at">minlength =</span> <span class="dv">4</span>))  <span class="co"># Abrevia los nombres de los grupos en la columna 'Groups'</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(biol) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Station</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Layers</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Groups</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Abundance</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Temperature</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Salinity</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Density</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Abundance_Temp_Ratio</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Abrev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: left;">Quetognatos</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">30.29749</td>
+<td style="text-align: right;">34.69981</td>
+<td style="text-align: right;">21.417828</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Qtgn</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: left;">Sergestidae</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">29.40959</td>
+<td style="text-align: right;">25.83323</td>
+<td style="text-align: right;">15.085254</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Srgs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: left;">Luciferidae</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">29.59008</td>
+<td style="text-align: right;">12.38513</td>
+<td style="text-align: right;">5.729643</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: left;">Lcfr</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: left;">Calanoida</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">30.29749</td>
+<td style="text-align: right;">34.69981</td>
+<td style="text-align: right;">21.417828</td>
+<td style="text-align: right;">1.0561930</td>
+<td style="text-align: left;">Clnd</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: left;">Cyclopoida</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">29.40959</td>
+<td style="text-align: right;">25.83323</td>
+<td style="text-align: right;">15.085254</td>
+<td style="text-align: right;">0.1360100</td>
+<td style="text-align: left;">Cycl</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: left;">Harpacticoida</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">29.59008</td>
+<td style="text-align: right;">12.38513</td>
+<td style="text-align: right;">5.729643</td>
+<td style="text-align: right;">0.0675902</td>
+<td style="text-align: left;">Hrpc</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear la tabla con nombres completos y abreviados de los Groups</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">Grupos =</span> biol[,<span class="dv">4</span>], </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Abbreviaturas =</span> biol<span class="sc">$</span>Abrev)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Abbreviaturas =</span> biol<span class="sc">$</span>Abrev)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tabla) <span class="sc">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Groups</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Abbreviaturas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Quetognatos</td>
+<td style="text-align: left;">Qtgn</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sergestidae</td>
+<td style="text-align: left;">Srgs</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Luciferidae</td>
+<td style="text-align: left;">Lcfr</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Calanoida</td>
+<td style="text-align: left;">Clnd</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cyclopoida</td>
+<td style="text-align: left;">Cycl</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Harpacticoida</td>
+<td style="text-align: left;">Hrpc</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
 </div>
 <p>Se convierten las variables categóricas en <strong>factores</strong> y se agrupan los datos para calcular promedios y totales de las variables ambientales y de abundancia de los taxones seleccionados. Se construye una tabla (<strong>biol_ancho</strong>) que es útil para cuando la base de datos inicial está en <strong>formato largo</strong> y queremos transformarla a <strong>formato ancho</strong>, incluyendo a varios factores o variables agrupadoras, en caso de que se cuentre con ellas (Station, Size, Layers). Se genera una nueva columna <strong>Ref</strong> que resume la identificación de cada combinación de estación, tamaño y capa.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir variables agrupadoras a factores</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>factores <span class="ot">&lt;-</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  biol[,<span class="sc">-</span><span class="dv">4</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Station, Size, Layers), as.factor))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir el dataframe para obtener las Abundances totales y promedios</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>biol_ancho <span class="ot">&lt;-</span> </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  factores <span class="sc">%&gt;%</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Station, Size, Layers) <span class="sc">%&gt;%</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Temperature =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Temperature),<span class="dv">2</span>),</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Salinity   =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Salinity),<span class="dv">2</span>),</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Density    =</span> <span class="fu">round</span>(<span class="fu">mean</span>(Density),<span class="dv">2</span>),    </span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Qtgn =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Qtgn"</span>]),</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Srgs =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Srgs"</span>]),</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">Lcfr =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Lcfr"</span>]),</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">Clnd =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Clnd"</span>]),</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cycl =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Cycl"</span>]),</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Hrpc =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Hrpc"</span>]),</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Lrdp =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Lrdp"</span>]),</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Hvdp =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Hvdp"</span>]),</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">LrvN =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"LrvN"</span>]),</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">LrvZ =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"LrvZ"</span>]),</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Otrs =</span> <span class="fu">sum</span>(Abundance[Abrev <span class="sc">==</span> <span class="st">"Otrs"</span>]),</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>  <span class="co"># Elimina la agrupaciones de salida.</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un consecutivo que relaciona a "Station", "Size" y "Layers"</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>biol_ancho <span class="ot">&lt;-</span> </span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  biol_ancho <span class="sc">%&gt;%</span></span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Ref =</span> <span class="fu">paste0</span>(<span class="fu">substr</span>(Station, <span class="dv">1</span>, <span class="dv">2</span>), </span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">substr</span>(Size, <span class="dv">1</span>, <span class="dv">1</span>), </span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">substr</span>(Layers, <span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ref, <span class="fu">everything</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)  <span class="co"># Carga el paquete dplyr para manipulación de datos</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Procesamiento y agregación de datos</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>biol_ancho <span class="ot">&lt;-</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  biol <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Station, Size, Layers), as.factor)) <span class="sc">%&gt;%</span>  <span class="co"># Convierte 'Station', 'Size' y 'Layers' a factores</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Station, Size, Layers) <span class="sc">%&gt;%</span>  <span class="co"># Agrupa por las variables clave</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(Temperature, Salinity, Density), <span class="sc">~</span> <span class="fu">round</span>(<span class="fu">mean</span>(.), <span class="dv">2</span>)),  <span class="co"># Calcula la media de variables ambientales y redondea a 2 decimales</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Abundance =</span> <span class="fu">list</span>(<span class="fu">setNames</span>(<span class="fu">tapply</span>(Abundance, Abrev, sum, <span class="at">default =</span> <span class="dv">0</span>), <span class="fu">unique</span>(Abrev))), <span class="co"># Suma las abundancias por grupo abreviado</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>  <span class="co"># Elimina la agrupación después de la operación de resumen</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(Abundance) <span class="sc">%&gt;%</span>  <span class="co"># Expande la lista de abundancias en columnas separadas</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ref =</span> <span class="fu">paste0</span>(<span class="fu">substr</span>(Station, <span class="dv">1</span>, <span class="dv">2</span>),  <span class="co"># Toma los primeros 2 caracteres de 'Station'</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">substr</span>(Size, <span class="dv">1</span>, <span class="dv">1</span>),     <span class="co"># Toma el primer carácter de 'Size'</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">substr</span>(Layers, <span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># Toma el primer carácter de 'Layers'</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ref, <span class="fu">everything</span>())  <span class="co"># Reordena las columnas para que 'Ref' sea la primera</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(biol_ancho) <span class="sc">%&gt;%</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Ref</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Station</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Layers</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Temperature</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Salinity</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Density</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Qtgn</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Srgs</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lcfr</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Clnd</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cycl</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hrpc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lrdp</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Hvdp</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LrvN</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LrdC</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LrvZ</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Otrs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">22D</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Depth</td>
+<td style="text-align: right;">29.88</td>
+<td style="text-align: right;">25.26</td>
+<td style="text-align: right;">14.40</td>
+<td style="text-align: right;">12672</td>
+<td style="text-align: right;">408</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">135</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">112</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">22S</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: right;">29.75</td>
+<td style="text-align: right;">23.27</td>
+<td style="text-align: right;">13.35</td>
+<td style="text-align: right;">568</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">984</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2488</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1096</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25D</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">500 μm</td>
+<td style="text-align: left;">Depth</td>
+<td style="text-align: right;">29.40</td>
+<td style="text-align: right;">19.97</td>
+<td style="text-align: right;">10.53</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">355</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25S</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">500 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: right;">29.99</td>
+<td style="text-align: right;">28.66</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10672</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">42D</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Depth</td>
+<td style="text-align: right;">29.38</td>
+<td style="text-align: right;">17.34</td>
+<td style="text-align: right;">8.76</td>
+<td style="text-align: right;">10680</td>
+<td style="text-align: right;">928</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">280</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">368</td>
+<td style="text-align: right;">368</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">42S</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: right;">29.52</td>
+<td style="text-align: right;">21.89</td>
+<td style="text-align: right;">12.11</td>
+<td style="text-align: right;">246</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2240</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
 </div>
 </section>
 <section id="seleccionar-los-5-taxones-más-abundantes" class="level2">
@@ -416,7 +704,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  biol_ancho <span class="sc">%&gt;%</span></span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ref, Station, Size, Layers, </span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>         Temperature, Salinity, Density, </span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>         <span class="fu">all_of</span>(abundantes<span class="sc">$</span>Grupo))  <span class="co"># Mantiene solo los grupos seleccionados</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>         <span class="fu">all_of</span>(abundantes<span class="sc">$</span>Grupo))  <span class="co"># Mantiene solo los grupos seleccionados</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(biol_selec) <span class="sc">%&gt;%</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Ref</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Station</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Layers</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Temperature</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Salinity</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Density</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Qtgn</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cycl</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lrdp</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Srgs</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LrdC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">22D</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Depth</td>
+<td style="text-align: right;">29.88</td>
+<td style="text-align: right;">25.26</td>
+<td style="text-align: right;">14.40</td>
+<td style="text-align: right;">12672</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">408</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">22S</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: right;">29.75</td>
+<td style="text-align: right;">23.27</td>
+<td style="text-align: right;">13.35</td>
+<td style="text-align: right;">568</td>
+<td style="text-align: right;">984</td>
+<td style="text-align: right;">2488</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1096</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25D</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">500 μm</td>
+<td style="text-align: left;">Depth</td>
+<td style="text-align: right;">29.40</td>
+<td style="text-align: right;">19.97</td>
+<td style="text-align: right;">10.53</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">355</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25S</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">500 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: right;">29.99</td>
+<td style="text-align: right;">28.66</td>
+<td style="text-align: right;">17.02</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10672</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">42D</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Depth</td>
+<td style="text-align: right;">29.38</td>
+<td style="text-align: right;">17.34</td>
+<td style="text-align: right;">8.76</td>
+<td style="text-align: right;">10680</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">928</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">42S</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">250 μm</td>
+<td style="text-align: left;">Surface</td>
+<td style="text-align: right;">29.52</td>
+<td style="text-align: right;">21.89</td>
+<td style="text-align: right;">12.11</td>
+<td style="text-align: right;">246</td>
+<td style="text-align: right;">2240</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
 </div>
 </section>
 <section id="visualización-de-factores" class="level2">
