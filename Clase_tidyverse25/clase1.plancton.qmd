@@ -1,0 +1,629 @@
+---
+title: "Taller de Bases de datos - Asignatura de Multivariados"
+subtitle: "Taller 1. Para el análisis de datos biológicos y Ambientales"
+date: last-modified #now #today
+description: Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de bases de datos.
+author: 
+  name: Nombre del Estudiante
+  url: https://www.unimagdalena.edu.co/
+  afiliation: Grupo GIEN
+  afiliation-url: https://grupogien.jimdofree.com/
+title-block-banner: "#decbe4"
+format:
+  html:
+    toc: true    # Tabla de contenido
+    toc-depth: 6 
+    toc-title: Menú flotante
+    code-tools: false   # Opción para descargar los códigos
+    code-fold: false   # Visualización de los códigos en el reporte
+    css: ["styles2.css"]    # Colores del texto.
+lang: ES-es
+---
+
+------------------------------------------------------------------------
+
+# Resumen
+
+El presente taller tiene por objeto, brindar pautas generales para el manejo y visualización de datos biológicos en el lenguaje `tidyverse` de R. Se realizan algunas operaciones generales usando una **base de datos de plancton**, que incorpora variables biológicas y ambientales.
+
+------------------------------------------------------------------------
+
+# Taller 2. Manejo de datos biológicos y ambientales
+
+![Tomado de: [Earth News](http://news.bbc.co.uk/earth/hi/earth_news/newsid_9449000/9449070.stm)](http://news.bbcimg.co.uk/media/images/52221000/jpg/_52221477_live&deadcopepods2.jpg){fig-align="left"}
+
+------------------------------------------------------------------------
+
+## Introducción
+
+Se realizarán ejercicios con los comandos generales de **tidyverse** en el manejo y visualización de datos, utilizando como ejemplo la base de datos de plancton en un estuario de Colombia (**biol**).
+
+La base de datos **"Riqueza"** tiene 498 registros y 8 columnas, incluyendo:
+
+-   **Variables categóricas o factores:**
+    -   `Station` (Estación, numérica pero categórica en contexto)
+    -   `Size` (Tamaños de malla del plancton)
+    -   `Layers` (Capas o estratos en el gradiente de profundidad)
+    -   `Groups` (Grupos de plancton)
+-   **Variables cuantitativas:**
+    -   `Abundance` (Abundancia de los grupos de plancton)
+    -   `Temperature` (Temperatura del agua)
+    -   `Salinity` (Salinidad del agua)
+    -   `Density` (Densidad de organismos)
+
+## Instalación y carga de paquetes
+
+Para trabajar con **tidyverse**, primero debemos instalar y cargar los paquetes requeridos.
+
+```{r, message=FALSE, warning=FALSE}
+# install.packages("tidyverse") # Descomentar si no está instalado
+library(tidyverse)
+library(readxl)
+library(kableExtra)
+```
+
+## Carga y exploración de datos
+
+Utilizamos `glimpse` para ver la estructura general de la base de datos y `summary` para obtener estadísticas descriptivas.
+
+```{r}
+# Cargar datos desde Excel
+biol <- read_xlsx("plancton.xlsx", sheet = "Riqueza")
+
+# Explorar estructura
+# glimpse(biol)
+# summary(biol)
+```
+
+## Selección y filtrado
+
+`select` permite escoger columnas específicas, mientras que `filter` se usa para seleccionar filas según condiciones.
+
+```{r}
+# Seleccionar variables clave
+datos_select <- 
+  biol %>% 
+  select(Station, Size, Layers, Abundance, Temperature, Salinity)
+```
+
+```{r}
+# Filtrar datos por una condición específica (ejemplo: temperatura > 28°C)
+datos_temp <- 
+  biol %>% 
+  filter(Temperature > 28)
+```
+
+## Creación de nuevas variables
+
+`mutate` se usa para generar nuevas variables derivadas de otras columnas.
+
+```{r}
+# Crear una nueva variable de relación Abundancia/Temperatura
+biol <- 
+  biol %>% 
+  mutate(Abundance_Temp_Ratio = Abundance / Temperature)
+```
+
+## Resumen estadístico de datos agrupados
+
+`group_by` permite agrupar datos según categorías para luego aplicar funciones resumen como `mean()`, `sd()`, ....
+
+```{r}
+# Resumen estadístico de un factor "datos_resumidos"
+datos_resumidos <- 
+  biol %>%        # Base de datos resumida
+  group_by(Station) %>%                                # Factor o variable agrupadora
+  summarise(datos.m   = mean(Abundance, na.rm = TRUE), # Media de cada grupo del factor
+            datos.de  = sd(Abundance, na.rm = TRUE),   # Desviacioes estándar de cada grupo
+            datos.var = var(Abundance, na.rm = TRUE),  # Varianzas de cada grupo
+            n.Ab      = n(),                           # Tamaño de cada grupo
+            datos.ee  = sd(Abundance, na.rm = TRUE)/
+                        sqrt(n()))                     # Error estándar de cada grupo
+```
+
+Agrupamos los datos por `Station`, `Size` y `Layers` y calculamos estadísticas descriptivas clave como la temperatura, salinidad, densidad y la abundancia total. Esto permite obtener un resumen general de las condiciones ambientales y biológicas en diferentes estaciones y capas de muestreo.
+
+```{r, message=FALSE, warning=FALSE}
+# Resumen estadístico de dos factores "datos_resumidos1"
+datos_resumidos1 <- 
+  biol %>%        # Base de datos resumida
+  group_by(Station, Size, Layers) %>%                  # Factor o variable agrupadora
+  summarise(datos.m   = mean(Abundance, na.rm = TRUE), # Media de cada grupo del factor
+            datos.de  = sd(Abundance, na.rm = TRUE),   # Desviacioes estándar de cada grupo
+            datos.var = var(Abundance, na.rm = TRUE),  # Varianzas de cada grupo
+            n.Ab      = n(),                           # Tamaño de cada grupo
+            datos.ee  = sd(Abundance, na.rm = TRUE)/
+                        sqrt(n()))                     # Error estándar de cada grupo
+```
+
+## Transformación de datos
+
+`pivot_longer` cambia la estructura de los datos de ancho a largo.
+
+```{r}
+# Convertir datos de formato ancho a largo
+formato_largo <- 
+  biol %>% 
+  pivot_longer(cols = c(Temperature, Salinity, Density), 
+               names_to = "Environmental_Variable", 
+               values_to = "Value")
+```
+
+`pivot_wider` regresa los datos a su formato original (ancho).
+
+```{r}
+# Convertir de formato largo a ancho
+formato_ancho <- 
+  formato_largo %>%
+  pivot_wider(names_from = Environmental_Variable, 
+              values_from = Value, 
+              values_fn = first)
+```
+
+## Transposición de datos
+
+La siguiente transformación convierte la matriz de datos resumiendo en filas a los grupos taxonómicos y en columnas a las estaciones.
+
+```{r}
+# Agrupa a los taxones en filas y a las estaciones en columnas
+biol_transp <- 
+  biol[,c(1,3:5)] %>% 
+  group_by(Station, Groups) %>% 
+  summarise(Abundance = sum(Abundance, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = Station, values_from = Abundance)
+
+```
+
+## Unión de datos
+
+Podemos unir bases de datos con `left_join`. Para este ejercicio se crea la variable categórica Regiones
+
+```{r}
+# Crear una base de datos adicional de regiones
+Regiones <- 
+  tibble(Station = c(2, 4, 7, 9, 13, 15), 
+         Region = c("North", "South", "East", "West", "Central", "Others"))
+
+# Unir la información por estación
+biol1 <- 
+  biol %>% 
+  left_join(Regiones, by = "Station")
+```
+
+## Conversión de variables categóricas
+
+Convertimos `Station`, `Size` y `Layers` en factores para asegurar que R las reconozca como variables categóricas y optimizar análisis posteriores.
+
+```{r}
+biol <- 
+  biol %>% 
+  mutate(across(c(Station, Size, Layers), as.factor))
+```
+
+## Abreviar nombres de grupos biológicos
+
+Para facilitar la visualización y manipulación de datos, podemos **abreviar** los nombres de los grupos biológicos utilizando `abbreviate()`. Esto es útil cuando trabajamos con nombres largos que dificultan la lectura en gráficos y tablas. Se crea una nueva columna (**Abrev**) con abreviaciones de los nombres de los grupos taxonómicos.
+
+```{r}
+# Crear la tabla con nombres completos y abreviados de los Groups
+biol <- biol %>%
+  mutate(Abrev = abbreviate(Groups, minlength = 4))  # Abrevia los nombres de los grupos en la columna 'Groups'
+
+# tabla con los datos
+head(biol) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+```{r}
+# Crear la tabla con nombres completos y abreviados de los Groups
+tabla <- 
+  cbind(Grupos = biol[,4], 
+        Abbreviaturas = biol$Abrev)
+
+# tabla con los datos
+head(tabla) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+Se convierten las variables categóricas en **factores** y se agrupan los datos para calcular promedios y totales de las variables ambientales y de abundancia de los taxones seleccionados. Se construye una tabla (**biol_ancho**) que es útil para cuando la base de datos inicial está en **formato largo** y queremos transformarla a **formato ancho**, incluyendo a varios factores o variables agrupadoras, en caso de que se cuentre con ellas (Station, Size, Layers). Se genera una nueva columna **Ref** que resume la identificación de cada combinación de estación, tamaño y capa.
+
+```{r}
+library(dplyr)  # Carga el paquete dplyr para manipulación de datos
+
+# Procesamiento y agregación de datos
+biol_ancho <- 
+  biol %>%
+  mutate(across(c(Station, Size, Layers), as.factor)) %>%  # Convierte 'Station', 'Size' y 'Layers' a factores
+  group_by(Station, Size, Layers) %>%  # Agrupa por las variables clave
+  summarize(
+    across(c(Temperature, Salinity, Density), ~ round(mean(.), 2)),  # Calcula la media de variables ambientales y redondea a 2 decimales
+    Abundance = list(setNames(tapply(Abundance, Abrev, sum, default = 0), unique(Abrev))), # Suma las abundancias por grupo abreviado
+    .groups = "drop"  # Elimina la agrupación después de la operación de resumen
+  ) %>%
+  unnest_wider(Abundance) %>%  # Expande la lista de abundancias en columnas separadas
+  mutate(
+    Ref = paste0(substr(Station, 1, 2),  # Toma los primeros 2 caracteres de 'Station'
+                 substr(Size, 1, 1),     # Toma el primer carácter de 'Size'
+                 substr(Layers, 1, 1))   # Toma el primer carácter de 'Layers'
+  ) %>%
+  select(Ref, everything())  # Reordena las columnas para que 'Ref' sea la primera
+
+# tabla con los datos
+head(biol_ancho) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+## Seleccionar los 5 taxones más abundantes
+
+El siguiente procedimiento es apropiado cuando se tienen **demasiados taxones** y se quiere trabajar con una **versión resumida**, normalmente se escogen los 10 o 15 taxones más abundantes para resumir los análisis, en este ejercicio como se cuenta con pocos taxones, se calcula la **abundancia total** de cada taxón y se seleccionan los **cinco más abundantes**. En `biol_selec`se seleccionan únicamente los grupos más abundantes del conjunto total.
+
+```{r, message=FALSE, warning=FALSE}
+# Abundancias de los 5 grupos más abundantes
+abundantes <- 
+  biol_ancho %>%
+  ungroup() %>%          # Elimina cualquier agrupación previa
+  select(Qtgn:Otrs) %>%  # Selecciona las columnas de los grupos taxonómicos
+  summarise(across(everything(), 
+                   sum, na.rm = TRUE)) %>%  # Calcula la abundancia total de cada grupo
+  pivot_longer(cols = everything(), 
+               names_to = "Grupo", 
+               values_to = "Total") %>%  # Convierte a formato largo
+  arrange(desc(Total)) %>%               # Ordena de mayor a menor
+  slice_head(n = 5)                      # 5 grupos más abundantes
+
+# Filtrar en biol_ancho solo estos 5 grupos más abundantes
+biol_selec <- 
+  biol_ancho %>%
+  select(Ref, Station, Size, Layers, 
+         Temperature, Salinity, Density, 
+         all_of(abundantes$Grupo))  # Mantiene solo los grupos seleccionados
+
+# tabla con los datos
+head(biol_selec) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+## Visualización de factores
+
+`ggplot2` nos permite crear gráficos para explorar los datos. Se genera una **figura de cajas** para visualizar las diferencias en la abundancia del plancton, entre las diferentes estaciones del estuario evaluado.
+
+```{r, message=FALSE, warning=FALSE}
+
+# Convertir variables a factores en caso que se requiera
+biol <- 
+  biol %>% 
+  mutate(across(c(Station, Size, Layers), as.factor))
+
+# Gráfico de caja de la abundancia por estación
+ggplot(biol, aes(x = factor(Station), y = Abundance)) +
+  geom_boxplot(aes(fill = factor(Station))) +
+  scale_y_continuous(trans = "log10") +  # Aplicar la transformación logarítmica
+  scale_fill_manual(values = c('#fc8d59','#ffffbf','#99d594','#377eb8','#e78ac3','#7570b3')) +
+  labs(title = "Distribución de la Abundancia por Estación", 
+       x = "Estaciones", fill = "Estaciones", 
+    y = expression(log[10]~(Abundancia~indv.~m^-3))
+    ) +
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank()
+  )
+
+# probar sacale_fill_manual, con: scale_color_viridis(discrete = TRUE)
+```
+
+Con el comando `aes(fill = Layers)` se incorporan las capas superficial y profunda en las diferentes zonas.
+
+```{r, message=FALSE, warning=FALSE}
+library(forcats)  # Para manipulación de factores
+
+# Cambiar etiquetas de Layers con recode_factor()
+biol <- 
+  biol %>%
+  mutate(Layers = recode_factor(Layers, 
+                                "Depth" = "Profunda", 
+                                "Surface" = "Superficial"))
+
+# Gráfico de caja de la abundancia por estación
+ggplot(biol, aes(x = factor(Station), y = Abundance)) +
+  geom_boxplot(aes(fill = Layers)) +
+  scale_y_continuous(trans = "log10") +  # Aplicar la transformación logarítmica
+  labs(title = "Distribución de la Abundancia por Estación", 
+       x = "Estaciones", fill = "Capas",
+    y = expression(log[10]~(Abundancia~indv.~m^-3))
+    ) +
+  theme_bw()+
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank()
+  )
+```
+
+La capa `facet_wrap()` permite incluir más factores como el del ojo de malla usado para la colecta del plancton.
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(readxl)
+library(forcats)  # Para manipulación de factores
+library(viridis)
+
+# Cambiar etiquetas de Layers con recode_factor()
+biol <- 
+  biol %>%
+  mutate(Layers = recode_factor(Layers, 
+                                "Depth" = "Profunda", 
+                                "Surface" = "Superficial"))
+
+# Crear gráfico con etiquetas de valores atípicos redondeados
+ggplot(biol, aes(x = factor(Station), y = Abundance)) + 
+  geom_boxplot(aes(fill = Layers)) +
+  labs(
+    x = "Estaciones", fill = "Capas",
+    y = expression(log[10]~(Abundancia~indv.~m^-3))
+    ) +
+  scale_y_continuous(trans = "log10") +  # Aplicar la transformación logarítmica
+  scale_color_viridis(discrete = TRUE) +
+  facet_wrap(~ Size , nrow = 1, strip.position = "top") + 
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank()
+  )
+```
+
+## Categorizar una variable contínua
+
+En algunos casos, es útil transformar una variable continua en una categórica para facilitar la comparación y visualización de datos. En este caso, convertimos `Salinity` en una variable categórica con tres niveles: **"Baja", "Media" y "Alta"**.
+
+### 1. Método basado en cuantiles
+
+Este método divide la variable en tres partes iguales (terciles) utilizando los cuantiles de la distribución. En el siguiente ejercicio se crea una variable categórica llamada **Salinity_Level**.
+
+```{r}
+biol <- 
+  biol %>%
+  mutate(Salinity_Level = case_when(
+    Salinity <= quantile(Salinity, 1/3, na.rm = TRUE) ~ "Baja",
+    Salinity <= quantile(Salinity, 2/3, na.rm = TRUE) ~ "Media",
+    Salinity <= quantile(Salinity, 3/3, na.rm = TRUE) ~ "Alta"
+  ))
+
+# Se puede resumir el nivel alto por el comando "TRUE ~ "Alta"". 
+```
+
+```{r, message=FALSE, warning=FALSE}
+### **Distribución de la Abundancia por Niveles de Salinidad**
+
+ggplot(biol, aes(x = Salinity_Level, y = Abundance)) +
+  geom_boxplot(aes(fill = Salinity_Level)) +
+  scale_y_continuous(trans = "log10") +  # Aplicar la transformación logarítmica
+  scale_fill_manual(values = c('#fc8d59','#99d594','#377eb8')) +  # Colores personalizados
+  labs(title = "Distribución de la Abundancia por Niveles de Salinidad", 
+       x = "Niveles de Salinidad", fill = "Salinidad", 
+       y = expression(log[10]~(Abundancia~indv.~m^-3))
+    ) +
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank()
+  )
+```
+
+### 2. Método basado en `summary()`
+
+Otra forma de categorizar `Salinity` es usar la función `summary()` para obtener los valores clave de la variable y definir manualmente los rangos.
+
+```{r}
+summary(biol$Salinity)
+```
+
+Con base en estos valores, podemos definir los niveles de salinidad según su distribución:
+
+```{r}
+biol <- 
+  biol %>%
+  mutate(Salinity_Level = case_when(
+    Salinity < 30 ~ "Baja",
+    Salinity >= 30 & Salinity < 35 ~ "Media",
+    Salinity >= 35 ~ "Alta"
+  ))
+
+# Se puede resumir el nivel alto por el comando "TRUE ~ "Alta"". 
+```
+
+Este método permite una categorización más detallada sobre los valores de corte, basado en información ambiental del lugar o de estudios previos.
+
+------------------------------------------------------------------------
+
+## Cuestionario en clase
+
+```{r}
+# Cargar datos desde Excel
+library(readxl)
+biol <- read_xlsx("plancton.xlsx", sheet = "Riqueza")
+```
+
+### 1. Exploración de datos
+
+**Pregunta:** ¿Cuántas **observaciones** hay por cada categoría de `Size`?
+
+```{r, message=FALSE, warning=FALSE}
+biol_n <-
+biol %>% 
+  group_by(Size) %>% 
+  summarize(count = n())
+
+# tabla con los datos
+head(biol_n) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+
+```
+
+**Pregunta:** ¿Cuántas **observaciones** hay por cada `Size` y `Layers`?
+
+```{r, message=FALSE, warning=FALSE}
+# Generar 3 columnas Size, Layers y count (observaciones)
+biol_n <-
+biol %>% 
+  group_by(Size, Layers) %>% 
+  summarize(count = n())
+
+# tabla con los datos
+head(biol_n) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+
+```
+
+### 2. Filtrado condicional
+
+**Pregunta:** Encuentra todas las observaciones donde la salinidad (`Salinity`) es mayor a 35.
+
+```{r}
+# Datos con salinidad mayor a 35
+muestras_salin <- 
+  biol %>% 
+  filter(Salinity > 35)
+
+# tabla con los datos
+head(muestras_salin) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+### 3. Creación de variables
+
+**Pregunta:** Calcula una nueva variable que sea la relación entre `Density` y `Temperature`.
+
+```{r, message=FALSE, warning=FALSE}
+# Insertar la columna Densiti_Temp -> relación de las dos variables
+biol <- 
+  biol %>% 
+  mutate(Density_Temp = Density / Temperature)
+
+# tabla con los datos
+head(biol) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+**Pregunta:** Calcula una nueva variable con la relación entre `Abundance` y `Density`.
+
+```{r, message=FALSE, warning=FALSE}
+# Insertar la columna Abundance_Density -> relación de las dos variables
+biol <- 
+  biol %>% 
+  mutate(Abundance_Density = Abundance / Density)
+
+# tabla con los datos
+head(biol) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+|  mp | Abund |
+|----:|------:|
+
+### 4. Resumen estadístico
+
+**Pregunta:** Calcula los valores **máximos, mínimos, la mediana, el rango y el coeficiente de variación** de `abundancia` por cada combinación de `Size` y `Layers`.
+
+```{r, message=FALSE, warning=FALSE}
+# Resumen estadístico "datos_resum"
+datos_resumidos <- 
+  biol %>%        # Base de datos resumida
+  group_by(Layers) %>%           # Factor o variable agrupadora
+  summarise(datos.me   = median(Abundance, na.rm = TRUE),  # Mediana de cada grupo del factor
+            datos.ran  = max(Abundance, na.rm = TRUE) -
+                         min(Abundance, na.rm = TRUE),     # Rango de cada grupo
+            datos.coef = sd(Abundance, na.rm = TRUE)/
+                         mean(Abundance, na.rm = TRUE),    # Coeficiente de variación
+            )   
+
+# tabla con los datos
+head(datos_resumidos) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+### 5. Transformación de datos
+
+**Pregunta:** Convierte los datos ambientales (`Temperature`, `Salinity`, `Density`) a formato largo.
+
+```{r}
+# Temperature, Salinity, Density a formato largo
+formato_largo <- 
+  biol %>% 
+  pivot_longer(cols = c(Temperature, Salinity, Density), 
+               names_to = "Measurement", 
+               values_to = "Value")
+
+# tabla con los datos
+head(formato_largo) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+### 6. Visualización de una relación de variables
+
+**Pregunta:** Crea un gráfico de dispersión donde el eje X sea la salinidad (`Salinity`) y el eje Y la temperatura (`Temperature`), diferenciando por `Layers`.
+
+```{r}
+ggplot(biol, aes(x = Salinity, y = Temperature, color = Layers)) + 
+  geom_point() + 
+  labs(title = "Relación entre Salinidad y Temperatura", 
+       x = "Salinidad", y = "Temperatura") + 
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+### 7. Visualización de una variable categorizada
+
+**Pregunta:** **Categoriza a la temperatura** en tres niveles y **visualizar su relación con la abundancia**.
+
+#### Paso 1: Categorizar la Temperatura
+
+Utilizar cuantiles, transformamos `Temperature` en tres niveles: **Baja, Media y Alta**.
+
+```{r}
+biol <- 
+  biol %>%
+  mutate(Temperature_Level = case_when(
+    Temperature <= quantile(Temperature, 1/3, na.rm = TRUE) ~ "Baja",
+    Temperature <= quantile(Temperature, 2/3, na.rm = TRUE) ~ "Media",
+    TRUE ~ "Alta"
+  ))
+
+# tabla con los datos
+head(biol) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+#### Paso 2: Visualizar la Relación entre Temperatura y Abundancia
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Temperature_Level, y = Abundance)) +
+  geom_boxplot(aes(fill = Temperature_Level)) +
+  scale_y_continuous(trans = "log10") +  # Aplicar la transformación logarítmica
+  scale_fill_manual(values = c('#fc8d59','#99d594','#377eb8')) +  # Colores personalizados
+  labs(title = "Distribución de la Abundancia por Niveles de Temperatura", 
+       x = "Niveles de Temperatura", fill = "Temperatura", 
+       y = expression(log[10]~(Abundancia~indv.~m^-3))
+    ) +
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank()
+  )
+```
