@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ES-es" xml:lang="ES-es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nombre del Estudiante">
+<meta name="dcterms.date" content="2025-02-27">
+<meta name="description" content="Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de figuras exploratorias uni, bi y multivariadas.">
+
+<title>Taller3.2. Exploración Gráfica - Plancton Estuarino</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Taller3.2.Explor.plancton_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Taller3.2.Explor.plancton_files/libs/quarto-html/quarto.js"></script>
+<script src="Taller3.2.Explor.plancton_files/libs/quarto-html/popper.min.js"></script>
+<script src="Taller3.2.Explor.plancton_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Taller3.2.Explor.plancton_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Taller3.2.Explor.plancton_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Taller3.2.Explor.plancton_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Taller3.2.Explor.plancton_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Taller3.2.Explor.plancton_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Taller3.2.Explor.plancton_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>
+    .quarto-title-block .quarto-title-banner {
+      background: #decbe4;
+    }
+    </style>
+
+<script src="Taller3.2.Explor.plancton_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Taller3.2.Explor.plancton_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles2.css">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Taller3.2. Exploración Gráfica - Plancton Estuarino</h1>
+            <p class="subtitle lead">Taller para la exploración grafica de datos biológicos y Ambientales</p>
+                  <div>
+        <div class="description">
+          Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de figuras exploratorias uni, bi y multivariadas.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-contents">
+               <p>Nombre del Estudiante </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 27, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Menú flotante</h2>
+   
+  <ul>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link active" data-scroll-target="#resumen">Resumen</a>
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a>
+  <ul>
+  <li><a href="#cargar-las-librerías-requeridas" id="toc-cargar-las-librerías-requeridas" class="nav-link" data-scroll-target="#cargar-las-librerías-requeridas">Cargar las librerías requeridas</a></li>
+  <li><a href="#carga-y-exploración-de-datos" id="toc-carga-y-exploración-de-datos" class="nav-link" data-scroll-target="#carga-y-exploración-de-datos">Carga y exploración de datos</a></li>
+  </ul></li>
+  <li><a href="#base-de-datos-en-formato-ancho" id="toc-base-de-datos-en-formato-ancho" class="nav-link" data-scroll-target="#base-de-datos-en-formato-ancho">Base de datos en formato ancho</a>
+  <ul>
+  <li><a href="#figuras-de-elipses" id="toc-figuras-de-elipses" class="nav-link" data-scroll-target="#figuras-de-elipses">1. Figuras de elipses</a></li>
+  <li><a href="#figuras-de-dispersión-por-pares-de-variables-pairs" id="toc-figuras-de-dispersión-por-pares-de-variables-pairs" class="nav-link" data-scroll-target="#figuras-de-dispersión-por-pares-de-variables-pairs">3. Figuras de Dispersión por pares de variables (pairs)</a></li>
+  <li><a href="#histogramas" id="toc-histogramas" class="nav-link" data-scroll-target="#histogramas">3. Histogramas</a></li>
+  <li><a href="#dispersión-x-y" id="toc-dispersión-x-y" class="nav-link" data-scroll-target="#dispersión-x-y">4. Dispersión X-Y</a>
+  <ul>
+  <li><a href="#dispersión-x-y-con-ggplot2" id="toc-dispersión-x-y-con-ggplot2" class="nav-link" data-scroll-target="#dispersión-x-y-con-ggplot2">Dispersión X-Y con <strong>ggplot2</strong></a></li>
+  </ul></li>
+  <li><a href="#cajas-y-bigotes" id="toc-cajas-y-bigotes" class="nav-link" data-scroll-target="#cajas-y-bigotes">5. Cajas y Bigotes</a>
+  <ul>
+  <li><a href="#cajas-con-un-factor-estaciones." id="toc-cajas-con-un-factor-estaciones." class="nav-link" data-scroll-target="#cajas-con-un-factor-estaciones.">Cajas con un factor: Estaciones.</a></li>
+  <li><a href="#cajas-con-dos-factores-estaciones-y-capas." id="toc-cajas-con-dos-factores-estaciones-y-capas." class="nav-link" data-scroll-target="#cajas-con-dos-factores-estaciones-y-capas.">Cajas con dos factores: Estaciones y capas.</a></li>
+  <li><a href="#cajas-con-diferentes-variables-ambientales" id="toc-cajas-con-diferentes-variables-ambientales" class="nav-link" data-scroll-target="#cajas-con-diferentes-variables-ambientales">Cajas con diferentes variables: Ambientales</a></li>
+  </ul></li>
+  <li><a href="#coplot" id="toc-coplot" class="nav-link" data-scroll-target="#coplot">6. Coplot</a>
+  <ul>
+  <li><a href="#categorización-de-dos-variables-ambientales-temperatura-y-salinidad" id="toc-categorización-de-dos-variables-ambientales-temperatura-y-salinidad" class="nav-link" data-scroll-target="#categorización-de-dos-variables-ambientales-temperatura-y-salinidad">Categorización de dos variables ambientales (Temperatura y Salinidad)</a></li>
+  <li><a href="#cajas-con-tres-factores-estaciones-y-clases-de-temperatura-y-de-salinidad" id="toc-cajas-con-tres-factores-estaciones-y-clases-de-temperatura-y-de-salinidad" class="nav-link" data-scroll-target="#cajas-con-tres-factores-estaciones-y-clases-de-temperatura-y-de-salinidad">Cajas con tres factores (estaciones y clases de temperatura y de salinidad)</a></li>
+  </ul></li>
+  <li><a href="#figuras-con-estadísticos-promedios-errores" id="toc-figuras-con-estadísticos-promedios-errores" class="nav-link" data-scroll-target="#figuras-con-estadísticos-promedios-errores">7. Figuras con estadísticos (promedios, errores, …)</a>
+  <ul>
+  <li><a href="#base-de-datos-con-múltiples-factores" id="toc-base-de-datos-con-múltiples-factores" class="nav-link" data-scroll-target="#base-de-datos-con-múltiples-factores">Base de datos con múltiples factores</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#cuestionario" id="toc-cuestionario" class="nav-link" data-scroll-target="#cuestionario">CUESTIONARIO</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="resumen" class="level1">
+<h1>Resumen</h1>
+<p>El presente taller tiene por objeto, brindar pautas generales para la visualización de datos biológicos en el lenguaje <code>tidyverse</code> de R. Se realizan algunas operaciones generales usando una <strong>base de datos de plancton</strong>, que incorpora variables biológicas y ambientales.</p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>Se realizarán ejercicios con los comandos generales de <strong>tidyverse</strong> en el manejo y visualización de datos, utilizando como ejemplo la base de datos de plancton en un estuario de Colombia (<strong>biol</strong>).</p>
+<p>La base de datos <strong>“Riqueza”</strong> tiene 498 registros y 8 columnas, incluyendo:</p>
+<ul>
+<li><strong>Variables categóricas o factores:</strong>
+<ul>
+<li><code>Station</code> (Estación, numérica pero categórica en contexto)</li>
+<li><code>Size</code> (Tamaños de malla del plancton)</li>
+<li><code>Layers</code> (Capas o estratos en el gradiente de profundidad)</li>
+<li><code>Groups</code> (Grupos de plancton)</li>
+</ul></li>
+<li><strong>Variables cuantitativas:</strong>
+<ul>
+<li><code>Abundance</code> (Abundancia de los grupos de plancton)</li>
+<li><code>Temperature</code> (Temperatura del agua)</li>
+<li><code>Salinity</code> (Salinidad del agua)</li>
+<li><code>Density</code> (Densidad de organismos)</li>
+</ul></li>
+</ul>
+<section id="cargar-las-librerías-requeridas" class="level4">
+<h4 class="anchored" data-anchor-id="cargar-las-librerías-requeridas">Cargar las librerías requeridas</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Librerías requeridas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)   <span class="co"># Para la edición de tablas</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)       <span class="co"># Cargar bases de Excel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(stats)        <span class="co"># No se requiere instalar</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)      <span class="co"># No se requiere instalar</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)      <span class="co"># insertar rótulos a los puntos</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(SciViews)     <span class="co"># Fig. dispersión con coef. de pearson</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotrix)      <span class="co"># Figuras de cajas con múltiples variables</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)     <span class="co"># Figuras de elipses</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)        <span class="co"># Matrices de correlación para figuras de elipses</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)      <span class="co"># Figuras de cajas con múltiples variables</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)     <span class="co"># Figuras de cajas con múltiples variables </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)    <span class="co"># Para figuras estadísticas (varios factores)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)         <span class="co"># Para figuras estadísticas (varios factores)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># Paquete gráfico</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)      <span class="co"># Para manipulación de factores</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)      <span class="co"># Opciones de paletas de colores</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="carga-y-exploración-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="carga-y-exploración-de-datos">Carga y exploración de datos</h3>
+<p>La siguiente base presenta una estructura vertical (formato largo), que puede ser apropiada para <strong>visualizar patrones generales</strong> de abundancia o de las variables ambientales por cada factor o variable categórica (Station, Size, Layers y Groups). <strong>Patrones multivariados</strong> en los que se requiera visualizar la relación entre cada taxón las variables ambientales, exigen un ajuste de la base de datos a un formato ancho (biol1), en donde cada taxón representa una columna diferente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar datos desde Excel</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>biol <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"plancton.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Riqueza"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Explorar estructura</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># glimpse(biol)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(biol)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(biol) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Station </th>
+   <th style="text-align:left;"> Size </th>
+   <th style="text-align:left;"> Layers </th>
+   <th style="text-align:left;"> Groups </th>
+   <th style="text-align:right;"> Abundance </th>
+   <th style="text-align:right;"> Temperature </th>
+   <th style="text-align:right;"> Salinity </th>
+   <th style="text-align:right;"> Density </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:left;"> Quetognatos </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 30.29749 </td>
+   <td style="text-align:right;"> 34.69981 </td>
+   <td style="text-align:right;"> 21.417828 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:left;"> Sergestidae </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 29.40959 </td>
+   <td style="text-align:right;"> 25.83323 </td>
+   <td style="text-align:right;"> 15.085254 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:left;"> Luciferidae </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 29.59008 </td>
+   <td style="text-align:right;"> 12.38513 </td>
+   <td style="text-align:right;"> 5.729643 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:left;"> Calanoida </td>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:right;"> 30.29749 </td>
+   <td style="text-align:right;"> 34.69981 </td>
+   <td style="text-align:right;"> 21.417828 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:left;"> Cyclopoida </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 29.40959 </td>
+   <td style="text-align:right;"> 25.83323 </td>
+   <td style="text-align:right;"> 15.085254 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:left;"> Harpacticoida </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 29.59008 </td>
+   <td style="text-align:right;"> 12.38513 </td>
+   <td style="text-align:right;"> 5.729643 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+<section id="base-de-datos-en-formato-ancho" class="level2">
+<h2 class="anchored" data-anchor-id="base-de-datos-en-formato-ancho">Base de datos en formato ancho</h2>
+<p>El siguiente procedimiento permitirá <strong>organizar la base de datos de tal forma que pueda ser utilizada en diseños multivariados</strong>. Normalmente encontrarémos las bases de datos en formato ancho, para esos casos, no será necesario realizar el siguiente procedimiento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Procesamiento para ajustar los datos en formato ancho</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>biol1 <span class="ot">&lt;-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  biol <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Abreviaturas de los taxones</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Abrev =</span> <span class="fu">abbreviate</span>(Groups, <span class="at">minlength =</span> <span class="dv">4</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Variables a factores</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Station, Size, Layers), as.factor)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Agrupamiento para el formato ancho</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Station, Size, Layers) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Promedios de las variables ambientales</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">c</span>(Temperature, Salinity, Density), <span class="sc">~</span><span class="fu">round</span>(<span class="fu">mean</span>(.),<span class="dv">2</span>)),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Totales de las abundancias por cada factor</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Abundance =</span> <span class="fu">list</span>(<span class="fu">setNames</span>(<span class="fu">tapply</span>(Abundance, Abrev,sum,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">default =</span> <span class="dv">0</span>), <span class="fu">unique</span>(Abrev))),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Corregir algunos errores del agrupamiento</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Separar las abundancias en las columnas de cada taxon</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(Abundance) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crear columna Ref, tomando iniciales de tres factores</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ref =</span> <span class="fu">paste0</span>(<span class="fu">substr</span>(Station, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>               <span class="fu">substr</span>(Size, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>               <span class="fu">substr</span>(Layers, <span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pasar la columna de referencia (consec) a la 1a columna</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ref, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Crear la columna Ab con la suma de las columnas de taxones</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Suma de las columnas especificadas (Ab)  </span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">Ab =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(Qtgn<span class="sc">:</span>Otrs), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mover la columna de abundancias (AB)</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ref,Station,Size,Layers,Temperature,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>         Salinity,Density,Ab, <span class="fu">everything</span>()) </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(biol1) <span class="sc">%&gt;%</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Ref </th>
+   <th style="text-align:left;"> Station </th>
+   <th style="text-align:left;"> Size </th>
+   <th style="text-align:left;"> Layers </th>
+   <th style="text-align:right;"> Temperature </th>
+   <th style="text-align:right;"> Salinity </th>
+   <th style="text-align:right;"> Density </th>
+   <th style="text-align:right;"> Ab </th>
+   <th style="text-align:right;"> Qtgn </th>
+   <th style="text-align:right;"> Srgs </th>
+   <th style="text-align:right;"> Lcfr </th>
+   <th style="text-align:right;"> Clnd </th>
+   <th style="text-align:right;"> Cycl </th>
+   <th style="text-align:right;"> Hrpc </th>
+   <th style="text-align:right;"> Lrdp </th>
+   <th style="text-align:right;"> Hvdp </th>
+   <th style="text-align:right;"> LrvN </th>
+   <th style="text-align:right;"> LrdC </th>
+   <th style="text-align:right;"> LrvZ </th>
+   <th style="text-align:right;"> Otrs </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 22D </td>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Depth </td>
+   <td style="text-align:right;"> 29.88 </td>
+   <td style="text-align:right;"> 25.26 </td>
+   <td style="text-align:right;"> 14.40 </td>
+   <td style="text-align:right;"> 14030 </td>
+   <td style="text-align:right;"> 12672 </td>
+   <td style="text-align:right;"> 408 </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:right;"> 135 </td>
+   <td style="text-align:right;"> 400 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 68 </td>
+   <td style="text-align:right;"> 56 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 84 </td>
+   <td style="text-align:right;"> 112 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 22S </td>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:right;"> 29.75 </td>
+   <td style="text-align:right;"> 23.27 </td>
+   <td style="text-align:right;"> 13.35 </td>
+   <td style="text-align:right;"> 5210 </td>
+   <td style="text-align:right;"> 568 </td>
+   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 28 </td>
+   <td style="text-align:right;"> 984 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2488 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1096 </td>
+   <td style="text-align:right;"> 24 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 25D </td>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:left;"> 500 μm </td>
+   <td style="text-align:left;"> Depth </td>
+   <td style="text-align:right;"> 29.40 </td>
+   <td style="text-align:right;"> 19.97 </td>
+   <td style="text-align:right;"> 10.53 </td>
+   <td style="text-align:right;"> 434 </td>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 355 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 25S </td>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:left;"> 500 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:right;"> 29.99 </td>
+   <td style="text-align:right;"> 28.66 </td>
+   <td style="text-align:right;"> 17.02 </td>
+   <td style="text-align:right;"> 10697 </td>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:right;"> 10672 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 42D </td>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Depth </td>
+   <td style="text-align:right;"> 29.38 </td>
+   <td style="text-align:right;"> 17.34 </td>
+   <td style="text-align:right;"> 8.76 </td>
+   <td style="text-align:right;"> 13488 </td>
+   <td style="text-align:right;"> 10680 </td>
+   <td style="text-align:right;"> 928 </td>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:right;"> 120 </td>
+   <td style="text-align:right;"> 64 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 48 </td>
+   <td style="text-align:right;"> 280 </td>
+   <td style="text-align:right;"> 400 </td>
+   <td style="text-align:right;"> 200 </td>
+   <td style="text-align:right;"> 368 </td>
+   <td style="text-align:right;"> 368 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 42S </td>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Surface </td>
+   <td style="text-align:right;"> 29.52 </td>
+   <td style="text-align:right;"> 21.89 </td>
+   <td style="text-align:right;"> 12.11 </td>
+   <td style="text-align:right;"> 2529 </td>
+   <td style="text-align:right;"> 246 </td>
+   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 2240 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<hr>
+<p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
+</b><section id="figuras-de-elipses" class="level3"><b style="color:#1f78b4;">
+<h3 class="anchored" data-anchor-id="figuras-de-elipses">1. Figuras de elipses</h3>
+</b><p><b style="color:#1f78b4;"></b></p>
+<p>Las figuras de correlación realizadas con el paquete <code>corrplot</code>, son una buena opción para evaluar los patrones generales de relaciones positivas (azul) y/o negativas (rojo), entre parejas de variables. Funcionan para objetivos orientados en la relaciones de (1) variables biológicas, (2) variables ambientales y (3) variables biológicas con las ambientales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección de variables biológicas y ambientales</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># str(biol1)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables ambientales columnas 6 a 7, biológicas columnas 8 a 20</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(biol1[,<span class="dv">8</span><span class="sc">:</span><span class="dv">20</span>])            <span class="co"># Matriz de Correlación (M)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La <a href="#fig-fig1">Figura&nbsp;1</a> muestra la relación entre las variables, a partir de figuras de elipses y de circulos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method =</span> <span class="st">"ellipse"</span>)  <span class="co"># Figura de correlaciones con elipses</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig1-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-fig2">Figura&nbsp;2</a> muestra la relación entre las variables, a partir de figuras de elipses, además incorpora al nivel de correlación entre las parejas de variables con los coeficientes de Pearson.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(M, <span class="at">upper=</span><span class="st">"ellipse"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig2-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;2: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La siguiente opción de correlación (<a href="#fig-fig3">Figura&nbsp;3</a>), presenta un código más compejo que las anteriores, pero permite generar una visualización más completa de las relaciones entre parejas de variables y sus coeficientes de correlación de Pearson (también se pueden probar otros coeficientes como Spearman o Kendall).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M,  <span class="at">method =</span> <span class="st">"circle"</span>,            <span class="co"># Correlaciones con circulos</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"lower"</span>, <span class="at">insig=</span><span class="st">"blank"</span>,    <span class="co"># Forma del panel</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"AOE"</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>,      <span class="co"># Ordenar por nivel de correlación</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span><span class="st">"black"</span>,             <span class="co"># Color de los coeficientes</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span>,                 <span class="co"># Tamaño del texto</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">COL2</span>(<span class="st">"RdYlBu"</span>, <span class="dv">200</span>))        <span class="co"># Transparencia de los circulos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig3-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La siguiente figura de correlaciones (<a href="#fig-fig4">Figura&nbsp;4</a>) es apropiada para casos en los que tenemos muchas variables biológicas (ej. tipos de taxones) e interesa evaluar su relación con las variables ambientales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(biol1[,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>], biol1[,<span class="dv">8</span><span class="sc">:</span><span class="dv">20</span>])            <span class="co"># Matriz de Correlación (M)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M1, <span class="at">method =</span> <span class="st">"ellipse"</span>, <span class="at">type=</span><span class="st">"upper"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig4-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;4: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
+</b></section><b style="color:#1f78b4;">
+</b><section id="figuras-de-dispersión-por-pares-de-variables-pairs" class="level3"><b style="color:#1f78b4;">
+<h3 class="anchored" data-anchor-id="figuras-de-dispersión-por-pares-de-variables-pairs">3. Figuras de Dispersión por pares de variables (pairs)</h3>
+</b><p><b style="color:#1f78b4;"></b></p>
+<p>A continuación se presenta una variante a las figuras de pares (<a href="#fig-fig7">Figura&nbsp;5</a>), que por medio de la función <code>panel</code>, permite incorporar otros elementos en la matriz gráfica, como histogramas para visualizar el patrón de simetría de cada variable y el valor de correlación con coeficientes como el de Pearson. Las líneas rojas definen la relación no lineal o suavizada (loess o lowess) entre las parejas de variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlaciones de Pearson</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SciViews)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(biol1[,<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">diag.panel =</span> panel.hist, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper.panel =</span> panel.cor, <span class="at">lower.panel =</span> panel.smooth)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig7" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig7-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;5: Relación de variables ambientales y algunos taxones en las veinte quebradas estudiadas, con regresiones suavizadas, coeficientes de correlación de Pearson e histogramas de frecuencia para cada variable.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
+</b></section><b style="color:#1f78b4;">
+</b><section id="histogramas" class="level3"><b style="color:#1f78b4;">
+<h3 class="anchored" data-anchor-id="histogramas">3. Histogramas</h3>
+</b><p><b style="color:#1f78b4;"></b></p>
+<p>Las dos figuras que siguen (<a href="#fig-fig15">Figura&nbsp;6</a> y <a href="#fig-fig16">Figura&nbsp;7</a>), utilizan comandos del paquete <code>ggplot2</code> para visualizar de una forma más compacta a la distribución de frecuencias de la variable abundancia de insectos (AB) en las cuatro cuencas evaluadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frecuencias de abundancias por densidad</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> biol1, <span class="fu">aes</span>(<span class="at">x =</span> Ab, <span class="at">color =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Layers), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">y=</span><span class="st">"Frecuencia"</span>, <span class="at">x=</span><span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig15" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig15-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;6: Patrón de distribución contínuo de la abundancia de insectos en las veinte quebradas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Otra opción</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> biol1, <span class="fu">aes</span>(<span class="at">x =</span> Ab, <span class="at">color =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Layers)) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Size) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig16" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig16-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;7: Patrón de distribución contínuo de la abundancia de insectos en las veinte quebradas y cuatro cuencas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
+</b></section><b style="color:#1f78b4;">
+</b><section id="dispersión-x-y" class="level3"><b style="color:#1f78b4;">
+<h3 class="anchored" data-anchor-id="dispersión-x-y">4. Dispersión X-Y</h3>
+</b><p><b style="color:#1f78b4;"></b></p>
+<p><b style="color:#1f78b4;"></b></p><b style="color:#1f78b4;">
+</b><section id="dispersión-x-y-con-ggplot2" class="level4"><b style="color:#1f78b4;">
+<h4 class="anchored" data-anchor-id="dispersión-x-y-con-ggplot2">Dispersión X-Y con <strong>ggplot2</strong></h4>
+</b><p><b style="color:#1f78b4;"></b></p>
+<p>Las tres figuras que siguen, muestran opciones más compactas que la grafica anterior, para visualizar relaciones bivariadas en los descriptores en estudio, permitiendo también analizar el patrón de dispersión de los datos para cada cuenca evaluada (colores). La <a href="#fig-fig18">Figura&nbsp;8</a> permite visualizar la relación lineal incluyendo bandas grises que representan los límites de confianza de la proyección realizada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresiones lineales (Esquema ggplot2) </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1,<span class="fu">aes</span>(<span class="at">x =</span> Density, <span class="at">y =</span> Ab)) <span class="sc">+</span>   </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Layers), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig18" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig18-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;8: Relación Lineal entre el pH y la abundancia de Efemerópteros en las veinte quebradas y las cuatro cuencas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-fig19">Figura&nbsp;9</a>, a diferencia de la anterior, permite visualizar una relación suavizada en la pareja de variables en comparación. Esta relación no lineal es conocida como <code>Loess</code> o <code>Lowess</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresiones suavizadas - Loess o Lowess (Esquema ggplot2) </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1,<span class="fu">aes</span>(<span class="at">x =</span> Density, <span class="at">y =</span> Ab)) <span class="sc">+</span>   </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Layers), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig19" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig19-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;9: Relación Suavizada (Loess) entre el pH y la abundancia de Efemerópteros en las veinte quebradas y las cuatro cuencas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En la <a href="#fig-fig20">Figura&nbsp;10</a> se eliminan los intervalos de confianza (bandas grises) y aumenta el suavizamiento con el comando <code>span = 0.4</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresiones suavizadas (Loess)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1,<span class="fu">aes</span>(<span class="at">x =</span> Density, <span class="at">y =</span> Ab)) <span class="sc">+</span>   </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Layers), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">span =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig20" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig20-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;10: Relación Suavizada (Loess) entre el pH y la abundancia de Efemerópteros en las veinte quebradas y las cuatro cuencas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cajas-y-bigotes" class="level3">
+<h3 class="anchored" data-anchor-id="cajas-y-bigotes">5. Cajas y Bigotes</h3>
+<section id="cajas-con-un-factor-estaciones." class="level4">
+<h4 class="anchored" data-anchor-id="cajas-con-un-factor-estaciones.">Cajas con un factor: Estaciones.</h4>
+<p>A continuación se visualiza el patrón de variación en la abundancia de los insectos (<a href="#fig-fig22">Figura&nbsp;11</a>), para las cuatro cuencas evaluadas, adicionando colores especificos, tomados de los enlaces anteriores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir variables a factores en caso que se requiera</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>biol1 <span class="ot">&lt;-</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  biol1 <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Station, Size, Layers), as.factor))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de caja de la abundancia por estación</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Station), <span class="at">y =</span> Abundance)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(Station))) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span>  <span class="co"># Aplicar la transformación logarítmica</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#fc8d59'</span>,<span class="st">'#ffffbf'</span>,<span class="st">'#99d594'</span>,<span class="st">'#377eb8'</span>,<span class="st">'#e78ac3'</span>,<span class="st">'#7570b3'</span>)) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la Abundancia por Estación"</span>, </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estaciones"</span>, <span class="at">fill =</span> <span class="st">"Estaciones"</span>, </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(log[<span class="dv">10</span>]<span class="sc">~</span>(Abundancia<span class="sc">~</span>indv.<span class="sc">~</span>m<span class="sc">^-</span><span class="dv">3</span>))</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.gridr =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># geom_boxplot(notch = T,... para las muescas.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig22" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig22-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;11: Variación en la abundancia de insectos para las cuatro cuencas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cajas-con-dos-factores-estaciones-y-capas." class="level4">
+<h4 class="anchored" data-anchor-id="cajas-con-dos-factores-estaciones-y-capas.">Cajas con dos factores: Estaciones y capas.</h4>
+<p>Las dos figuras a continuación comparan el patrón de abundancia para la base de datos original que está en formato largo (biol) y en formato ancho (biol1). <strong>Analizar a que se deben las diferencias.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)  <span class="co"># Para manipulación de factores</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambiar etiquetas de Layers con recode_factor()</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>biol <span class="ot">&lt;-</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  biol <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Layers =</span> <span class="fu">recode_factor</span>(Layers, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Depth"</span> <span class="ot">=</span> <span class="st">"Profunda"</span>, </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Surface"</span> <span class="ot">=</span> <span class="st">"Superficial"</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de caja de la abundancia por estación</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Station), <span class="at">y =</span> Abundance)) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span>  <span class="co"># Aplicar la transformación logarítmica</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la Abundancia por Estación"</span>, </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estaciones"</span>, <span class="at">fill =</span> <span class="st">"Capas"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(log[<span class="dv">10</span>]<span class="sc">~</span>(Abundancia<span class="sc">~</span>indv.<span class="sc">~</span>m<span class="sc">^-</span><span class="dv">3</span>))</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-16-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)  <span class="co"># Para manipulación de factores</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambiar etiquetas de Layers con recode_factor()</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>biol1 <span class="ot">&lt;-</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  biol1 <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Layers =</span> <span class="fu">recode_factor</span>(Layers, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Depth"</span> <span class="ot">=</span> <span class="st">"Profunda"</span>, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Surface"</span> <span class="ot">=</span> <span class="st">"Superficial"</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de caja de la abundancia por estación</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Station), <span class="at">y =</span> Ab)) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span>  <span class="co"># Aplicar la transformación logarítmica</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la Abundancia por Estación"</span>, </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estaciones"</span>, <span class="at">fill =</span> <span class="st">"Capas"</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(log[<span class="dv">10</span>]<span class="sc">~</span>(Abundancia<span class="sc">~</span>indv.<span class="sc">~</span>m<span class="sc">^-</span><span class="dv">3</span>))</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-17-1.svg" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#   facet_wrap(~ Layers, scales = "free")  # Paneles por variable</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cajas-con-diferentes-variables-ambientales" class="level4">
+<h4 class="anchored" data-anchor-id="cajas-con-diferentes-variables-ambientales">Cajas con diferentes variables: Ambientales</h4>
+<p>La <a href="#fig-fig25">Figura&nbsp;12</a> muestra su versatilidad en que permite incorporar diferentes variables por cada panel presentado. Las cajas de colores representan a los grupos en comparación (cuencas).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figuras multivariadas de Cajas y bigotes</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">melt</span>(biol1[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)]), <span class="fu">aes</span>(<span class="at">x=</span>Station, <span class="at">y=</span>value)) <span class="sc">+</span>  <span class="co"># Usar Station en el eje X</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Station)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span>  <span class="co"># Aplicar la transformación logarítmica</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la Abundancia por Estación"</span>, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estaciones"</span>, <span class="at">fill =</span> <span class="st">"Estaciones"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(log[<span class="dv">10</span>]<span class="sc">~</span>(Abundancia<span class="sc">~</span>indv.<span class="sc">~</span>m<span class="sc">^-</span><span class="dv">3</span>))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span>  <span class="co"># Paneles por variable</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig25" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig25-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;12: Variación en la abundancia de diferentes taxones de insectos para las cuatro cuencas evaluadas.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="coplot" class="level3">
+<h3 class="anchored" data-anchor-id="coplot">6. Coplot</h3>
+<section id="categorización-de-dos-variables-ambientales-temperatura-y-salinidad" class="level4">
+<h4 class="anchored" data-anchor-id="categorización-de-dos-variables-ambientales-temperatura-y-salinidad">Categorización de dos variables ambientales (Temperatura y Salinidad)</h4>
+<p>Este método divide la variable en tres partes iguales (terciles) utilizando los cuantiles de la distribución. En el siguiente ejercicio se crean dos variables categóricas llamadas <strong>claseTemp</strong> y <strong>claseSal</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización de la temperatura</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>biol <span class="ot">&lt;-</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  biol <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">claseTemp =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    Temperature <span class="sc">&lt;=</span> <span class="fu">quantile</span>(Temperature, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"T.Baja"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    Temperature <span class="sc">&lt;=</span> <span class="fu">quantile</span>(Temperature, <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"T.Media"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    Temperature <span class="sc">&lt;=</span> <span class="fu">quantile</span>(Temperature, <span class="dv">3</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"T.Alta"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización de la salinidad </span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>biol <span class="ot">&lt;-</span> </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  biol <span class="sc">%&gt;%</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">claseSal =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    Salinity <span class="sc">&lt;=</span> <span class="fu">quantile</span>(Salinity, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"S.Baja"</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    Salinity <span class="sc">&lt;=</span> <span class="fu">quantile</span>(Salinity, <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"S.Media"</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    Salinity <span class="sc">&lt;=</span> <span class="fu">quantile</span>(Salinity, <span class="dv">3</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"S.Alta"</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Se puede resumir el nivel alto por el comando "TRUE ~ "Alta"". </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cajas-con-tres-factores-estaciones-y-clases-de-temperatura-y-de-salinidad" class="level4">
+<h4 class="anchored" data-anchor-id="cajas-con-tres-factores-estaciones-y-clases-de-temperatura-y-de-salinidad">Cajas con tres factores (estaciones y clases de temperatura y de salinidad)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico con etiquetas de valores atípicos redondeados</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Station), <span class="at">y =</span> Abundance)) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> claseTemp)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Abundancia por Estación, salinidad y Temperatura"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estaciones"</span>, <span class="at">fill =</span> <span class="st">"Temperatura"</span>, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(log[<span class="dv">10</span>]<span class="sc">~</span>(Abundancia<span class="sc">~</span>indv.<span class="sc">~</span>m<span class="sc">^-</span><span class="dv">3</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span>  <span class="co"># Aplicar la transformación logarítmica</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> claseSal, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">strip.position =</span> <span class="st">"top"</span>) <span class="sc">+</span> </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-20-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="figuras-con-estadísticos-promedios-errores" class="level3">
+<h3 class="anchored" data-anchor-id="figuras-con-estadísticos-promedios-errores">7. Figuras con estadísticos (promedios, errores, …)</h3>
+<section id="base-de-datos-con-múltiples-factores" class="level4">
+<h4 class="anchored" data-anchor-id="base-de-datos-con-múltiples-factores">Base de datos con múltiples factores</h4>
+<p>Lo que diferencia a esta base de datos (insectos1.csv) de la anterior (insectos.csv), es que presenta a diferentes variables agrupadoras o factores, como periodos de lluvia, Gruos Funcionales Alimenticios (GF) y Muestreos. Para el siguiente ejercicio se realizará el resumen estadístico de los dos primeros factores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen estadístico "datos_resum"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>datos_resum <span class="ot">&lt;-</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  biol1 <span class="sc">%&gt;%</span>        <span class="co"># Base de datos resumida</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Size,Layers) <span class="sc">%&gt;%</span>          <span class="co"># Factor o variable agrupadora</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">datos.m =</span> <span class="fu">mean</span>(Ab),   <span class="co"># Media de cada grupo del factor</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.de  =</span> <span class="fu">sd</span>(Ab),   <span class="co"># Desviacioes estándar de cada grupo</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.var =</span> <span class="fu">var</span>(Ab),  <span class="co"># Varianzas de cada grupo</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">n.Biom =</span> <span class="fu">n</span>(),           <span class="co"># Tamaño de cada grupo</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.ee =</span> <span class="fu">sd</span>(Ab)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))   <span class="co"># Error estándar de cada grupo</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla con los datos</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos_resum) <span class="sc">%&gt;%</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> F)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Size </th>
+   <th style="text-align:left;"> Layers </th>
+   <th style="text-align:right;"> datos.m </th>
+   <th style="text-align:right;"> datos.de </th>
+   <th style="text-align:right;"> datos.var </th>
+   <th style="text-align:right;"> n.Biom </th>
+   <th style="text-align:right;"> datos.ee </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Profunda </td>
+   <td style="text-align:right;"> 6175.3333 </td>
+   <td style="text-align:right;"> 6054.9589 </td>
+   <td style="text-align:right;"> 36662527.47 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2471.92663 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 250 μm </td>
+   <td style="text-align:left;"> Superficial </td>
+   <td style="text-align:right;"> 1515.0000 </td>
+   <td style="text-align:right;"> 2015.5865 </td>
+   <td style="text-align:right;"> 4062588.80 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 822.85973 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 500 μm </td>
+   <td style="text-align:left;"> Profunda </td>
+   <td style="text-align:right;"> 228.8333 </td>
+   <td style="text-align:right;"> 159.4232 </td>
+   <td style="text-align:right;"> 25415.77 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 65.08426 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 500 μm </td>
+   <td style="text-align:left;"> Superficial </td>
+   <td style="text-align:right;"> 3363.6667 </td>
+   <td style="text-align:right;"> 5180.9455 </td>
+   <td style="text-align:right;"> 26842196.67 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 2115.11216 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Las asignaciones <code>f1</code> y <code>f2</code>, corresponden a las mismas figuras bifactoriales, en donde la primera se muestra con pocos ajustes de sus ejes y fondo, comparada a la segunda que presenta una mayor edición. Finalmente el comando <code>grid.arrange</code> permite graficar a las dos figuras en un mismo panel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura 1 (f1)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">=</span> <span class="fu">ggplot</span>(datos_resum, <span class="fu">aes</span>(<span class="at">x=</span>Layers, <span class="at">y=</span>datos.m, <span class="at">fill=</span>Size)) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">color=</span><span class="st">"black"</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">position=</span><span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>datos.m, <span class="at">ymax=</span>datos.m<span class="sc">+</span>datos.de), <span class="at">width=</span>.<span class="dv">2</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">position=</span><span class="fu">position_dodge</span>(.<span class="dv">9</span>)) </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># f2: Otro formato de figura bifactorial - theme_classic</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">=</span> f1<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Abundancia por Capas"</span>, </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span><span class="st">"Capas de prof."</span>, </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">"Abundancia"</span>)<span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'#E69F00'</span>,<span class="st">'#999999'</span>))</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Impresión de un panel con las dos figuras de forma horizontal (f1 y f2)</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span> (f1, f2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig31" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig31-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;13: Differencias en la abundancia de insectos, los periodos de lluvia y para los grupos funcionales (GF).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Cambiando la ubicación por columnas <code>ncol</code> por la de filas <code>nrow</code>, se cambia la posición de las figuras anteriores en el mismo panel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impresión de un panel con las dos figuras de forma vertical (p1 y p2)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span> (f1, f2, <span class="at">nrow=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig32" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/fig-fig32-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;14: Differencias en la abundancia de insectos, los periodos de lluvia y para los grupos funcionales (GF).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="cuestionario" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario">CUESTIONARIO</h2>
+<ol type="1">
+<li>¿Cómo se distribuye la abundancia total de organismos en las estaciones de muestreo?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de cajas por estación</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Station), <span class="at">y =</span> Abundance, <span class="at">fill =</span> <span class="fu">factor</span>(Station))) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la Abundancia por Estación"</span>, </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estación"</span>, <span class="at">y =</span> <span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-24-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>¿Cómo varía la abundancia entre diferentes tamaños de malla?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de cajas por tamaño de malla</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol, <span class="fu">aes</span>(<span class="at">x =</span> Size, <span class="at">y =</span> Abundance, <span class="at">fill =</span> Size)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Abundancia por Tamaño de Malla"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tamaño de Malla"</span>, <span class="at">y =</span> <span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-25-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="3" type="1">
+<li>¿Cómo se distribuye la abundancia en las capas de muestreo?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de densidad por capa</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol, <span class="fu">aes</span>(<span class="at">x =</span> Abundance, <span class="at">fill =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Densidad de Abundancia por Capa"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Abundancia"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-26-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>¿Cómo se correlacionan las variables ambientales y biológicas?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlación</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(biol1[,<span class="fu">c</span>(<span class="dv">6</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">9</span>)])  <span class="co"># Variables ambientales y abundancia total</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method =</span> <span class="st">"ellipse"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-27-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="5" type="1">
+<li>¿Existe una relación entre temperatura y abundancia total?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dispersión entre temperatura y abundancia</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> Ab, <span class="at">color =</span> Size)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación entre Temperatura y Abundancia"</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Temperatura (°C)"</span>, <span class="at">y =</span> <span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-28-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="6" type="1">
+<li>¿Cómo varía la salinidad entre las estaciones de muestreo?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de cajas de salinidad por estación</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Station), <span class="at">y =</span> Salinity, <span class="at">fill =</span> <span class="fu">factor</span>(Station))) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Variación de Salinidad por Estación"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Estación"</span>, <span class="at">y =</span> <span class="st">"Salinidad (PSU)"</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-29-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="7" type="1">
+<li>¿Cuál es la relación entre la densidad y la temperatura, para las diferentes capas?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dispersión entre densidad y temperatura</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Density, <span class="at">y =</span> Temperature, <span class="at">color =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación entre Densidad y Temperatura"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Densidad"</span>, <span class="at">y =</span> <span class="st">"Temperatura (°C)"</span>) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-30-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="8" type="1">
+<li>¿Cuál es la relación entre la salinidad y la temperatura, para los diferentes ojos de malla?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dispersión entre salinidad y temperatura</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Salinity, <span class="at">y =</span> Temperature, <span class="at">color =</span> Size)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación entre Salinidad y Temperatura"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Salinidad (PSU)"</span>, <span class="at">y =</span> <span class="st">"Temperatura (°C)"</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-31-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="9" type="1">
+<li>¿Cómo varía la abundancia de organismos entre capas?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de cajas de abundancia por capa</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Layers, <span class="at">y =</span> Ab, <span class="at">fill =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Variación de la Abundancia por Capa"</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Capa"</span>, <span class="at">y =</span> <span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-32-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="10" type="1">
+<li>¿Cómo se distribuye la densidad en las capas?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de densidad</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Density, <span class="at">fill =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la Densidad"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Densidad"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-33-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="11" type="1">
+<li>¿Cómo se agrupan las estaciones según temperatura y salinidad?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de dispersión con etiquetas</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> Salinity, <span class="at">color =</span> Station, <span class="at">label =</span> Station)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Agrupación de Estaciones por Temperatura y Salinidad"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Temperatura (°C)"</span>, <span class="at">y =</span> <span class="st">"Salinidad (PSU)"</span>) <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-34-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="12" type="1">
+<li>¿Cómo se relaciona la abundancia de organismos en relación con la densidad, para las diferentes capas?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación densidad y abundancia total</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Density, <span class="at">y =</span> Ab, <span class="at">color =</span> Layers)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación entre Densidad y Abundancia"</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Densidad"</span>, <span class="at">y =</span> <span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-35-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="13" type="1">
+<li>¿Cómo varían las estaciones en función de la salinidad y la temperatura?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dispersión de estaciones según salinidad y temperatura</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(biol1, <span class="fu">aes</span>(<span class="at">x =</span> Salinity, <span class="at">y =</span> Temperature, <span class="at">color =</span> Station)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Station) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Diferencias en Estaciones por Salinidad y Temperatura"</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Salinidad (PSU)"</span>, <span class="at">y =</span> <span class="st">"Temperatura (°C)"</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Taller3.2.Explor.plancton_files/figure-html/unnamed-chunk-36-1.svg" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
