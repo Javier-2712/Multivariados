@@ -1,0 +1,665 @@
+---
+title: "Taller3.3. Exploración Gráfica - Figura de Burbujas"
+subtitle: "Taller para la exploración grafica de datos biológicos y Ambientales"
+date: last-modified #now #today
+description: Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de figuras exploratorias uni, bi y multivariadas.
+author: 
+  name: Nombre del Estudiante
+  url: https://www.unimagdalena.edu.co/
+  afiliation: Grupo GIEN
+  afiliation-url: https://grupogien.jimdofree.com/
+title-block-banner: "#decbe4"
+format:
+  html:
+    toc: true    # Tabla de contenido
+    toc-depth: 6 
+    toc-title: Menú flotante
+    code-tools: false   # Opción para descargar los códigos
+    code-fold: false   # Visualización de los códigos en el reporte
+    css: ["styles2.css"]    # Colores del texto.
+lang: ES-es
+---
+
+## Ejercicio con datos hipotéticos
+
+El presente ejercicio tiene por objetivo, realizar la siguiente figura de burbujas, orientada a evaluar el patrón de relación entre la abundancia y la composición de peces andinos, con la altura sobre el nivel del mar, de acuerdo a lo registrado en este documento: [Miranda et al. (2022)](https://link.springer.com/article/10.1007/s10750-021-04726-3). En esa publicación se puede descar la base de datos utilizada [Enlace_base de datos.xlsx](https://static-content.springer.com/esm/art%3A10.1007%2Fs10750-021-04726-3/MediaObjects/10750_2021_4726_MOESM1_ESM.xlsx). Para esta figura, se requiere contar con dos variables categóricas (taxones y cuencas) y una variable contínua (altura s.n.m.).
+
+![Figura tomada [*Miranda et al. (2022)*](https://link.springer.com/article/10.1007/s10750-021-04726-3).](https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs10750-021-04726-3/MediaObjects/10750_2021_4726_Fig2_HTML.png?as=webp){width="462"}
+
+------------------------------------------------------------------------
+
+### Ejemplo para figuras de burbujas.
+
+[Referente 1](https://r-charts.com/es/correlacion/grafico-burbujas-ggplot2/) - burbujas en ggplot2, [Referente 2](https://www.diegocalvo.es/ejemplo-de-grafico-de-burbujas-en-r/) - , [Referente 3](https://r-charts.com/es/correlacion/grafico-burbujas-ggplot2/) - burbujas animadas,
+
+```{r, message=FALSE, warning=FALSE}
+# Libraries requeridas para los ejemplos
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(viridis)
+library(hrbrthemes)
+library(gapminder)
+```
+
+```{r, message=FALSE, warning=FALSE}
+# install.packages("ggplot2")
+library(ggplot2)
+
+# Datos de ejemplo
+x <- c(2, 5, 7, 3, 6, 1, 9, 2)
+y <- c(2.2, 2, 1, 2, 1, 4, 1, 6)
+size <- c(100, 30, 50, 250, 120, 140, 80, 36)
+group <- c("A", "A", "A", "B", "C", "B", "D", "B")
+group1 <- c("A1", "A2", "A3", "B1", "C1", "B2", "D1", "B2")
+
+# Data frame
+datos <- data.frame(x, y, size, group, group1)
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(datos, aes(x = x, y = y, size = size, color = group)) +
+  geom_point() +
+  scale_size(name = "Tamaño", range = c(1, 10)) +
+  theme_bw()
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+# Gráfico mejorado
+ggplot(datos, aes(x = x, y = group1, size = size, color = group)) +
+  geom_point() +
+  scale_size(name = "Tamaño", range = c(1, 10)) +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),        # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_blank(),      # Eliminar las marcas del eje y
+    axis.text.x = element_text(size = 12), # Ajustar el tamaño del texto en el eje x
+  ) +
+  geom_vline(xintercept = c(2.5, 5, 7.5), color = "gray") +  # Líneas verticales en los valores 2.5, 5 y 7.5
+  guides(
+    color = guide_legend(title = NULL,
+                         override.aes = list(size = 3)),  # Eliminar el título de la leyenda para "group"
+    size = guide_legend(title = NULL, 
+                        override.aes = list(fill = NA, color = "black"))  # Modificar la leyenda del tamaño de los círculos
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+# Gráfico mejorado
+ggplot(datos, aes(x = x, y = group1, size = size, color = group)) +
+  geom_point() +
+  scale_size(name = "Tamaño", range = c(1, 10)) +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),    # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_blank(),  # Eliminar las marcas del eje y
+    axis.text.x = element_text(size = 12),# Ajustar el tamaño del texto en el eje x
+  ) +
+  geom_vline(xintercept = c(2.5, 5, 7.5), color = "gray") +  # Líneas verticales en los valores 2.5, 5 y 7.5
+  guides(
+    color = guide_legend(title = NULL,
+                         override.aes = list(size = 3)),  # Eliminar el título de la leyenda para "group"
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, color = "black"))  # Modificar la leyenda del tamaño de los círculos
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+# Gráfico mejorado
+ggplot(datos, aes(x = x, y = group1, size = size, color = group)) +
+  geom_point() +
+  scale_size(name = "Tamaño", range = c(1, 10)) +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),    # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_blank(),  # Eliminar las marcas del eje y
+    axis.text.x = element_text(size = 12),  # Ajustar el tamaño del texto en el eje x
+    axis.title.x = element_blank(),  # Quitar el título del eje x
+    axis.title.y = element_blank(),  # Quitar el título del eje y
+    legend.position = "right",  # Colocar las leyendas a la derecha
+    legend.direction = "vertical"  # Asegurarse que las leyendas estén en orientación vertical
+  ) +
+  geom_vline(xintercept = c(2.5, 5, 7.5), color = "gray") +  # Líneas verticales en los valores 2.5, 5 y 7.5
+  guides(
+    color = guide_legend(title = NULL,
+                         override.aes = list(size = 5)),  # Eliminar el título de la leyenda para "group"
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, color = "black", stroke = 1.2))  # Aumentar el grosor del contorno de los círculos en la leyenda
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+# Gráfico mejorado
+ggplot(datos, aes(x = x, y = group1, size = size, color = group)) +
+  geom_point(alpha=0.7) +  # Transparecia de los colores
+  scale_size(name = "Tamaño", range = c(1, 10)) +
+  scale_color_viridis(discrete=TRUE, guide=FALSE) + # Escala de colores
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),    # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_line(color = "black"),  # Añadir marcas de graduación en el eje y
+    axis.text.x = element_text(size = 12),  # Ajustar el tamaño del texto en el eje x
+    axis.text.y = element_text(size = 12),  # Ajustar el tamaño del texto en el eje y
+    axis.title.x = element_blank(),  # Quitar el título del eje x
+    axis.title.y = element_blank(),  # Quitar el título del eje y
+    legend.position = c(0.95, 0.01),  # Colocar las leyendas en la parte inferior derecha
+    legend.justification = c(1, 0),  # Ajustar la justificación de las leyendas
+    legend.direction = "vertical",  # Colocar las leyendas en orientación vertical
+    plot.margin = margin(15, 20, 15, 20),  # Aumentar márgenes para evitar solapamiento
+  ) +
+  geom_vline(xintercept = c(2.5, 5, 7.5), color = "gray") +  # Líneas verticales en los valores 2.5, 5 y 7.5
+  guides(
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, color = "#377eb8", stroke = 1.2)),  # Aumentar el grosor del contorno de los círculos en la leyenda
+
+    color = guide_legend(title = NULL,
+                         override.aes = list(size = 7))  # Eliminar el título de la leyenda para "group"
+  )
+```
+
+------------------------------------------------------------------------
+
+## Ejercicio con datos de Plancton Estuarino
+
+### Carga y exploración de datos
+
+```{r, message=FALSE, warning=FALSE}
+library(readxl)
+library(kableExtra)
+
+# Cargar datos desde Excel
+biol <- read_xlsx("plancton.xlsx", sheet = "Riqueza")
+
+# Explorar estructura
+# glimpse(biol)
+# summary(biol)
+
+# tabla con los datos
+head(biol) %>%
+  kbl() %>% 
+  kable_classic(full_width = F)
+```
+
+### Burbujas con leyenda afuera (Salinidad)
+
+```{r, message=FALSE, warning=FALSE}
+# Organización de la base de datos
+biol <- 
+  biol %>% 
+  # Convertir variables a factores
+  mutate(across(c(Station, Size, Layers, Groups), as.factor)) %>% 
+  # Abreviar nombres de los grupos taxonómicos
+  mutate(Abrev = abbreviate(Groups, minlength = 4)) %>% 
+  # Reorganizar las columnas
+  select(Station, Size, Layers, Temperature, Salinity, Density, Groups, Abrev, Abundance)
+
+# Calcular la Abundancia total por grupo y ordenar taxones
+orden_abundancia <- biol %>% 
+  group_by(Groups) %>% 
+  summarise(Total_Abundance = sum(Abundance, na.rm = TRUE)) %>% 
+  arrange(desc(Total_Abundance)) %>% 
+  pull(Groups)
+
+# Aplicar el orden a la variable categórica (invirtiendo el orden para que los más abundantes estén arriba)
+biol <- biol %>% 
+  mutate(Groups = factor(Groups, levels = rev(orden_abundancia)),
+         Abrev = factor(Abrev, levels = rev(abbreviate(orden_abundancia, minlength = 4))))
+
+# Crear el gráfico de burbujas
+ggplot(biol, aes(x = Salinity, y = Abrev, size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +  # Transparencia para mejor visualización
+  scale_size(name = "Abundancia", range = c(1, 8)) + 
+  scale_x_continuous(limits = c(10, 35), breaks = seq(10, 35, by = 5)) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.x = element_text(size = 12),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    legend.position = "right",
+    legend.direction = "vertical"
+  ) +
+  
+  # Líneas verticales grises
+  geom_vline(xintercept = seq(10, 35, by = 5), color = "gray") + 
+  # Circulos de la abundancia en la leyenda
+  guides(
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, 
+                                            color = "#377eb8", 
+                                            stroke = 1.2)),  
+  # Circulos de las Layers en la leyenda
+color = guide_legend(title = NULL,   #  Eliminar el título de la leyenda para "group"
+                         override.aes = list(size = 7))  
+  )
+```
+
+### Burbujas con leyenda adentro (Salinidad)
+
+```{r, message=FALSE, warning=FALSE}
+# Crear el gráfico de burbujas
+ggplot(biol, aes(x = Salinity, y = Abrev, size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +  # Transparencia para mejor visualización
+  scale_size(name = "Abundancia", range = c(1, 8)) + 
+  scale_x_continuous(limits = c(10, 35), breaks = seq(10, 35, by = 5)) + 
+  scale_color_viridis(discrete=TRUE, guide=FALSE) + # Escala de colores
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),    # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_line(color = "black"),  # Añadir marcas de graduación en el eje y
+    axis.text.x = element_text(size = 8),  # Ajustar el tamaño del texto en el eje x
+    axis.text.y = element_text(size = 8),  # Ajustar el tamaño del texto en el eje y
+    axis.title.x = element_blank(),  # Quitar el título del eje x
+    axis.title.y = element_blank(),  # Quitar el título del eje y
+    legend.position = c(0.2, 0.01),  # Colocar las leyendas en la parte inferior derecha
+    legend.justification = c(1, 0),  # Ajustar la justificación de las leyendas
+    legend.direction = "vertical",  # Colocar las leyendas en orientación vertical
+    plot.margin = margin(15, 20, 15, 20),  # Aumentar márgenes para evitar solapamiento
+  ) +
+  
+  # Líneas verticales grises
+  geom_vline(xintercept = seq(10, 35, by = 5), color = "gray") + 
+  # Circulos de la abundancia en la leyenda
+  guides(
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, 
+                                            color = "#377eb8", 
+                                            stroke = 1.2)),  
+  # Circulos de las Layers en la leyenda
+color = guide_legend(title = NULL,   #  Eliminar el título de la leyenda para "group"
+                         override.aes = list(size = 7))  
+  )
+```
+
+### Burbujas con leyenda adentro (Temperatura)
+
+```{r, message=FALSE, warning=FALSE}
+# Organización de la base de datos
+biol <- 
+  biol %>% 
+  # Convertir variables a factores
+  mutate(across(c(Station, Size, Layers, Groups), as.factor)) %>% 
+  # Abreviar nombres de los grupos taxonómicos
+  mutate(Abrev = abbreviate(Groups, minlength = 4)) %>% 
+  # Reorganizar las columnas
+  select(Station, Size, Layers, Temperature, Salinity, 
+         Density, Groups, Abrev, Abundance)
+
+# Calcular la Abundancia total por grupo y ordenar taxones
+orden_abundancia <- 
+  biol %>% 
+  group_by(Groups) %>% 
+  summarise(Total_Abundance = sum(Abundance, na.rm = TRUE)) %>% 
+  arrange(desc(Total_Abundance)) %>% 
+  pull(Groups)
+
+# Aplicar el orden a la variable categórica (invirtiendo el orden para que los más abundantes estén arriba)
+biol <- 
+  biol %>% 
+  mutate(Groups = factor(Groups, levels = rev(orden_abundancia)),
+         Abrev = factor(Abrev, levels = rev(abbreviate(orden_abundancia, minlength = 4))))
+
+
+# Crear el gráfico de burbujas con Temperature en el eje X
+ggplot(biol, aes(x = Temperature, y = Abrev, size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +  # Transparencia para mejor visualización
+  scale_size(name = "Abundancia", range = c(1, 8)) +
+  scale_x_continuous(limits = c(29, 30), 
+                     breaks = seq(29, 30, by = 0.2)) + # Límites y gradación del eje x
+  scale_color_viridis(discrete=TRUE, guide=FALSE) + # Escala de colores
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),    # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_line(color = "black"),  # Añadir marcas de graduación en el eje y
+    axis.text.x = element_text(size = 8),  # Ajustar el tamaño del texto en el eje x
+    axis.text.y = element_text(size = 8),  # Ajustar el tamaño del texto en el eje y
+    axis.title.x = element_blank(),  # Quitar el título del eje x
+    axis.title.y = element_blank(),  # Quitar el título del eje y
+    legend.position = c(0.77, 0.01),  # Colocar las leyendas en la parte inferior derecha
+    legend.justification = c(1, 0),  # Ajustar la justificación de las leyendas
+    legend.direction = "vertical"  # Colocar las leyendas en orientación vertical
+  ) +
+    # Líneas verticales grises
+  geom_vline(xintercept = seq(floor(min(biol$Temperature, na.rm = TRUE)), 
+                              ceiling(max(biol$Temperature, na.rm = TRUE)), 
+                              by = 0.2), color = "gray") +   # Intervalos para las líneas verticales
+  # Círculos de la abundancia en la leyenda
+  guides(
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, 
+                                            color = "#377eb8", 
+                                            stroke = 1.2)),  
+  # Círculos de las Layers en la leyenda
+  color = guide_legend(title = NULL,   #  Eliminar el título de la leyenda para "group"
+                         override.aes = list(size = 6))  
+  )
+
+```
+### gráfico de burbujas animado (Temperatura)
+
+```{r, message=FALSE, warning=FALSE}
+library(plotly)  
+
+# Crear el gráfico de burbujas con Temperature en el eje X
+fig <-
+ggplot(biol, aes(x = Temperature, y = Abrev, size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +  # Transparencia para mejor visualización
+  scale_size(name = "Abundancia", range = c(1, 8)) +
+  scale_x_continuous(limits = c(29, 30), 
+                     breaks = seq(29, 30, by = 0.2)) + # Límites y gradación del eje x
+  scale_color_viridis(discrete=TRUE, guide=FALSE) + # Escala de colores
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),    # Eliminar la cuadrícula del fondo
+    axis.ticks.y = element_line(color = "black"),  # Añadir marcas de graduación en el eje y
+    axis.text.x = element_text(size = 8),  # Ajustar el tamaño del texto en el eje x
+    axis.text.y = element_text(size = 8),  # Ajustar el tamaño del texto en el eje y
+    axis.title.x = element_blank(),  # Quitar el título del eje x
+    axis.title.y = element_blank(),  # Quitar el título del eje y
+    legend.position = c(0.77, 0.01),  # Colocar las leyendas en la parte inferior derecha
+    legend.justification = c(1, 0),  # Ajustar la justificación de las leyendas
+    legend.direction = "vertical"  # Colocar las leyendas en orientación vertical
+  ) +
+    # Líneas verticales grises
+  geom_vline(xintercept = seq(floor(min(biol$Temperature, na.rm = TRUE)), 
+                              ceiling(max(biol$Temperature, na.rm = TRUE)), 
+                              by = 0.2), color = "gray") +   # Intervalos para las líneas verticales
+  # Círculos de la abundancia en la leyenda
+  guides(
+    size = guide_legend(title = NULL, 
+                        override.aes = list(shape = 1, 
+                                            color = "#377eb8", 
+                                            stroke = 1.2)),  
+  # Círculos de las Layers en la leyenda
+  color = guide_legend(title = NULL,   #  Eliminar el título de la leyenda para "group"
+                         override.aes = list(size = 6))  
+  )
+
+ggplotly(fig) 
+
+```
+
+
+
+------------------------------------------------------------------------
+
+# Cuestionario de 10 preguntas
+
+## Instrucciones
+
+Responda cada una de las siguientes preguntas resolviendo los ejercicios en R utilizando Tidyverse. Cada pregunta incluye una solución esperada y un análisis del resultado.
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+### Pregunta 1: Cargar una base de datos
+
+*Cargue la base de datos desde un archivo de Excel y visualice las primeras filas.*
+
+```{r, message=FALSE, warning=FALSE}
+biol <- read_xlsx("plancton.xlsx", sheet = "Riqueza")
+str(biol)
+```
+
+**Resultado esperado:** Se debe observar una estructura clara con variables correctamente identificadas.
+
+------------------------------------------------------------------------
+
+### Pregunta 2: Convertir variables a factores
+
+*Transforme las variables "Station", "Size", "Layers" y "Groups" en factores.*
+
+```{r, message=FALSE, warning=FALSE}
+biol <- 
+  biol %>% 
+  mutate(across(c(Station, Size, 
+                  Layers, Groups), as.factor))
+str(biol)
+```
+
+**Análisis:** Si las variables fueron correctamente convertidas a factores, aparecerán con la clase "factor" en la estructura de datos.
+
+------------------------------------------------------------------------
+
+### Pregunta 3: Abreviar nombres de grupos
+
+*Cree una nueva variable "Abrev" con abreviaciones de los nombres de los grupos taxonómicos.*
+
+```{r, message=FALSE, warning=FALSE}
+biol <- 
+  biol %>% 
+  mutate(Abrev = abbreviate(Groups, minlength = 4))
+
+head(biol$Abrev)
+```
+
+**Resultado esperado:** Cada grupo debe tener una abreviatura de al menos 4 caracteres.
+
+------------------------------------------------------------------------
+
+### Pregunta 4: Selección de columnas
+
+*Reordene la base de datos para mantener solo variables clave.*
+
+```{r, message=FALSE, warning=FALSE}
+biol <- 
+  biol %>% 
+  select(Station, Size, Layers, Temperature, 
+         Salinity, Density, Groups, Abrev, Abundance)
+head(biol)
+```
+
+**Análisis:** La base de datos debe contener solo las columnas seleccionadas.
+
+------------------------------------------------------------------------
+
+### Pregunta 5: Ordenar taxones por abundancia
+
+*Calcule la abundancia total por grupo y ordénelos.*
+
+```{r, message=FALSE, warning=FALSE}
+orden_abundancia <- 
+  biol %>% 
+  group_by(Groups) %>% 
+  summarise(Total_Abundance = sum(Abundance, na.rm = TRUE)) %>% 
+  arrange(desc(Total_Abundance)) %>% 
+  pull(Groups)
+
+head(orden_abundancia)
+```
+
+**Resultado esperado:** Los taxones deben estar ordenados de mayor a menor abundancia.
+
+------------------------------------------------------------------------
+
+### Pregunta 6: Reorganizar el factor "Groups"
+
+*Reordene "Groups" para que los taxones más abundantes aparezcan arriba.*
+
+```{r, message=FALSE, warning=FALSE}
+biol <- 
+  biol %>% 
+  mutate(Groups = factor(Groups, 
+         levels = rev(orden_abundancia)))
+
+head(biol)
+```
+
+**Análisis:** Si se visualiza la base de datos, los taxones más abundantes estarán al inicio.
+
+------------------------------------------------------------------------
+
+### Pregunta 7: Crear un gráfico de burbujas
+
+*Genere un gráfico de burbujas con "Salinity" en el eje X y "Abrev" en el eje Y.*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +
+  theme_bw()
+```
+
+**Resultado esperado:** Un gráfico de burbujas con los grupos taxonómicos correctamente representados.
+
+------------------------------------------------------------------------
+
+### Pregunta 8: Mejorar la escala del gráfico
+
+*Defina límites e intervalos adecuados para el eje X.*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +
+  scale_x_continuous(limits = c(10, 35), 
+                     breaks = seq(10, 35, by = 5)) +
+  theme_bw()
+```
+
+**Análisis:** Se deben ver intervalos claros en el eje X con valores de 5 en 5.
+
+------------------------------------------------------------------------
+
+### Pregunta 9: Personalizar la leyenda
+
+*Ajuste la leyenda del gráfico para mejorar su interpretación.*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +
+  guides(
+    color = guide_legend(title = "Estación"),
+    size = guide_legend(title = "Abundancia")
+  ) +
+  theme_bw()
+```
+
+**Resultado esperado:** Las leyendas deben tener títulos claros.
+
+------------------------------------------------------------------------
+
+### Pregunta 10: Agregar líneas de referencia
+
+*Incluya líneas verticales en los valores 10, 15, 20, 25, 30 y 35.*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +
+  geom_point(alpha = 0.7) +
+  geom_vline(xintercept = seq(10, 35, by = 5), 
+             color = "gray", linetype = "dashed") +
+  theme_bw()
+```
+
+### Pregunta 11: Ajustar la transparencia de las burbujas
+
+*Modifique el gráfico de burbujas para que las burbujas sean más transparentes (`alpha = 0.5`).*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.5) +   
+  theme_bw() 
+```
+
+**Resultado esperado:** Las burbujas deben verse más translúcidas, facilitando la visualización de puntos superpuestos.
+
+### Pregunta 12: Modificar la paleta de colores
+
+*Modifique el gráfico para que las burbujas permitan mejorar la diferencia entre estaciones con* `geom_point(alpha = 0.7)`
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.7) +   
+  scale_color_viridis_d() +   
+  theme_bw() 
+```
+
+**Análisis:** La nueva paleta debe permitir una mejor diferenciación entre estaciones.
+
+### Pregunta 13: Ajustar el rango de tamaños de las burbujas
+
+*Modifica la escala de tamaño para que las burbujas pequeñas sean más visibles (`range = c(2, 12)`).*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.7) +   
+  scale_size(name = "Abundancia", range = c(2, 12)) +   
+  theme_bw() 
+```
+
+**Resultado esperado:** Las burbujas pequeñas serán más visibles y las grandes seguirán resaltando.
+
+### Pregunta 14: Agregar etiquetas a las burbujas
+
+*Incluye etiquetas con los valores de abundancia usando `ggrepel` para evitar superposiciones.*
+
+```{r, message=FALSE, warning=FALSE}
+library(ggrepel)  
+
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.7) +   
+  geom_text_repel(aes(label = round(Abundance, 1)), 
+                  size = 3) +   
+  theme_bw() 
+```
+
+**Análisis:** Ahora cada burbuja tendrá una etiqueta con su valor de abundancia.
+
+### Pregunta 15: Cambiar la orientación de la leyenda
+
+*Modifica la posición y orientación de la leyenda (`legend.position = "bottom"`, `legend.direction = "horizontal"`).*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abrev, 
+                 size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.7) +   
+  theme_bw() +   
+  theme(legend.position = "bottom", 
+        legend.direction = "horizontal") 
+```
+
+**Resultado esperado:** La leyenda se moverá debajo del gráfico y se presentará en una línea horizontal.
+
+### Pregunta 16: Agregar una línea de tendencia
+
+*Incluye una línea de tendencia suavizada (`geom_smooth`) para evaluar la relación entre la salinidad y la abundancia media de los grupos.*
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(biol, aes(x = Salinity, y = Abundance, 
+                 size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.7) +   
+  geom_smooth(method = "loess", 
+              se = TRUE, color = "black") +   
+  theme_bw() 
+```
+
+**Análisis:** La línea negra mostrará una tendencia general en la relación salinidad-abundancia.
+
+### Pregunta 17: Crear un gráfico de burbujas animado
+
+*Usando la librería `plotly`, convierta el gráfico en una visualización interactiva.*
+
+```{r, message=FALSE, warning=FALSE}
+library(plotly)  
+
+p <- ggplot(biol, aes(x = Salinity, y = Abrev,  
+            size = Abundance, color = Station)) +   
+  geom_point(alpha = 0.7) +   
+  theme_bw()  
+
+ggplotly(p) 
+```
+
+**Resultado esperado:** Ahora se podrá interactuar con el gráfico, visualizar valores al pasar el cursor y acercar o alejar el contenido.
