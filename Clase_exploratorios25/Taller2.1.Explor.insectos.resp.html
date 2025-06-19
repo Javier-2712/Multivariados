@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ES-es" xml:lang="ES-es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nombre del Estudiante">
+<meta name="description" content="Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de figuras exploratorias uni, bi y multivariadas.">
+
+<title>Taller3.2. Exploración Gráfica - Insectos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Taller2.1.Explor.insectos.resp_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Taller2.1.Explor.insectos.resp_files/libs/quarto-html/quarto.js"></script>
+<script src="Taller2.1.Explor.insectos.resp_files/libs/quarto-html/popper.min.js"></script>
+<script src="Taller2.1.Explor.insectos.resp_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Taller2.1.Explor.insectos.resp_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Taller2.1.Explor.insectos.resp_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Taller2.1.Explor.insectos.resp_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Taller2.1.Explor.insectos.resp_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Taller2.1.Explor.insectos.resp_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Taller2.1.Explor.insectos.resp_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #decbe4;
+      }
+</style>
+
+
+<link rel="stylesheet" href="styles2.css">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Taller3.2. Exploración Gráfica - Insectos</h1>
+            <p class="subtitle lead">Taller para la exploración grafica de datos biológicos y Ambientales</p>
+                  <div>
+        <div class="description">
+          Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de figuras exploratorias uni, bi y multivariadas.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Autor/a</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://www.unimagdalena.edu.co/">Nombre del Estudiante</a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Fecha de publicación</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">18 de junio de 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Menú flotante</h2>
+   
+  <ul>
+  <li><a href="#exploración-gráfica-multivariada---base-insectos" id="toc-exploración-gráfica-multivariada---base-insectos" class="nav-link active" data-scroll-target="#exploración-gráfica-multivariada---base-insectos">Exploración gráfica multivariada - base <em>Insectos</em></a></li>
+  <li><a href="#objetivo-de-la-actividad" id="toc-objetivo-de-la-actividad" class="nav-link" data-scroll-target="#objetivo-de-la-actividad"><strong>Objetivo de la actividad:</strong></a>
+  <ul>
+  <li><a href="#procedimiento-de-la-exploración" id="toc-procedimiento-de-la-exploración" class="nav-link" data-scroll-target="#procedimiento-de-la-exploración">Procedimiento de la exploración</a>
+  <ul>
+  <li><a href="#cargar-las-librerías-requeridas" id="toc-cargar-las-librerías-requeridas" class="nav-link" data-scroll-target="#cargar-las-librerías-requeridas">Cargar las librerías requeridas</a></li>
+  <li><a href="#cargar-o-importar-la-base-de-datos" id="toc-cargar-o-importar-la-base-de-datos" class="nav-link" data-scroll-target="#cargar-o-importar-la-base-de-datos">Cargar o importar la base de datos</a></li>
+  <li><a href="#figuras-de-elipses" id="toc-figuras-de-elipses" class="nav-link" data-scroll-target="#figuras-de-elipses">1. Figuras de elipses</a></li>
+  <li><a href="#figuras-de-dispersión-por-pares-de-variables-pairs" id="toc-figuras-de-dispersión-por-pares-de-variables-pairs" class="nav-link" data-scroll-target="#figuras-de-dispersión-por-pares-de-variables-pairs">3. Figuras de Dispersión por pares de variables (pairs)</a></li>
+  <li><a href="#histogramas" id="toc-histogramas" class="nav-link" data-scroll-target="#histogramas">3. Histogramas</a></li>
+  <li><a href="#dispersión-x-y" id="toc-dispersión-x-y" class="nav-link" data-scroll-target="#dispersión-x-y">4. Dispersión X-Y</a>
+  <ul>
+  <li><a href="#dispersión-x-y-con-ggplot2" id="toc-dispersión-x-y-con-ggplot2" class="nav-link" data-scroll-target="#dispersión-x-y-con-ggplot2">Dispersión X-Y con <strong>ggplot2</strong></a></li>
+  </ul></li>
+  <li><a href="#cajas-y-bigotes" id="toc-cajas-y-bigotes" class="nav-link" data-scroll-target="#cajas-y-bigotes">5. Cajas y Bigotes</a>
+  <ul>
+  <li><a href="#cajas-con-un-factor-cuencas." id="toc-cajas-con-un-factor-cuencas." class="nav-link" data-scroll-target="#cajas-con-un-factor-cuencas.">Cajas con un factor: Cuencas.</a></li>
+  </ul></li>
+  <li><a href="#coplot" id="toc-coplot" class="nav-link" data-scroll-target="#coplot">6. Coplot</a></li>
+  <li><a href="#categorización-de-las-variables-ambientales" id="toc-categorización-de-las-variables-ambientales" class="nav-link" data-scroll-target="#categorización-de-las-variables-ambientales">Categorización de las variables ambientales</a></li>
+  <li><a href="#figuras-con-estadísticos-promedios-errores" id="toc-figuras-con-estadísticos-promedios-errores" class="nav-link" data-scroll-target="#figuras-con-estadísticos-promedios-errores">7. Figuras con estadísticos (promedios, errores, …)</a>
+  <ul>
+  <li><a href="#base-de-datos-con-múltiples-factores" id="toc-base-de-datos-con-múltiples-factores" class="nav-link" data-scroll-target="#base-de-datos-con-múltiples-factores">Base de datos con múltiples factores</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#taller-de-entrenamiento" id="toc-taller-de-entrenamiento" class="nav-link" data-scroll-target="#taller-de-entrenamiento"><strong>Taller de entrenamiento</strong></a></li>
+  <li><a href="#cuestionario" id="toc-cuestionario" class="nav-link" data-scroll-target="#cuestionario">CUESTIONARIO</a>
+  <ul>
+  <li><a href="#graficar-la-relación-entre-el-ph-y-la-temperatura-en-las-quebradas." id="toc-graficar-la-relación-entre-el-ph-y-la-temperatura-en-las-quebradas." class="nav-link" data-scroll-target="#graficar-la-relación-entre-el-ph-y-la-temperatura-en-las-quebradas.">1. Graficar la relación entre el pH y la temperatura en las quebradas.</a></li>
+  <li><a href="#las-quebradas-con-mayor-temperatura-tienen-más-efemerópteros-existe-una-relación-lineal-o-no-lineal-cómo-se-distribuyen-los-puntos" id="toc-las-quebradas-con-mayor-temperatura-tienen-más-efemerópteros-existe-una-relación-lineal-o-no-lineal-cómo-se-distribuyen-los-puntos" class="nav-link" data-scroll-target="#las-quebradas-con-mayor-temperatura-tienen-más-efemerópteros-existe-una-relación-lineal-o-no-lineal-cómo-se-distribuyen-los-puntos">2. ¿Las quebradas con mayor temperatura tienen más efemerópteros? ¿Existe una relación lineal o no lineal? ¿Cómo se distribuyen los puntos?</a></li>
+  <li><a href="#cómo-varía-la-abundancia-total-de-insectos-entre-cuencas" id="toc-cómo-varía-la-abundancia-total-de-insectos-entre-cuencas" class="nav-link" data-scroll-target="#cómo-varía-la-abundancia-total-de-insectos-entre-cuencas">3. ¿Cómo varía la abundancia total de insectos entre cuencas?</a></li>
+  <li><a href="#cómo-se-distribuye-la-abundancia-total-de-insectos-en-las-quebradas" id="toc-cómo-se-distribuye-la-abundancia-total-de-insectos-en-las-quebradas" class="nav-link" data-scroll-target="#cómo-se-distribuye-la-abundancia-total-de-insectos-en-las-quebradas">4. ¿Cómo se distribuye la abundancia total de insectos en las quebradas?</a></li>
+  <li><a href="#qué-patrón-de-correlación-hay-entre-variables-ambientales-y-biológicas" id="toc-qué-patrón-de-correlación-hay-entre-variables-ambientales-y-biológicas" class="nav-link" data-scroll-target="#qué-patrón-de-correlación-hay-entre-variables-ambientales-y-biológicas">5. ¿Qué patrón de correlación hay entre variables ambientales y biológicas?</a></li>
+  <li><a href="#cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-de-plecópteros" id="toc-cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-de-plecópteros" class="nav-link" data-scroll-target="#cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-de-plecópteros">6. ¿Cuál es la relación entre la temperatura y la abundancia de plecópteros?</a></li>
+  <li><a href="#cómo-se-relaciona-la-abundancia-de-efemerópteros-con-la-de-tricópteros" id="toc-cómo-se-relaciona-la-abundancia-de-efemerópteros-con-la-de-tricópteros" class="nav-link" data-scroll-target="#cómo-se-relaciona-la-abundancia-de-efemerópteros-con-la-de-tricópteros">7. ¿Cómo se relaciona la abundancia de efemerópteros con la de tricópteros?</a></li>
+  <li><a href="#cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-total" id="toc-cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-total" class="nav-link" data-scroll-target="#cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-total">8. ¿Cuál es la relación entre la temperatura y la abundancia total?</a></li>
+  <li><a href="#cómo-es-la-relación-entre-ph-y-la-abundancia-de-dípteros" id="toc-cómo-es-la-relación-entre-ph-y-la-abundancia-de-dípteros" class="nav-link" data-scroll-target="#cómo-es-la-relación-entre-ph-y-la-abundancia-de-dípteros">9. ¿Cómo es la relación entre pH y la abundancia de dípteros?</a></li>
+  <li><a href="#cómo-varía-la-abundancia-de-efemerópteros-en-cada-cuenca" id="toc-cómo-varía-la-abundancia-de-efemerópteros-en-cada-cuenca" class="nav-link" data-scroll-target="#cómo-varía-la-abundancia-de-efemerópteros-en-cada-cuenca">10. ¿Cómo varía la abundancia de efemerópteros en cada cuenca?</a></li>
+  <li><a href="#cómo-se-distribuyen-los-valores-de-temperatura-en-las-quebradas" id="toc-cómo-se-distribuyen-los-valores-de-temperatura-en-las-quebradas" class="nav-link" data-scroll-target="#cómo-se-distribuyen-los-valores-de-temperatura-en-las-quebradas">11. ¿Cómo se distribuyen los valores de temperatura en las quebradas?</a></li>
+  <li><a href="#cómo-varía-la-abundancia-de-insectos-según-el-nivel-de-ph" id="toc-cómo-varía-la-abundancia-de-insectos-según-el-nivel-de-ph" class="nav-link" data-scroll-target="#cómo-varía-la-abundancia-de-insectos-según-el-nivel-de-ph">12. ¿Cómo varía la abundancia de insectos según el nivel de pH?</a></li>
+  <li><a href="#cómo-se-relaciona-la-temperatura-con-la-abundancia-de-coleópteros" id="toc-cómo-se-relaciona-la-temperatura-con-la-abundancia-de-coleópteros" class="nav-link" data-scroll-target="#cómo-se-relaciona-la-temperatura-con-la-abundancia-de-coleópteros">13. ¿Cómo se relaciona la temperatura con la abundancia de coleópteros?</a></li>
+  <li><a href="#cómo-varían-los-valores-de-ph-entre-las-cuencas" id="toc-cómo-varían-los-valores-de-ph-entre-las-cuencas" class="nav-link" data-scroll-target="#cómo-varían-los-valores-de-ph-entre-las-cuencas">14. ¿Cómo varían los valores de pH entre las cuencas?</a></li>
+  <li><a href="#cómo-varían-la-temperatura-y-el-ph-en-cada-cuenca" id="toc-cómo-varían-la-temperatura-y-el-ph-en-cada-cuenca" class="nav-link" data-scroll-target="#cómo-varían-la-temperatura-y-el-ph-en-cada-cuenca">15. ¿Cómo varían la temperatura y el pH en cada cuenca?</a></li>
+  <li><a href="#cómo-varía-la-abundancia-de-insectos-según-la-temperatura-categorizada" id="toc-cómo-varía-la-abundancia-de-insectos-según-la-temperatura-categorizada" class="nav-link" data-scroll-target="#cómo-varía-la-abundancia-de-insectos-según-la-temperatura-categorizada">16. ¿Cómo varía la abundancia de insectos según la temperatura categorizada?</a></li>
+  <li><a href="#cómo-varía-la-abundancia-de-insectos-en-función-del-ph-y-la-temperatura-categorizada" id="toc-cómo-varía-la-abundancia-de-insectos-en-función-del-ph-y-la-temperatura-categorizada" class="nav-link" data-scroll-target="#cómo-varía-la-abundancia-de-insectos-en-función-del-ph-y-la-temperatura-categorizada">17. ¿Cómo varía la abundancia de insectos en función del pH y la temperatura categorizada?</a></li>
+  <li><a href="#cómo-se-relacionan-la-abundancia-de-insectos-y-la-temperatura-segmentadas-por-cuenca" id="toc-cómo-se-relacionan-la-abundancia-de-insectos-y-la-temperatura-segmentadas-por-cuenca" class="nav-link" data-scroll-target="#cómo-se-relacionan-la-abundancia-de-insectos-y-la-temperatura-segmentadas-por-cuenca">18. ¿Cómo se relacionan la abundancia de insectos y la temperatura, segmentadas por cuenca?</a></li>
+  <li><a href="#cómo-se-relaciona-la-abundancia-de-los-principales-taxones-con-el-ph-y-la-temperatura" id="toc-cómo-se-relaciona-la-abundancia-de-los-principales-taxones-con-el-ph-y-la-temperatura" class="nav-link" data-scroll-target="#cómo-se-relaciona-la-abundancia-de-los-principales-taxones-con-el-ph-y-la-temperatura">19. ¿Cómo se relaciona la abundancia de los principales taxones con el pH y la temperatura?</a></li>
+  <li><a href="#cómo-varía-la-composición-taxonómica-en-función-de-la-cuenca-y-la-temperatura" id="toc-cómo-varía-la-composición-taxonómica-en-función-de-la-cuenca-y-la-temperatura" class="nav-link" data-scroll-target="#cómo-varía-la-composición-taxonómica-en-función-de-la-cuenca-y-la-temperatura">20. ¿Cómo varía la composición taxonómica en función de la cuenca y la temperatura?</a></li>
+  <li><a href="#cómo-varía-la-abundancia-total-de-insectos-en-las-quebradas-según-la-combinación-de-cuencas-y-categorías-de-temperatura" id="toc-cómo-varía-la-abundancia-total-de-insectos-en-las-quebradas-según-la-combinación-de-cuencas-y-categorías-de-temperatura" class="nav-link" data-scroll-target="#cómo-varía-la-abundancia-total-de-insectos-en-las-quebradas-según-la-combinación-de-cuencas-y-categorías-de-temperatura">21. ¿Cómo varía la abundancia total de insectos en las quebradas según la combinación de cuencas y categorías de temperatura?</a></li>
+  <li><a href="#qué-diferencias-existen-entre-la-abundancia-de-dípteros-y-la-temperatura-categorizada-en-las-diferentes-cuencas" id="toc-qué-diferencias-existen-entre-la-abundancia-de-dípteros-y-la-temperatura-categorizada-en-las-diferentes-cuencas" class="nav-link" data-scroll-target="#qué-diferencias-existen-entre-la-abundancia-de-dípteros-y-la-temperatura-categorizada-en-las-diferentes-cuencas">22. ¿Qué diferencias existen entre la abundancia de dípteros y la temperatura categorizada en las diferentes cuencas?</a></li>
+  <li><a href="#cómo-varía-la-correlación-entre-variables-biológicas-dentro-de-cada-cuenca" id="toc-cómo-varía-la-correlación-entre-variables-biológicas-dentro-de-cada-cuenca" class="nav-link" data-scroll-target="#cómo-varía-la-correlación-entre-variables-biológicas-dentro-de-cada-cuenca">23. ¿Cómo varía la correlación entre variables biológicas dentro de cada cuenca?</a></li>
+  <li><a href="#cómo-varían-las-medias-y-errores-estándar-de-la-abundancia-total-de-insectos-en-las-diferentes-cuencas-y-clases-de-ph" id="toc-cómo-varían-las-medias-y-errores-estándar-de-la-abundancia-total-de-insectos-en-las-diferentes-cuencas-y-clases-de-ph" class="nav-link" data-scroll-target="#cómo-varían-las-medias-y-errores-estándar-de-la-abundancia-total-de-insectos-en-las-diferentes-cuencas-y-clases-de-ph">24. ¿Cómo varían las medias y errores estándar de la abundancia total de insectos en las diferentes cuencas y clases de pH?</a></li>
+  <li><a href="#qué-combinación-de-cuenca-y-categorías-de-temperatura-presenta-la-mayor-abundancia-de-efemerópteros" id="toc-qué-combinación-de-cuenca-y-categorías-de-temperatura-presenta-la-mayor-abundancia-de-efemerópteros" class="nav-link" data-scroll-target="#qué-combinación-de-cuenca-y-categorías-de-temperatura-presenta-la-mayor-abundancia-de-efemerópteros">25. ¿Qué combinación de cuenca y categorías de temperatura presenta la mayor abundancia de efemerópteros?</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="exploración-gráfica-multivariada---base-insectos" class="level1">
+<h1>Exploración gráfica multivariada - base <em>Insectos</em></h1>
+<hr>
+</section>
+<section id="objetivo-de-la-actividad" class="level1">
+<h1><strong>Objetivo de la actividad:</strong></h1>
+<p>Poner en práctica el manejo de bases de datos y la visualización de datos uni, bi, tri y multivariados, para responder principalmente a dos tipos de objetivos:</p>
+<ol type="1">
+<li><p><strong>Relaciones</strong> entre variables biológicas y de estas con las ambientales (ej. figuras de elipses, pares, dispersión y coplot).</p></li>
+<li><p><strong>Diferencias</strong> para el caso en el que contemos con variables agrupadoras (factores o v. cualitativas), orientado a evaluar las diferencias entre variables biológicas en gradientes espaciales o temporales (ej. entre grupos de sitios).</p></li>
+</ol>
+<p>La base de datos a utilizar se presenta en dos formatos: <strong>Insectos.csv</strong> e <strong>Insectos.xlsx</strong>. Esta base cuenta con 2 variables ambientales y 6 biológicas, así como con un factor o variable agrupadora (cuencas), todo esto distribuido en las columnas. Además cuenta con y 20 localidades o quebradas (filas).</p>
+<section id="procedimiento-de-la-exploración" class="level2">
+<h2 class="anchored" data-anchor-id="procedimiento-de-la-exploración">Procedimiento de la exploración</h2>
+<ul>
+<li><p>Cargar librerías requeridas</p></li>
+<li><p>Cargar la base <code>Insectos</code> (usar diferentes opciones para practicar)</p></li>
+<li><p>Explorar al <strong>objetivo 1</strong> (figuras de elipses, pares, dispersión y coplot).</p></li>
+<li><p>Explorar al <strong>objetivo 2</strong> (figuras de elipses, pares, dispersión y coplot).</p></li>
+<li><p>Realizar las opciones gráficas relacionadas a los objetivos.</p></li>
+<li><p>Realizar transformaciones de los datos, para mejorar la visualización de patrones.</p></li>
+<li><p>Practicar con leyendas y resultados de la visualización realizada.</p></li>
+</ul>
+<hr>
+<section id="cargar-las-librerías-requeridas" class="level4">
+<h4 class="anchored" data-anchor-id="cargar-las-librerías-requeridas">Cargar las librerías requeridas</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Librerías requeridas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)   <span class="co"># Para la edición de tablas</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)       <span class="co"># Cargar bases de Excel</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(stats)        <span class="co"># No se requiere instalar</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)      <span class="co"># No se requiere instalar</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)      <span class="co"># insertar rótulos a los puntos</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(SciViews)     <span class="co"># Fig. dispersión con coef. de pearson</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotrix)      <span class="co"># Figuras de cajas con múltiples variables</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)     <span class="co"># Figuras de elipses</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)        <span class="co"># Matrices de correlación para figuras de elipses</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape)      <span class="co"># Figuras de cajas con múltiples variables</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)     <span class="co"># Figuras de cajas con múltiples variables </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)    <span class="co"># Para figuras estadísticas (varios factores)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)         <span class="co"># Para figuras estadísticas (varios factores)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># Paquete gráfico</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)      <span class="co"># Para manipulación de factores</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)      <span class="co"># Opciones de paletas de colores</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="cargar-o-importar-la-base-de-datos" class="level4">
+<h4 class="anchored" data-anchor-id="cargar-o-importar-la-base-de-datos">Cargar o importar la base de datos</h4>
+<p>A continuación se presentan tres formas diferentes de importar o cargar bases de dato, tanto en el formato original de Excel (xlsx) como en el formato plano (csv). Se utilizará la tercera opción para el resto del ejrcicio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#------------</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Insectos.xlsx"</span>)    <span class="co"># paquete "readxl" </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+  quebrada cuenca    pH  temp  Efem  Plec  Tric  Dipt  Cole    Ab
+     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1        1 cuen1    6.8  17.4    26     4     9    30     3    72
+2        4 cuen1    7.3  16.8    17     6     9    25     1    58
+3       11 cuen1    5.6  16       9     3    28    24     3    67
+4       13 cuen1    6.3  17.8     2     3    25    21     6    57
+5       19 cuen1    5.6  18.2     6     4    24    12    13    59
+6        3 cuen2    6.3  17       7     2    25    10     1    45</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explorar estructura</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># glimpse(datosl)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(datos)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="figuras-de-elipses" class="level3">
+<h3 class="anchored" data-anchor-id="figuras-de-elipses">1. Figuras de elipses</h3>
+<p>El Paquete <strong>corrplot</strong> es el que permite realizar las opciones gráficas de elipses a color, ingresar a este enlace:</p>
+<p><a href="http://www.sthda.com/english/wiki/visualize-correlation-matrix-using-correlogram"><strong>corrplot</strong></a></p>
+<p>Otro enlace a <strong>corrplot</strong>:</p>
+<p><a href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html"><strong>corrplot</strong></a></p>
+<p>Las figuras de correlación realizadas con el paquete <code>corrplot</code>, son una buena opción para evaluar los patrones generales de relaciones positivas (azul) y/o negativas (rojo), entre parejas de variables. Funcionan para objetivos orientados en la relaciones de (1) variables biológicas, (2) variables ambientales y (3) variables biológicas con las ambientales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos[,<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>])            <span class="co"># Matriz de Correlación (M)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La <a href="#fig-fig1" class="quarto-xref">Figura&nbsp;1</a> muestra la relación entre las variables, a partir de figuras de elipses y de circulos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method =</span> <span class="st">"ellipse"</span>)  <span class="co"># Figura de correlaciones con elipses</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method =</span> <span class="st">"circle"</span>)   <span class="co"># Figura de correlaciones con circulos</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig1-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-fig2" class="quarto-xref">Figura&nbsp;2</a> muestra la relación entre las variables, a partir de figuras de elipses, además incorpora al nivel de correlación entre las parejas de variables con los coeficientes de Pearson.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(M, <span class="at">upper=</span><span class="st">"ellipse"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig2-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La siguiente opción de correlación (<a href="#fig-fig3" class="quarto-xref">Figura&nbsp;3</a>), presenta un código más compejo que las anteriores, pero permite generar una visualización más completa de las relaciones entre parejas de variables y sus coeficientes de correlación de Pearson (también se pueden probar otros coeficientes como Spearman o Kendall).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M,  <span class="at">method =</span> <span class="st">"circle"</span>,            <span class="co"># Correlaciones con circulos</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"lower"</span>, <span class="at">insig=</span><span class="st">"blank"</span>,    <span class="co"># Forma del panel</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">order =</span> <span class="st">"AOE"</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>,      <span class="co"># Ordenar por nivel de correlación</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span><span class="st">"black"</span>,             <span class="co"># Color de los coeficientes</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">number.cex =</span> <span class="fl">0.8</span>,                 <span class="co"># Tamaño del texto</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">COL2</span>(<span class="st">"RdYlBu"</span>, <span class="dv">200</span>))        <span class="co"># Transparencia de los circulos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig3-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La siguiente figura de correlaciones (<a href="#fig-fig4" class="quarto-xref">Figura&nbsp;4</a>) es apropiada para casos en los que tenemos muchas variables biológicas (ej. tipos de taxones) e interesa evaluar su relación con las variables ambientales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>M1 <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos[,<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>], datos[,<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>])            <span class="co"># Matriz de Correlación (M)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Elipses con colores</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M1, <span class="at">method =</span> <span class="st">"ellipse"</span>, <span class="at">type=</span><span class="st">"upper"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig4-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: Relación de variables ambientales y los taxones en las veinte quebradas estudiadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figuras-de-dispersión-por-pares-de-variables-pairs" class="level3">
+<h3 class="anchored" data-anchor-id="figuras-de-dispersión-por-pares-de-variables-pairs">3. Figuras de Dispersión por pares de variables (pairs)</h3>
+<p>El Paquete <strong>pairs</strong> es el que permite realizar las opciones gráficas de dispersión por parejas de variables, ingresar a este enlace:</p>
+<p><a href="https://r-charts.com/es/correlacion/pairs/"><strong>pairs</strong></a></p>
+<p>Otro enlace a <strong>pairs</strong>:</p>
+<p><a href="https://r-coder.com/grafico-correlacion-r/"><strong>pairs</strong></a></p>
+<p>Los gráficos de pares son complementarios a los de correlación, pero permiten conocer otros detalles en las relaciones entre parejas de variables (ej. relaciones lineaes vs.&nbsp;suavizadas o loess). En la siguiente figura (<strong>?@fig-fig5</strong>), además de visualizar si la dispersión de los puntos se orienta hacia una relación positiva o negativa, entre más se ajuste la línea verde (tendencia lineal), con la negativa (tendencia no lineal, suavizada o loess), se puede precisar mejor, si hay una verdadera relación lineal entre las parejas de variables en comparación.</p>
+<p>A continuación se presenta una variante a las figuras de pares (<a href="#fig-fig7" class="quarto-xref">Figura&nbsp;5</a>), que por medio de la función <code>panel</code>, permite incorporar otros elementos en la matriz gráfica, como histogramas para visualizar el patrón de simetría de cada variable y el valor de correlación con coeficientes como el de Pearson. Las líneas rojas definen la relación no lineal o suavizada (loess o lowess) entre las parejas de variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlaciones de Pearson</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SciViews)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(datos[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>)], <span class="at">diag.panel =</span> panel.hist, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper.panel =</span> panel.cor, <span class="at">lower.panel =</span> panel.smooth)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig7-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5: Relación de variables ambientales y algunos taxones en las veinte quebradas estudiadas, con regresiones suavizadas, coeficientes de correlación de Pearson e histogramas de frecuencia para cada variable.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogramas" class="level3">
+<h3 class="anchored" data-anchor-id="histogramas">3. Histogramas</h3>
+<p>Las dos figuras que siguen (<a href="#fig-fig15" class="quarto-xref">Figura&nbsp;6</a> y <a href="#fig-fig16" class="quarto-xref">Figura&nbsp;7</a>), utilizan comandos del paquete <code>ggplot2</code> para visualizar de una forma más compacta a la distribución de frecuencias de la variable abundancia de insectos (AB) en las cuatro cuencas evaluadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frecuencias de abundancias por densidad</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">x =</span> Ab, <span class="at">color =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cuenca), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">y=</span><span class="st">"Frecuencia"</span>, <span class="at">x=</span><span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig15" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig15-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6: Patrón de distribución contínuo de la abundancia de insectos en las veinte quebradas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Otra opción</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">x =</span> Ab, <span class="at">color =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cuenca)) <span class="sc">+</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cuenca) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig16" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig16-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7: Patrón de distribución contínuo de la abundancia de insectos en las veinte quebradas y cuatro cuencas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dispersión-x-y" class="level3">
+<h3 class="anchored" data-anchor-id="dispersión-x-y">4. Dispersión X-Y</h3>
+<section id="dispersión-x-y-con-ggplot2" class="level4">
+<h4 class="anchored" data-anchor-id="dispersión-x-y-con-ggplot2">Dispersión X-Y con <strong>ggplot2</strong></h4>
+<p>El Paquete <strong>ggplot2</strong> es el que permite realizar las opciones gráficas de dispersión bivariados, ingresar a este enlace:</p>
+<p><a href="https://rpubs.com/odenipinedo/introduction-to-data-visualization-with-ggplot2#:~:text=The%20diamonds%20dataset%20contains%20details,as%20in%20a%20scatter%20plot"><strong>RPubs</strong></a>.</p>
+<p>Otro enlace a <strong>ggplot2</strong>:</p>
+<p><a href="https://r-graph-gallery.com/scatterplot.html"><strong>ggplot2</strong></a></p>
+<p>Las tres figuras que siguen, muestran opciones más compactas que la grafica anterior, para visualizar relaciones bivariadas en los descriptores en estudio, permitiendo también analizar el patrón de dispersión de los datos para cada cuenca evaluada (colores). La <a href="#fig-fig18" class="quarto-xref">Figura&nbsp;8</a> permite visualizar la relación lineal incluyendo bandas grises que representan los límites de confianza de la proyección realizada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresiones lineales (Esquema ggplot2) </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos,<span class="fu">aes</span>(<span class="at">x =</span> pH,<span class="at">y =</span> Efem)) <span class="sc">+</span>   </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig18" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig18-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8: Relación Lineal entre el pH y la abundancia de Efemerópteros en las veinte quebradas y las cuatro cuencas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-fig19" class="quarto-xref">Figura&nbsp;9</a>, a diferencia de la anterior, permite visualizar una relación suavizada en la pareja de variables en comparación. Esta relación no lineal es conocida como <code>Loess</code> o <code>Lowess</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresiones suavizadas - Loess o Lowess (Esquema ggplot2) </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos,<span class="fu">aes</span>(<span class="at">x =</span> pH, <span class="at">y =</span> Efem)) <span class="sc">+</span>   </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig19" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig19-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;9: Relación Suavizada (Loess) entre el pH y la abundancia de Efemerópteros en las veinte quebradas y las cuatro cuencas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En la <a href="#fig-fig20" class="quarto-xref">Figura&nbsp;10</a> se eliminan los intervalos de confianza (bandas grises) y aumenta el suavizamiento con el comando <code>span = 0.4</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresiones suavizadas (Loess)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos,<span class="fu">aes</span>(<span class="at">x =</span> pH, <span class="at">y =</span> Efem)) <span class="sc">+</span>   </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">span =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig20" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig20-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10: Relación Suavizada (Loess) entre el pH y la abundancia de Efemerópteros en las veinte quebradas y las cuatro cuencas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cajas-y-bigotes" class="level3">
+<h3 class="anchored" data-anchor-id="cajas-y-bigotes">5. Cajas y Bigotes</h3>
+<p>El Paquete <strong><code>lattice</code></strong> es uno de los que permite realizar las opciones gráficas de cajas, ingresar a este enlace:</p>
+<p><a href="https://www.r-bloggers.com/2022/04/how-to-make-a-boxplot-in-r/?utm_source=phpList&amp;utm_medium=email&amp;utm_campaign=R-bloggers-daily&amp;utm_content=HTML"><strong>How to make a boxplot in R</strong></a></p>
+<p>El Paquete <strong><code>ggplot2</code></strong> presenta opciones más estéticas y robustas para estas y muchas más figuras, ingresar a este enlace:</p>
+<p><a href="https://r-charts.com/es/correlacion/grafico-dispersion-ggplot2/"><strong>Enlace1</strong></a></p>
+<p><a href="https://soka.gitlab.io/blog/post/2019-04-25-r-ggplot2-scatterplot/"><strong>Enlace2</strong></a></p>
+<p>Enlaces de <strong>paletas de colores</strong> para la edición de las figuras:</p>
+<p><a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=4">colorbrewer</a></p>
+<p><a href="https://colorbrewer2.org/#type=qualitative&amp;scheme=Set2&amp;n=4">coolors</a></p>
+<section id="cajas-con-un-factor-cuencas." class="level4">
+<h4 class="anchored" data-anchor-id="cajas-con-un-factor-cuencas.">Cajas con un factor: Cuencas.</h4>
+<p>A continuación se visualiza el patrón de variación en la abundancia de los insectos (<a href="#fig-fig22" class="quarto-xref">Figura&nbsp;11</a>), para las cuatro cuencas evaluadas, adicionando colores especificos, tomados de los enlaces anteriores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Buscar en google: colorbrewer2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x=</span>cuenca, <span class="at">y=</span>Ab)) <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Cuencas"</span>, <span class="at">y=</span> <span class="st">"Abundancia de Insectos"</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#fc8d59'</span>,<span class="st">'#ffffbf'</span>,<span class="st">'#99d594'</span>,<span class="st">'#377eb8'</span>)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># geom_boxplot(notch = T,... para las muescas.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig22" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig22-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;11: Variación en la abundancia de insectos para las cuatro cuencas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Paréntesis</strong> Base de datos de lirios (iris) para figura de violín (<a href="#fig-fig24" class="quarto-xref">Figura&nbsp;12</a>). Estas figuras permiten visualizar la simetría en la distribución de las frecuencias de las variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># violin: como histograma acostado</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Length)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Species)) <span class="sc">+</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#fc8d59'</span>,<span class="st">'#ffffbf'</span>,<span class="st">'#99d594'</span>)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig24" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig24-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig24-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12: Variación en la abundancia de insectos para las cuatro cuencas evaluadas, mediante figuras de violines.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La <a href="#fig-fig25" class="quarto-xref">Figura&nbsp;13</a> muestra su versatilidad en que permite incorporar diferentes variables por cada panel presentado. Las cajas de colores representan a los grupos en comparación (cuencas).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figuras multivariadas de Cajas y bigotes</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">melt</span>(datos[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>))]), <span class="fu">aes</span>(<span class="at">x=</span>variable, <span class="at">y=</span>value)) <span class="sc">+</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill=</span>cuenca)) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#fc8d59'</span>,<span class="st">'#ffffbf'</span>,<span class="st">'#99d594'</span>,<span class="st">'#377eb8'</span>)) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Abundancia"</span>) <span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable,<span class="at">scales=</span><span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig25" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig25-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig25-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;13: Variación en la abundancia de diferentes taxones de insectos para las cuatro cuencas evaluadas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="coplot" class="level3">
+<h3 class="anchored" data-anchor-id="coplot">6. Coplot</h3>
+<p>Las figuras de <code>coplot</code>, permiten relacionar a tres variables, en donde una de ellas puede ser continua o discreta, mediante segmentaciones.En la <a href="#fig-fig26" class="quarto-xref">Figura&nbsp;14</a> se incorporan regresiones suavizadas (loess). Seis páneles en la relación pH y Efemerópteros se asocian a seis barras de temperatura, en donde el primer panel de la parte inferior se correlaciona con la primera barra de temperatura, ubicada a la izquierda y así sucesivamnte.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coplot con líneas de ajuste suavizado (loess)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(datos, {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coplot</span>(Efem<span class="sc">~</span>pH<span class="sc">|</span>temp,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">panel =</span> panel.smooth)})</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig26" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig26-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig26-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14: Figura trivariada, en la que se intenta categorizar a la temperatura.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para este caso (<strong>?@fig-fig27</strong>), se realiza una categorización de dos variables contínuas, que permitirán construir el coplot sin solapamiento de las barras de la tercera variable. Las relaciones se proyectan de forma lineal y el la siguiente ifura serán de forma suavizada.</p>
+</section>
+<section id="categorización-de-las-variables-ambientales" class="level3">
+<h3 class="anchored" data-anchor-id="categorización-de-las-variables-ambientales">Categorización de las variables ambientales</h3>
+<p>Este método divide la variable en tres partes iguales (terciles) utilizando los cuantiles de la distribución. En el siguiente ejercicio se crea una variable categórica llamada <strong>temp_Level</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización de la temperatura</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasetemp =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    temp <span class="sc">&lt;=</span> <span class="fu">quantile</span>(temp, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"T.Baja"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    temp <span class="sc">&lt;=</span> <span class="fu">quantile</span>(temp, <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"T.Media"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    temp <span class="sc">&lt;=</span> <span class="fu">quantile</span>(temp, <span class="dv">3</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"T.Alta"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización del pH </span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasepH =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    pH <span class="sc">&lt;=</span> <span class="fu">quantile</span>(pH, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"pH.Bajo"</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    pH <span class="sc">&lt;=</span> <span class="fu">quantile</span>(pH, <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"pH.Medio"</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    pH <span class="sc">&lt;=</span> <span class="fu">quantile</span>(pH, <span class="dv">3</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"pH.Alto"</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Se puede resumir el nivel alto por el comando "TRUE ~ "Alta"". </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Opción resumida de categorizar variables</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización de la temperatura</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasetemp1 =</span> <span class="fu">cut</span>(temp, <span class="at">breaks=</span><span class="dv">3</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"T.Baja"</span>, <span class="st">"T.Media"</span>, <span class="st">"T.Alta"</span>)))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización del pH </span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasepH1 =</span> <span class="fu">cut</span>(pH, <span class="at">breaks=</span><span class="dv">3</span>, </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"pH.Bajo"</span>, <span class="st">"pH.Medio"</span>, <span class="st">"pH.Alto"</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para el coplot </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>panel.lm <span class="ot">=</span> <span class="cf">function</span>(x, y, ...) {</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  tmp<span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">na.action=</span>na.omit)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(tmp, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col=</span> <span class="dv">2</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(x,y, ...)}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relación trivariada - Lineal</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coplot</span>(Efem<span class="sc">~</span>pH <span class="sc">|</span> clasetemp, <span class="at">pch=</span><span class="dv">19</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> panel.lm, <span class="at">data=</span>datos)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coplot</span>(Efem<span class="sc">~</span>pH <span class="sc">|</span> clasetemp, <span class="at">pch=</span><span class="dv">19</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> panel.smooth, <span class="at">data=</span>datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig28-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig28-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig28-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig28-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15: Figura trivariada, Con la variable temperatura categorizada y relaciones suavizadas entre el pH y los Efemerópteros.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div id="fig-fig28-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig28-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig28-2.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig28-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16: Figura trivariada, Con la variable temperatura categorizada y relaciones suavizadas entre el pH y los Efemerópteros.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Otra forma de categorizar las variables ambientales con el resumen estadístico <code>summary()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorización de dos variables contínuas (pH y Temp)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos[,<span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       pH            temp            Efem            Plec           Tric      
+ Min.   :5.50   Min.   :15.00   Min.   : 2.00   Min.   :0.00   Min.   : 7.00  
+ 1st Qu.:6.00   1st Qu.:15.95   1st Qu.: 6.00   1st Qu.:3.00   1st Qu.:15.00  
+ Median :6.50   Median :17.05   Median :12.50   Median :4.00   Median :22.00  
+ Mean   :6.48   Mean   :16.99   Mean   :13.75   Mean   :3.85   Mean   :20.95  
+ 3rd Qu.:7.00   3rd Qu.:17.88   3rd Qu.:19.00   3rd Qu.:5.00   3rd Qu.:25.00  
+ Max.   :7.50   Max.   :19.80   Max.   :28.00   Max.   :8.00   Max.   :37.00  
+      Dipt            Cole      
+ Min.   : 0.00   Min.   : 1.00  
+ 1st Qu.:12.00   1st Qu.: 3.00  
+ Median :24.50   Median : 6.00  
+ Mean   :22.15   Mean   : 7.70  
+ 3rd Qu.:30.00   3rd Qu.:12.25  
+ Max.   :39.00   Max.   :21.00  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>clasetemp <span class="ot">&lt;-</span> <span class="fu">cut</span>(datos<span class="sc">$</span>temp,<span class="fu">seq</span>(<span class="dv">15</span>,<span class="dv">20</span>,<span class="fl">1.2</span>),<span class="at">include.lowest=</span>T,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"t.baja"</span>, <span class="st">"t.media1"</span>,<span class="st">"t.media2"</span>, <span class="st">"t.alta"</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>clasepH <span class="ot">&lt;-</span> <span class="fu">cut</span>(datos<span class="sc">$</span>pH,<span class="fu">seq</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">1</span>),<span class="at">include.lowest=</span>T,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"pH.bajo"</span>, <span class="st">"pH.medio"</span>,<span class="st">"pH.alto"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambiar etiquetas de Layers con recode_factor()</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cuenca =</span> <span class="fu">recode_factor</span>(cuenca, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"cuen1"</span> <span class="ot">=</span> <span class="st">"Cuenca1"</span>, </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"cuen2"</span> <span class="ot">=</span> <span class="st">"Cuenca2"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"cuen3"</span> <span class="ot">=</span> <span class="st">"Cuenca3"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"cuen4"</span> <span class="ot">=</span> <span class="st">"Cuenca4"</span>))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico con etiquetas de valores atípicos redondeados</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cuenca), <span class="at">y =</span> Ab)) <span class="sc">+</span> </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> clasetemp)) <span class="sc">+</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cuencas"</span>, <span class="at">fill =</span> <span class="st">"Temperatura"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Abundancia"</span>) <span class="sc">+</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> clasetemp, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">strip.position =</span> <span class="st">"top"</span>) <span class="sc">+</span> </span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))        </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figuras-con-estadísticos-promedios-errores" class="level3">
+<h3 class="anchored" data-anchor-id="figuras-con-estadísticos-promedios-errores">7. Figuras con estadísticos (promedios, errores, …)</h3>
+<p>El Paquete <strong><code>ggplot2</code></strong> es uno de los que permite realizar las opciones gráficas de barras con estadísticos, ingresar a este enlace:</p>
+<p><a href="https://rstudio-pubs-static.s3.amazonaws.com/355851_52530dca7f8a4355aad5f5ba46c88b42.html"><strong>Exploratory Data Analysis with ggplot</strong></a></p>
+<p>Existen otros enlaces en los que se puede encontrar información complementaria para figuras de barras, como los siguientes</p>
+<p><a href="https://rstudio-pubs-static.s3.amazonaws.com/355851_52530dca7f8a4355aad5f5ba46c88b42.html"><strong>ggplot2 barplots</strong></a></p>
+<p><a href="https://appsilon.com/ggplot2-bar-charts/"><strong>Stunning Bar Charts</strong></a></p>
+<p>A continuación se muestra el procedimiento con lenguaje Tidyverse, para realizar una tabla con el resumen de diferentes insumos estadísticos, para cada grupo (cuencas) de la base de datos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen estadístico "datos_resum"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>datos_resum <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span>        <span class="co"># Base de datos resumida</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cuenca) <span class="sc">%&gt;%</span>          <span class="co"># Factor o variable agrupadora</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">datos.m =</span> <span class="fu">mean</span>(Ab),   <span class="co"># Media de cada grupo del factor</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.de  =</span> <span class="fu">sd</span>(Ab),   <span class="co"># Desviacioes estándar de cada grupo</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.var =</span> <span class="fu">var</span>(Ab),  <span class="co"># Varianzas de cada grupo</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">n.Ab =</span> <span class="fu">n</span>(),           <span class="co"># Tamaño de cada grupo</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.ee =</span> <span class="fu">sd</span>(Ab)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))   <span class="co"># Error estándar de cada grupo</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>datos_resum</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  cuenca  datos.m datos.de datos.var  n.Ab datos.ee
+  &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;
+1 Cuenca1    62.6     6.58      43.3     5    2.94 
+2 Cuenca2    49.2     5.40      29.2     5    2.42 
+3 Cuenca3    73.8     1.30       1.7     5    0.583
+4 Cuenca4    88      10.1      102.      5    4.53 </code></pre>
+</div>
+</div>
+<p>La siguiente asignación (<code>DatosPlot</code>), incorpora las capas requeridas para realizar una figura de columnas y de líeas acotadas, que representan a los promedios y a los errores estándar respectivamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura de promedios y errores estándar</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>DatosPlot<span class="ot">&lt;-</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(datos_resum, <span class="fu">aes</span>(cuenca, datos.m, <span class="fu">dev.off</span>())) <span class="sc">+</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"#377eb8"</span>) <span class="sc">+</span>  </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>datos.m<span class="sc">-</span>datos.ee, </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax=</span>datos.m<span class="sc">+</span>datos.ee),<span class="at">width=</span><span class="fl">0.2</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La asignación (<code>DatosPlot</code>), es tgraficada con el siguiente comando, en el que se incluyen elementos como los rótulos de los ejes (<code>labs</code>) y el tema de fondo (<code>theme_classic()</code>) (<a href="#fig-fig29" class="quarto-xref">Figura&nbsp;17</a>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimir la figura de promedios con errores estándar</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span> (DatosPlot <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Abundancia ± e.e."</span>, </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"cuenca"</span>) <span class="sc">+</span> </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#A1D5D5"</span>)) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_classic</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig29" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig29-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig29-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17: Differencias en los promedios y errores estándar de la abundancia de insectos, para las cuatro cuencas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para la siguiente figura de Cajas y Bigotes, el comando <code>stat_boxplot(geom = "errorbar",...)</code> permite realizar gráficas sin necesidad de extraer algunos estadísticos previamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Opción de cajas y bigotes con errores estándar</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x=</span>cuenca, <span class="at">y=</span> Ab, <span class="at">fill=</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_boxplot</span>(<span class="at">geom =</span> <span class="st">"errorbar"</span>,<span class="at">width =</span> <span class="fl">0.05</span>) <span class="sc">+</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.4</span>, </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">notchwidth =</span> <span class="fl">0.9</span>, <span class="at">outlier.colour=</span><span class="st">"red"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">outlier.fill=</span><span class="st">"red"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">outlier.size=</span><span class="dv">3</span>, <span class="at">outlier.alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span> </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'#fc8d59'</span>,<span class="st">'#ffffbf'</span>,<span class="st">'#99d594'</span>,<span class="st">'#377eb8'</span>)) <span class="sc">+</span> </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cuencas"</span>, <span class="at">y =</span> <span class="st">"Abundancia ± e.e."</span>)<span class="sc">+</span> </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">90</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig30-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;18: Differencias en la abundancia de insectos, para las cuatro cuencas.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="base-de-datos-con-múltiples-factores" class="level4">
+<h4 class="anchored" data-anchor-id="base-de-datos-con-múltiples-factores">Base de datos con múltiples factores</h4>
+<p>Lo que diferencia a esta base de datos (insectos1.csv) de la anterior (insectos.csv), es que presenta a diferentes variables agrupadoras o factores, como periodos de lluvia, Gruos Funcionales Alimenticios (GF) y Muestreos. Para el siguiente ejercicio se realizará el resumen estadístico de los dos primeros factores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base de datos multifactorial (insectos1)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>datos1<span class="ot">&lt;-</span><span class="fu">read_csv2</span>(<span class="st">"Insectos2.csv"</span>)    <span class="co"># Formato *xlsx</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos1)  <span class="co"># Encabezado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+     No Muestreo GF    Lluvia    Ab  Biom
+  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1     1 M1       C-F   P1        98 56.0 
+2     2 M2       C-F   P1       198 52.7 
+3     3 M3       C-F   P2        45 11.4 
+4     4 M4       C-F   P2        51 25.3 
+5     5 M5       C-F   P2         3  0.36
+6     6 M6       C-F   P2        69 23.6 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen estadístico "datos_resum"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>datos_resum <span class="ot">&lt;-</span> datos1 <span class="sc">%&gt;%</span>        <span class="co"># Base de datos resumida</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Lluvia,GF) <span class="sc">%&gt;%</span>          <span class="co"># Factor o variable agrupadora</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">datos.m =</span> <span class="fu">mean</span>(Biom),   <span class="co"># Media de cada grupo del factor</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.de  =</span> <span class="fu">sd</span>(Biom),   <span class="co"># Desviacioes estándar de cada grupo</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.var =</span> <span class="fu">var</span>(Biom),  <span class="co"># Varianzas de cada grupo</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">n.Biom =</span> <span class="fu">n</span>(),           <span class="co"># Tamaño de cada grupo</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">datos.ee =</span> <span class="fu">sd</span>(Biom)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))   <span class="co"># Error estándar de cada grupo</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>datos_resum</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+# Groups:   Lluvia [2]
+   Lluvia GF    datos.m datos.de datos.var n.Biom datos.ee
+   &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;  &lt;int&gt;    &lt;dbl&gt;
+ 1 P1     C-F      37.0     30.0      902.      3    17.3 
+ 2 P1     C-R      31.7     32.1     1029.      3    18.5 
+ 3 P1     D       361.     120.     14411.      3    69.3 
+ 4 P1     R        53.5     69.8     4873.      3    40.3 
+ 5 P1     T       190.     296.     87533.      3   171.  
+ 6 P2     C-F      14.4     10.2      105.      5     4.58
+ 7 P2     C-R      88.5    115.     13273.      5    51.5 
+ 8 P2     D       176.      94.9     9010.      5    42.4 
+ 9 P2     R        21.9     12.9      165.      5     5.75
+10 P2     T       151.     223.     49655.      5    99.7 </code></pre>
+</div>
+</div>
+<p>Las asignaciones <code>f1</code> y <code>f2</code>, corresponden a las mismas figuras bifactoriales, en donde la primera se muestra con pocos ajustes de sus ejes y fondo, comparada a la segunda que presenta una mayor edición. Finalmente el comando <code>grid.arrange</code> permite graficar a las dos figuras en un mismo panel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura 1 (f1)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">=</span> <span class="fu">ggplot</span>(datos_resum, <span class="fu">aes</span>(<span class="at">x=</span>GF, <span class="at">y=</span>datos.m, <span class="at">fill=</span>Lluvia)) <span class="sc">+</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">color=</span><span class="st">"black"</span>, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">position=</span><span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>datos.m, <span class="at">ymax=</span>datos.m<span class="sc">+</span>datos.de), <span class="at">width=</span>.<span class="dv">2</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">position=</span><span class="fu">position_dodge</span>(.<span class="dv">9</span>)) </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># f2: Otro formato de figura bifactorial - theme_classic</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">=</span> f1<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Biomasa por GF"</span>, </span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">x=</span><span class="st">"Grupos Funcionales - GF"</span>, </span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="st">"Biomasa"</span>)<span class="sc">+</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">'#E69F00'</span>,<span class="st">'#999999'</span>))</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Impresión de un panel con las dos figuras de forma horizontal (f1 y f2)</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span> (f1, f2, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig31" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig31-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig31-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig31-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;19: Differencias en la abundancia de insectos, los periodos de lluvia y para los grupos funcionales (GF).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Cambiando la ubicación por columnas <code>ncol</code> por la de filas <code>nrow</code>, se cambia la posición de las figuras anteriores en el mismo panel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impresión de un panel con las dos figuras de forma vertical (p1 y p2)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span> (f1, f2, <span class="at">nrow=</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-fig32" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig32-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Taller2.1.Explor.insectos.resp_files/figure-html/fig-fig32-1.svg" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig32-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;20: Differencias en la abundancia de insectos, los periodos de lluvia y para los grupos funcionales (GF).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="taller-de-entrenamiento" class="level2">
+<h2 class="anchored" data-anchor-id="taller-de-entrenamiento"><strong>Taller de entrenamiento</strong></h2>
+<p><strong>Objetivo:</strong> Poner en práctica los conceptos vistos en el módulo de exploratorios, realizando las siguientes opciones gráficas en las bases de datos de lirios <code>data(iris)</code>:</p>
+<ol type="1">
+<li><p>Figuras de elipses</p></li>
+<li><p>Figuras de Dispersión por pares de variables (pairs)</p></li>
+<li><p>Histogramas</p></li>
+<li><p>Dispersión X-Y</p></li>
+<li><p>Cajas y Bigotes</p></li>
+<li><p>Coplot</p></li>
+<li><p>Figuras con estadísticos (promedios, errores, …)</p></li>
+</ol>
+<hr>
+</section>
+<section id="cuestionario" class="level2">
+<h2 class="anchored" data-anchor-id="cuestionario">CUESTIONARIO</h2>
+<p>Realizar los siguientes ejercicios de visualización gráfica y analizar los resultados.</p>
+<section id="graficar-la-relación-entre-el-ph-y-la-temperatura-en-las-quebradas." class="level3">
+<h3 class="anchored" data-anchor-id="graficar-la-relación-entre-el-ph-y-la-temperatura-en-las-quebradas.">1. Graficar la relación entre el pH y la temperatura en las quebradas.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura de regresión lineal</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Se observa una tendencia positiva o negativa? ¿Existen diferencias entre cuencas?</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> pH, <span class="at">y =</span> temp)) <span class="sc">+</span>   </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="las-quebradas-con-mayor-temperatura-tienen-más-efemerópteros-existe-una-relación-lineal-o-no-lineal-cómo-se-distribuyen-los-puntos" class="level3">
+<h3 class="anchored" data-anchor-id="las-quebradas-con-mayor-temperatura-tienen-más-efemerópteros-existe-una-relación-lineal-o-no-lineal-cómo-se-distribuyen-los-puntos">2. ¿Las quebradas con mayor temperatura tienen más efemerópteros? ¿Existe una relación lineal o no lineal? ¿Cómo se distribuyen los puntos?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura de regresión</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y =</span> Efem)) <span class="sc">+</span>   </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"loess"</span>, <span class="at">color=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-abundancia-total-de-insectos-entre-cuencas" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-abundancia-total-de-insectos-entre-cuencas">3. ¿Cómo varía la abundancia total de insectos entre cuencas?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figura de diferencias</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cuál cuenca tiene la mayor mediana de abundancia? ¿Cuál tiene mayor variabilidad?</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> Ab, <span class="at">fill =</span> cuenca)) <span class="sc">+</span> </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-se-distribuye-la-abundancia-total-de-insectos-en-las-quebradas" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-se-distribuye-la-abundancia-total-de-insectos-en-las-quebradas">4. ¿Cómo se distribuye la abundancia total de insectos en las quebradas?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿La distribución es simétrica o sesgada?</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Ab)) <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">fill=</span><span class="st">"blue"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-patrón-de-correlación-hay-entre-variables-ambientales-y-biológicas" class="level3">
+<h3 class="anchored" data-anchor-id="qué-patrón-de-correlación-hay-entre-variables-ambientales-y-biológicas">5. ¿Qué patrón de correlación hay entre variables ambientales y biológicas?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cuáles variables tienen correlaciones más fuertes? ¿Son positivas o negativas?</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos[,<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method =</span> <span class="st">"ellipse"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-de-plecópteros" class="level3">
+<h3 class="anchored" data-anchor-id="cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-de-plecópteros">6. ¿Cuál es la relación entre la temperatura y la abundancia de plecópteros?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿La tendencia es positiva o negativa? ¿Cuál cuenca tiene mayor abundancia de Plecópteros?</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y =</span> Plec)) <span class="sc">+</span>   </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca)) <span class="sc">+</span>  </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">color=</span><span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-se-relaciona-la-abundancia-de-efemerópteros-con-la-de-tricópteros" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-se-relaciona-la-abundancia-de-efemerópteros-con-la-de-tricópteros">7. ¿Cómo se relaciona la abundancia de efemerópteros con la de tricópteros?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Se observa un patrón de relación entre estos grupos?</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> Efem, <span class="at">y =</span> Tric)) <span class="sc">+</span>   </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca)) <span class="sc">+</span>  </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>, <span class="at">color=</span><span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-total" class="level3">
+<h3 class="anchored" data-anchor-id="cuál-es-la-relación-entre-la-temperatura-y-la-abundancia-total">8. ¿Cuál es la relación entre la temperatura y la abundancia total?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿El aumento de la temperatura favorece la abundancia de insectos?</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y =</span> Ab)) <span class="sc">+</span>   </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca)) <span class="sc">+</span>  </span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-es-la-relación-entre-ph-y-la-abundancia-de-dípteros" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-es-la-relación-entre-ph-y-la-abundancia-de-dípteros">9. ¿Cómo es la relación entre pH y la abundancia de dípteros?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿La relación es lineal o no lineal?</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> pH, <span class="at">y =</span> Dipt)) <span class="sc">+</span>   </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca)) <span class="sc">+</span>  </span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"loess"</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-abundancia-de-efemerópteros-en-cada-cuenca" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-abundancia-de-efemerópteros-en-cada-cuenca">10. ¿Cómo varía la abundancia de efemerópteros en cada cuenca?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cuál cuenca tiene la mayor mediana de efemerópteros?</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> Efem, <span class="at">fill =</span> cuenca)) <span class="sc">+</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-se-distribuyen-los-valores-de-temperatura-en-las-quebradas" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-se-distribuyen-los-valores-de-temperatura-en-las-quebradas">11. ¿Cómo se distribuyen los valores de temperatura en las quebradas?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿La distribución de temperaturas es similar entre cuencas?</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">fill =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-abundancia-de-insectos-según-el-nivel-de-ph" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-abundancia-de-insectos-según-el-nivel-de-ph">12. ¿Cómo varía la abundancia de insectos según el nivel de pH?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cuál nivel de pH favorece una mayor abundancia de insectos?</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasepH =</span> <span class="fu">cut</span>(pH, <span class="at">breaks=</span><span class="dv">3</span>, </span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>)))</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> clasepH, <span class="at">y =</span> Ab, <span class="at">fill =</span> clasepH)) <span class="sc">+</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-se-relaciona-la-temperatura-con-la-abundancia-de-coleópteros" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-se-relaciona-la-temperatura-con-la-abundancia-de-coleópteros">13. ¿Cómo se relaciona la temperatura con la abundancia de coleópteros?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿La temperatura influye en la abundancia de coleópteros?</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y =</span> Cole)) <span class="sc">+</span>   </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca)) <span class="sc">+</span>  </span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varían-los-valores-de-ph-entre-las-cuencas" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varían-los-valores-de-ph-entre-las-cuencas">14. ¿Cómo varían los valores de pH entre las cuencas?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cuál cuenca tiene valores de pH más extremos?</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> pH, <span class="at">fill =</span> cuenca)) <span class="sc">+</span> </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varían-la-temperatura-y-el-ph-en-cada-cuenca" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varían-la-temperatura-y-el-ph-en-cada-cuenca">15. ¿Cómo varían la temperatura y el pH en cada cuenca?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cada cuenca tiene un patrón diferente de relación entre temperatura y pH?</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y =</span> pH)) <span class="sc">+</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cuenca) <span class="sc">+</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-abundancia-de-insectos-según-la-temperatura-categorizada" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-abundancia-de-insectos-según-la-temperatura-categorizada">16. ¿Cómo varía la abundancia de insectos según la temperatura categorizada?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Las temperaturas más altas favorecen una mayor abundancia de insectos? ¿Se observan diferencias significativas entre categorías?</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasetemp =</span> <span class="fu">cut</span>(temp, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Baja"</span>, <span class="st">"Media"</span>, <span class="st">"Alta"</span>)))</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> clasetemp, <span class="at">y =</span> Ab, <span class="at">fill =</span> clasetemp)) <span class="sc">+</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Categoría de Temperatura"</span>, <span class="at">y =</span> <span class="st">"Abundancia de Insectos"</span>) <span class="sc">+</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-abundancia-de-insectos-en-función-del-ph-y-la-temperatura-categorizada" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-abundancia-de-insectos-en-función-del-ph-y-la-temperatura-categorizada">17. ¿Cómo varía la abundancia de insectos en función del pH y la temperatura categorizada?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Existe una relación entre el pH y la temperatura en la abundancia de insectos? ¿En qué combinaciones de pH y temperatura se encuentran los valores más altos de abundancia?</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clasetemp =</span> <span class="fu">cut</span>(temp, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Baja"</span>, <span class="st">"Media"</span>, <span class="st">"Alta"</span>)),</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">clasepH =</span> <span class="fu">cut</span>(pH, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Bajo"</span>, <span class="st">"Medio"</span>, <span class="st">"Alto"</span>)))</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> clasepH, <span class="at">y =</span> Ab, <span class="at">fill =</span> clasetemp)) <span class="sc">+</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> clasetemp) <span class="sc">+</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Categoría de pH"</span>, <span class="at">y =</span> <span class="st">"Abundancia de Insectos"</span>, <span class="at">fill =</span> <span class="st">"Temperatura"</span>) <span class="sc">+</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-se-relacionan-la-abundancia-de-insectos-y-la-temperatura-segmentadas-por-cuenca" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-se-relacionan-la-abundancia-de-insectos-y-la-temperatura-segmentadas-por-cuenca">18. ¿Cómo se relacionan la abundancia de insectos y la temperatura, segmentadas por cuenca?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Las diferentes cuencas presentan tendencias similares en la relación entre temperatura y abundancia? ¿Se observan diferencias en los patrones de dispersión?</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> temp, <span class="at">y =</span> Ab, <span class="at">color =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cuenca) <span class="sc">+</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperatura"</span>, <span class="at">y =</span> <span class="st">"Abundancia de Insectos"</span>) <span class="sc">+</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-se-relaciona-la-abundancia-de-los-principales-taxones-con-el-ph-y-la-temperatura" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-se-relaciona-la-abundancia-de-los-principales-taxones-con-el-ph-y-la-temperatura">19. ¿Cómo se relaciona la abundancia de los principales taxones con el pH y la temperatura?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Qué taxones tienen una mayor sensibilidad a los cambios en el pH? ¿Se observa un patrón similar en todos los taxones?</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>datos_melt <span class="ot">&lt;-</span> </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cuenca, pH, temp, Efem, Plec, Tric, Dipt, Cole) <span class="sc">%&gt;%</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Efem, Plec, Tric, Dipt, Cole), </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Taxon"</span>, <span class="at">values_to =</span> <span class="st">"Abundancia"</span>)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_melt, <span class="fu">aes</span>(<span class="at">x =</span> pH, <span class="at">y =</span> Abundancia, <span class="at">color =</span> temp)) <span class="sc">+</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Taxon, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"pH"</span>, <span class="at">y =</span> <span class="st">"Abundancia de Insectos"</span>, </span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Temperatura"</span>) <span class="sc">+</span></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-composición-taxonómica-en-función-de-la-cuenca-y-la-temperatura" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-composición-taxonómica-en-función-de-la-cuenca-y-la-temperatura">20. ¿Cómo varía la composición taxonómica en función de la cuenca y la temperatura?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Hay diferencias en la composición taxonómica entre cuencas? ¿Cómo influye la temperatura en la distribución de los diferentes taxones?</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>datos_melt <span class="ot">&lt;-</span> </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cuenca, temp, Efem, Plec, Tric, Dipt, Cole) <span class="sc">%&gt;%</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Efem, Plec, Tric, Dipt, Cole), </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Taxon"</span>, <span class="at">values_to =</span> <span class="st">"Abundancia"</span>)</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_melt, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> Abundancia, <span class="at">fill =</span> Taxon)) <span class="sc">+</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">cut</span>(temp, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Baja"</span>, <span class="st">"Media"</span>, <span class="st">"Alta"</span>))) <span class="sc">+</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cuenca"</span>, <span class="at">y =</span> <span class="st">"Proporción de Taxones"</span>, <span class="at">fill =</span> <span class="st">"Taxón"</span>) <span class="sc">+</span></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))        </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-abundancia-total-de-insectos-en-las-quebradas-según-la-combinación-de-cuencas-y-categorías-de-temperatura" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-abundancia-total-de-insectos-en-las-quebradas-según-la-combinación-de-cuencas-y-categorías-de-temperatura">21. ¿Cómo varía la abundancia total de insectos en las quebradas según la combinación de cuencas y categorías de temperatura?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Se observa alguna interacción entre cuenca y temperatura en la abundancia de insectos?</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> Ab, <span class="at">fill =</span> clasetemp)) <span class="sc">+</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cuenca"</span>, <span class="at">y =</span> <span class="st">"Abundancia Total"</span>, <span class="at">fill =</span> <span class="st">"Temperatura"</span>) <span class="sc">+</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">cut</span>(temp, <span class="at">breaks=</span><span class="dv">3</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Baja"</span>, <span class="st">"Media"</span>, <span class="st">"Alta"</span>))) <span class="sc">+</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-diferencias-existen-entre-la-abundancia-de-dípteros-y-la-temperatura-categorizada-en-las-diferentes-cuencas" class="level3">
+<h3 class="anchored" data-anchor-id="qué-diferencias-existen-entre-la-abundancia-de-dípteros-y-la-temperatura-categorizada-en-las-diferentes-cuencas">22. ¿Qué diferencias existen entre la abundancia de dípteros y la temperatura categorizada en las diferentes cuencas?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Hay una respuesta diferencial de los dípteros a la temperatura según la cuenca?</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> clasetemp, <span class="at">y =</span> Dipt, <span class="at">fill =</span> cuenca)) <span class="sc">+</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cuenca) <span class="sc">+</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperatura"</span>, <span class="at">y =</span> <span class="st">"Abundancia de Dípteros"</span>, <span class="at">fill =</span> <span class="st">"Cuenca"</span>) <span class="sc">+</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varía-la-correlación-entre-variables-biológicas-dentro-de-cada-cuenca" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varía-la-correlación-entre-variables-biológicas-dentro-de-cada-cuenca">23. ¿Cómo varía la correlación entre variables biológicas dentro de cada cuenca?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Existen diferencias en las correlaciones biológicas entre cuencas?</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  datos <span class="sc">%&gt;%</span> <span class="fu">select</span>(cuenca, Efem, Plec, Tric, Dipt, Cole),</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> cuenca)</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cómo-varían-las-medias-y-errores-estándar-de-la-abundancia-total-de-insectos-en-las-diferentes-cuencas-y-clases-de-ph" class="level3">
+<h3 class="anchored" data-anchor-id="cómo-varían-las-medias-y-errores-estándar-de-la-abundancia-total-de-insectos-en-las-diferentes-cuencas-y-clases-de-ph">24. ¿Cómo varían las medias y errores estándar de la abundancia total de insectos en las diferentes cuencas y clases de pH?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿La combinación de cuenca y nivel de pH influye en la media de abundancia?</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>datos_resum <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cuenca, clasepH) <span class="sc">%&gt;%</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(Ab), </span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">ee =</span> <span class="fu">sd</span>(Ab) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()))</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos_resum, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> media, <span class="at">fill =</span> clasepH)) <span class="sc">+</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> media <span class="sc">-</span> ee, <span class="at">ymax =</span> media <span class="sc">+</span> ee),</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cuenca"</span>, <span class="at">y =</span> <span class="st">"Abundancia ± EE"</span>, <span class="at">fill =</span> <span class="st">"pH"</span>) <span class="sc">+</span></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-combinación-de-cuenca-y-categorías-de-temperatura-presenta-la-mayor-abundancia-de-efemerópteros" class="level3">
+<h3 class="anchored" data-anchor-id="qué-combinación-de-cuenca-y-categorías-de-temperatura-presenta-la-mayor-abundancia-de-efemerópteros">25. ¿Qué combinación de cuenca y categorías de temperatura presenta la mayor abundancia de efemerópteros?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Cuál combinación tiene mayor abundancia? ¿Hay interacciones entre cuenca y temperatura?</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> cuenca, <span class="at">y =</span> Efem, <span class="at">fill =</span> clasetemp)) <span class="sc">+</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> clasetemp) <span class="sc">+</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cuenca"</span>, <span class="at">y =</span> <span class="st">"Abundancia de Efemerópteros"</span>, <span class="at">fill =</span> <span class="st">"Temperatura"</span>) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Taller2.1.Explor.insectos.resp_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
