@@ -1,0 +1,63 @@
+
+HTML
+
+---
+title: *Titulo de la actividad
+date: last-modified #now #today
+description: ...
+author: 
+    name: Javier Rodríguez Barrios
+    url: https://grupogien.jimdofree.com/
+    affiliation: Grupo de Investigación GIEN
+    affiliation-url: https://grupogien.jimdofree.com/ 
+title-block-banner: "#3BBDD9"
+format:
+  html:
+    toc: true    # Tabla de contenido
+    toc-depth: 6 
+    toc-title: Menú flotante
+    code-tools: false   # Opción para descargar los códigos
+    code-fold: false    # Visualización de los códigos en el reporte
+    css: ["styles2.css"]    # Colores del texto.
+lang: ES-es
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---
+
+PDF
+
+---
+title: *Titulo de la actividad
+date: last-modified #now #today
+description: ...
+author: "Nombre del Estudiante"
+date: 2026-08-18
+lang: es
+toc: true
+toc-depth: 4
+toc-title: "Tabla de contenido"
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    colorlinks: true
+    csquotes: true
+    number-sections: false
+    toc: true
+    include-in-header:
+      - styles2.tex  
+    
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---

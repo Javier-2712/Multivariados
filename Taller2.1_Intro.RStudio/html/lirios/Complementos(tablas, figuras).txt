@@ -1,0 +1,113 @@
+Figuras del YAML:
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Contenido"
+    number-sections: false
+    theme: cosmo
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 6
+    fig-dpi: 300
+    embed-resources: true
+----
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: referencias.bib
+csl: apa.csl
+
+
+--------------
+- *FIGURAS
+
+- Figuras de portada para PDF:
+
+```{r, echo=FALSE}
+#| fig-ext: png
+#| out-width: "0.9\\linewidth"
+#| fig-align: center
+#| fig-pos: 'H'
+knitr::include_graphics("portada_unidad1_datos.png")
+```
+
+
+------------
+
+- *TABLAS:
+
+- Tablas PDF
+
+# Imprimir la tabla
+head(tabla_long) %>%
+  kbl(booktabs = T,longtable = T) %>%
+  kable_classic(full_width = F)
+
+---
+
+#| label: tbl-c1-1
+#| tbl-cap: "Selección de variables relevantes usando select()"
+
+# Validar distribución: `head()` muestra las primeras filas del dataframe.
+head(datos_select, 4) %>%
+  kbl(booktabs  = TRUE, 
+      digits = 2,
+      longtable = TRUE) %>% 
+  kable_classic(full_width = F)
+
+------------
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(writexl)
+library(vegan)
+library(ggrepel)
+library(kableExtra)
+
+------------
+
+Guardar figuras y tablas:
+
+dir.create("outputs/figuras", recursive = TRUE, showWarnings = FALSE)
+dir.create("outputs/tablas", recursive = TRUE, showWarnings = FALSE)
+
+
+ggsave("outputs/figuras/fig1.png",
+       fig1_abundancia, 
+       width = 8, height = 5, dpi = 300)
+
+
+-------------
+
+Guardar archivo Excel:
+
+library(writexl)
+# Example using the built-in 'iris' dataset
+write_xlsx(iris, path = "datos_lirios.xlsx")
+
+
+------------
+
+- Render PDF resumido
+
+quarto::quarto_render("libro_anvidea1.qmd")
+
+
+- Render completo:
+
+system("quarto render libro_anvidea.qmd --to latex")
+library(tinytex)
+latexmk("libro_anvidea.tex", engine = "xelatex")
+
+-------------
+
+
+
+

@@ -1,0 +1,336 @@
+---
+title: "Taller de Bases de datos - Asignatura de Multivariados"
+subtitle: "Taller 1. Para el análisis de datos biológicos y Ambientales"
+date: last-modified #now #today
+description: Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de bases de datos.
+author: "Nombre del Estudiante"
+lang: es
+toc: true         # <- tabla de contenido a nivel global
+toc-depth: 6      # <- profundidad hasta nivel 6
+
+format:
+  pdf:
+    colorlinks: true
+    number-sections: true
+    include-in-header: styles2.tex    
+    
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---
+
+------------------------------------------------------------------------
+
+# Resumen
+
+El presente taller tiene por objeto, brindar pautas generales para el manejo y visualización de datos biológicos en el lenguaje `tidyverse` de R. Se realizan algunas operaciones generales usando una **base de datos de plancton**, que incorpora variables biológicas y ambientales.
+
+------------------------------------------------------------------------
+
+# Taller 2. Manejo de datos biológicos y ambientales
+
+![Tomado de: [Earth News](http://news.bbc.co.uk/earth/hi/earth_news/newsid_9449000/9449070.stm)](http://news.bbcimg.co.uk/media/images/52221000/jpg/_52221477_live&deadcopepods2.jpg){fig-align="left"}
+
+------------------------------------------------------------------------
+
+## Introducción
+
+Se realizarán ejercicios con los comandos generales de **tidyverse** en el manejo y visualización de datos, utilizando como ejemplo la base de datos de plancton en un estuario de Colombia (**biol**).
+
+La base de datos **"Riqueza"** tiene 498 registros y 8 columnas, incluyendo:
+
+-   **Variables categóricas o factores:**
+    -   `Station` (Estación, numérica pero categórica en contexto)
+    -   `Size` (Tamaños de malla del plancton)
+    -   `Layers` (Capas o estratos en el gradiente de profundidad)
+    -   `Groups` (Grupos de plancton)
+-   **Variables cuantitativas:**
+    -   `Abundance` (Abundancia de los grupos de plancton)
+    -   `Temperature` (Temperatura del agua)
+    -   `Salinity` (Salinidad del agua)
+    -   `Density` (Densidad de organismos)
+
+## Instalación y carga de paquetes
+
+Para trabajar con **tidyverse**, primero debemos instalar y cargar los paquetes requeridos.
+
+```{r, message=FALSE, warning=FALSE}
+# install.packages("tidyverse") # Descomentar si no está instalado
+
+```
+
+## Carga y exploración de datos
+
+Utilizamos `glimpse` para ver la estructura general de la base de datos y `summary` para obtener estadísticas descriptivas.
+
+```{r}
+# Cargar datos desde Excel
+
+
+# Explorar estructura
+# glimpse(biol)
+# summary(biol)
+```
+
+## Selección y filtrado
+
+`select` permite escoger columnas específicas, mientras que `filter` se usa para seleccionar filas según condiciones.
+
+```{r}
+# Seleccionar variables clave
+
+```
+
+```{r}
+# Filtrar datos por una condición específica (ejemplo: temperatura > 28°C)
+
+```
+
+## Creación de nuevas variables
+
+`mutate` se usa para generar nuevas variables derivadas de otras columnas.
+
+```{r}
+# Crear una nueva variable de relación Abundancia/Temperatura
+
+```
+
+## Resumen estadístico de datos agrupados
+
+`group_by` permite agrupar datos según categorías para luego aplicar funciones resumen como `mean()`, `sd()`, ....
+
+```{r}
+# Resumen estadístico de un factor "datos_resumidos"
+
+```
+
+Agrupamos los datos por `Station`, `Size` y `Layers` y calculamos estadísticas descriptivas clave como la temperatura, salinidad, densidad y la abundancia total. Esto permite obtener un resumen general de las condiciones ambientales y biológicas en diferentes estaciones y capas de muestreo.
+
+```{r, message=FALSE, warning=FALSE}
+# Resumen estadístico de dos factores "datos_resumidos1"
+
+```
+
+## Transformación de datos
+
+`pivot_longer` cambia la estructura de los datos de ancho a largo.
+
+```{r}
+# Convertir datos de formato ancho a largo
+
+```
+
+`pivot_wider` regresa los datos a su formato original (ancho).
+
+```{r}
+# Convertir de formato largo a ancho
+
+```
+
+## Transposición de datos
+
+La siguiente transformación convierte la matriz de datos resumiendo en filas a los grupos taxonómicos y en columnas a las estaciones.
+
+```{r}
+# Agrupa a los taxones en filas y a las estaciones en columnas
+
+
+```
+
+## Unión de datos
+
+Podemos unir bases de datos con `left_join`. Para este ejercicio se crea la variable categórica Regiones
+
+```{r}
+# Crear una base de datos adicional de regiones
+
+```
+
+## Abreviar nombres de grupos biológicos
+
+Para facilitar la visualización y manipulación de datos, podemos abreviar los nombres de los grupos biológicos utilizando `abbreviate()`. Esto es útil cuando trabajamos con nombres largos que dificultan la lectura en gráficos y tablas.
+
+```{r}
+
+```
+
+## Conversión de variables categóricas
+
+Convertimos `Station`, `Size` y `Layers` en factores para asegurar que R las reconozca como variables categóricas y optimizar análisis posteriores.
+
+```{r}
+
+```
+
+## Visualización de factores
+
+`ggplot2` nos permite crear gráficos para explorar los datos. Se genera una **figura de cajas** para visualizar las diferencias en la abundancia del plancton, entre las diferentes estaciones del estuario evaluado.
+
+```{r, message=FALSE, warning=FALSE}
+
+# Gráfico de caja de la abundancia por estación
+
+
+# probar sacale_fill_manual, con: scale_color_viridis(discrete = TRUE)
+```
+
+Con el comando `aes(fill = Layers)` se incorporan las capas superficial y profunda en las diferentes zonas.
+
+```{r, message=FALSE, warning=FALSE}
+library(forcats)  # Para manipulación de factores
+
+# Cambiar etiquetas de Layers con recode_factor()
+
+
+# Gráfico de caja de la abundancia por estación
+
+```
+
+La capa `facet_wrap()` permite incluir más factores como el del ojo de malla usado para la colecta del plancton.
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(readxl)
+library(forcats)  # Para manipulación de factores
+library(viridis)
+
+# Cambiar etiquetas de Layers con recode_factor()
+
+
+# Crear gráfico con etiquetas de valores atípicos redondeados
+
+```
+
+## Categorizar una variable contínua
+
+En algunos casos, es útil transformar una variable continua en una categórica para facilitar la comparación y visualización de datos. En este caso, convertimos `Salinity` en una variable categórica con tres niveles: **"Baja", "Media" y "Alta"**.
+
+### 1. Método basado en cuantiles
+
+Este método divide la variable en tres partes iguales (terciles) utilizando los cuantiles de la distribución. En el siguiente ejercicio se crea una variable categórica llamada **Salinity_Level**.
+
+```{r}
+
+# Se puede resumir el nivel alto por el comando "TRUE ~ "Alta"". 
+```
+
+```{r, message=FALSE, warning=FALSE}
+### **Distribución de la Abundancia por Niveles de Salinidad**
+
+```
+
+### 2. Método basado en `summary()`
+
+Otra forma de categorizar `Salinity` es usar la función `summary()` para obtener los valores clave de la variable y definir manualmente los rangos.
+
+```{r}
+
+```
+
+Con base en estos valores, podemos definir los niveles de salinidad según su distribución:
+
+```{r}
+
+# Se puede resumir el nivel alto por el comando "TRUE ~ "Alta"". 
+```
+
+Este método permite una categorización más detallada sobre los valores de corte, basado en información ambiental del lugar o de estudios previos.
+
+------------------------------------------------------------------------
+
+## Cuestionario en clase
+
+```{r}
+# Cargar datos desde Excel
+biol <- read_xlsx("plancton.xlsx", sheet = "Riqueza")
+```
+
+### 1. Exploración de datos
+
+**Pregunta:** ¿Cuántas observaciones hay por cada categoría de `Size`?
+
+```{r, message=FALSE, warning=FALSE}
+
+```
+
+**Pregunta:** ¿Cuántas observaciones hay por cada `Size` y `Layers`?
+
+```{r, message=FALSE, warning=FALSE}
+
+```
+
+### 2. Filtrado condicional
+
+**Pregunta:** Encuentra todas las observaciones donde la salinidad (`Salinity`) es mayor a 35.
+
+```{r}
+
+```
+
+### 3. Creación de variables
+
+**Pregunta:** Calcula una nueva variable que sea la relación entre `Density` y `Temperature`.
+
+```{r, message=FALSE, warning=FALSE}
+
+```
+
+**Pregunta:** Calcula una nueva variable con la relación entre `Abundance` y `Density`.
+
+```{r, message=FALSE, warning=FALSE}
+
+```
+
+### 4. Resumen estadístico
+
+**Pregunta:** Calcula los valores máximos, mínimos, la mediana, el rango y el coeficiente de variación de `abundancia` por cada combinación de `Size` y `Layers`.
+
+```{r, message=FALSE, warning=FALSE}
+# Resumen estadístico "datos_resum"
+   
+```
+
+### 5. Transformación de datos
+
+**Pregunta:** Convierte los datos a formato largo.
+
+```{r}
+
+```
+
+Convierte los datos ambientales (`Temperature`, `Salinity`, `Density`) a formato largo.
+
+```{r}
+
+```
+
+### 6. Visualización de una relación de variables
+
+**Pregunta:** Crea un gráfico de dispersión donde el eje X sea la salinidad (`Salinity`) y el eje Y la temperatura (`Temperature`), diferenciando por `Layers`.
+
+```{r}
+
+```
+
+### 7. Visualización de una variable categorizada
+
+**Pregunta:** Categoriza a la temperatura en tres niveles y visualizar su relación con la abundancia.
+
+#### Paso 1: Categorizar la Temperatura
+
+Utilizar cuantiles, transformamos `Temperature` en tres niveles: **Baja, Media y Alta**.
+
+```{r}
+
+```
+
+#### Paso 2: Visualizar la Relación entre Temperatura y Abundancia
+
+```{r, message=FALSE, warning=FALSE}
+
+```

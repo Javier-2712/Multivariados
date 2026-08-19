@@ -1,0 +1,252 @@
+---
+title: "Taller 2.2a Operaciones matriciales en RStudio"
+date: last-modified #now #today
+description: Entrenamiento en algebra lineal, como base para el desarrollo de diferentes técnicas multivariadas.
+author: 
+  name: Nombre del Estudiante
+  url: https://www.unimagdalena.edu.co/
+  afiliation: Grupo GIEN
+  afiliation-url: https://grupogien.jimdofree.com/
+title-block-banner: "#3BBDD9"
+format:
+  html:
+    toc: true    # Tabla de contenido
+    toc-depth: 6 
+    toc-title: Menú flotante
+    code-tools: false   # Opción para descargar los códigos
+    code-fold: false    # Visualización de los códigos en el reporte
+    css: ["styles2.css"]    # Colores del texto.
+lang: ES-es
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---
+
+Este taller es la caja de herramientas matemática de los talleres **2.2b (PCA)** y **2.2c (LDA)**. Cada operación que practiques aquí, con matrices pequeñas y números que puedes verificar a mano, la vas a volver a usar más adelante con los datos morfométricos reales de tus compañeros. Cada sección tiene una nota 🔗 que te dice exactamente dónde la vuelves a encontrar.
+
+# 1. Operaciones matriciales básicas
+
+## 1.1 Producto matricial
+
+Este ejercicio incluye una demostración al final.
+
+> 🔗 **Conexión:** la regla $(AB)' = B'A'$ que vas a demostrar aquí es la misma que le da sentido a productos como `t.dif %*% cov.g.i %*% x` en el taller de LDA: cuando trasponés un producto de matrices, el orden de los factores se invierte.
+
+```{r, message=FALSE, warning=FALSE}
+# Ejercicio 1
+# A (2,1,1,3)
+# B (1,4,2,5,0,3)
+# Calcular: (1) B'.A' (2) (A.B)' (3) Demostrar que B'.A' = (A'.B')
+
+# R./ CTRL + Enter
+A <- matrix(c(2,1,1,3), 2, 2, byrow = TRUE)      # Matriz A
+B <- 
+
+A
+B
+
+# (1) B'.A'  
+
+
+# (2) (A.B)'
+
+
+# (3) B'.A' = (A.B)'
+
+```
+
+## 1.2 Determinantes
+
+Se calculará la determinante de dos matrices cuadradas.
+
+> 🔗 **Conexión:** una matriz solo se puede invertir (sección 1.3) si su determinante es distinto de cero. Por eso se practica primero a calcularlo: es la "prueba" que garantiza que más adelante `solve()` va a funcionar, tanto en el PCA (matriz de covarianzas) como en el LDA (covarianza generalizada).
+
+```{r, message=FALSE, warning=FALSE}
+#-------------
+# Ejercicio 2
+# A (2,3,3,2)
+# B (1,4,2,5,0,3,1,4,2)
+# Calcular: Determinante de A y de B
+
+# R./
+A <- matrix(c(2,3,3,2), 2, 2, byrow = TRUE)
+B <- 
+
+A     
+B
+
+# Determinantes
+
+
+```
+
+## 1.3 Matriz inversa
+
+Cálculo de una matriz inversa $(A)^{-1}$.
+
+CTRL + L
+
+> 🔗 **Conexión:** esta es exactamente la misma función `solve()` que vas a usar en el taller de LDA para invertir la matriz de covarianza generalizada (`cov.g.i <- solve(cov.g)`).
+
+```{r}
+#------------
+# Ejercicio 3
+# A (5,2,2,2)
+# Calcular inversa de A
+
+# R./
+A <- matrix(c(5,2,2,2), 2, 2, byrow = TRUE)
+A
+
+I <- 
+I
+
+# Matriz inversa (solve)
+A_1 <- 
+A_1
+
+# Comprobación: A * A_1 = I (la matriz identidad)
+
+```
+
+## 1.4 Matriz de varianza - covarianza
+
+> 🔗 **Conexión:** la fórmula de covarianza generalizada de aquí abajo, ponderada por el tamaño de cada grupo, es **la misma fórmula** que combina la variabilidad de hombres y mujeres en el taller de LDA (sección 2.5, con `n.h` y `n.m` en vez de 3 y 5).
+
+```{r, warning=FALSE}
+# Calcular la covarianza (varianza-covarianza) para dos matrices rectangulares
+
+A <- matrix(c(2,2,4,3,6,9), 3, 2, byrow = TRUE)
+B <- 
+
+A
+B
+
+# (1) Covarianzas de cada matriz (c/grupo)
+cov.A <- 
+cov.B <- 
+
+round(cov.A, 1)
+round(cov.B, 1)
+
+# (2) Covarianza generalizada (S)
+# Se pondera cada matriz por (su número de filas - 1): A tiene 3 filas, B tiene 5
+cov.g <-         # cov.g corresponde a la covarianza generalizada
+cov.g
+
+# (3) Covarianza generalizada invertida (S-1)
+cov.g.i <-       # cov.g.i representa la covarianza generalizada invertida
+cov.g.i
+
+
+```
+
+## 1.5 Valores y vectores propios
+
+> 🔗 **Conexión:** esto es el corazón del PCA. En el taller 2.2a vas a calcular estos mismos valores y vectores propios, pero sobre la matriz de covarianza de las medidas morfométricas reales de tus compañeros, para encontrar la dirección en la que los datos varían más.
+
+```{r}
+# Calcular los valores y vectores propios de la matriz de varianza-covarianza de A
+A <- matrix(c(2,2,4,3,6,9), 3, 2, byrow = TRUE)
+A
+
+# Matriz de covarianza de A
+cov.A <-  
+cov.A
+
+# Valores y vectores propios (autovalores - λ y autovectores - µ)
+## |A - λI| = 0
+# A µ = λ µ
+vv.cov.A <-  
+vv.cov.A
+
+# Autovalores λ
+val.cov.A <-  
+val.cov.A
+
+# Autovectores µ (cada columna es un vector propio)
+vec.cov.A <-  
+vec.cov.A
+
+# Autovectores µ de la primera fila (aporte de la variable 1 a cada vector propio)
+vec.f1.cov.A <-  
+vec.f1.cov.A
+```
+
+### Comprobación: A µ = λ µ
+
+La definición de valor/vector propio dice que al multiplicar la matriz por su vector propio, el resultado es el mismo vector propio, solo que "estirado" por el valor propio. Lo comprobamos con números, igual que se demostró la propiedad de la transpuesta en la sección 1.1:
+
+```{r}
+# Lado izquierdo: A multiplicada por su primer vector propio
+cov.A %*%  
+
+# Lado derecho: el primer valor propio multiplicando al mismo vector propio
+val.cov.A[1] 
+
+# ¿Son iguales? (all.equal, no ==, porque son números decimales)
+all.equal( )
+```
+
+### Figura: ¿qué es un vector propio?
+
+Antes de ver esto con datos reales de 24 estudiantes en el taller de PCA, veámoslo con los 3 puntos de la matriz `A`: el triángulo rojo es el centroide (el promedio), y las flechas son los vectores propios, escalados por su valor propio para que se note cuál dirección concentra más varianza.
+
+```{r, warning=FALSE}
+library(ggplot2)
+
+datos_A <- as.data.frame(A)
+colnames(datos_A) <- c("V1", "V2")
+centro <- colMeans(datos_A)
+
+# Cada columna de vec.cov.A es un vector propio; se escala por su valor propio
+# (multiplicar por una matriz diagonal es una forma compacta de "estirar" cada columna)
+desplazamiento <- vec.cov.A %*% diag(val.cov.A)
+
+flechas <- 
+  data.frame(
+  x = centro[1], y = centro[2],
+  xend = centro[1] + desplazamiento[1, ],
+  yend = centro[2] + desplazamiento[2, ],
+  componente = c("Vector propio 1 (mayor varianza)", "Vector propio 2")
+)
+
+# Figura de vectores propios
+ggplot() +
+  geom_point(data = datos_A, aes(V1, V2), size = 3) +
+  geom_point(aes(x = centro[1], y = centro[2]), 
+             color = "red", size = 3, shape = 17) +
+  geom_segment(data = flechas, 
+               aes(x = x, y = y, xend = xend, yend = yend, color = componente),
+               arrow = arrow(length = unit(0.25, "cm"), 
+                             type = "closed"), linewidth = 1) +
+  coord_fixed() +
+  labs(title = "Vectores propios de la matriz de covarianza de A",
+       subtitle = "El triángulo rojo es el centroide; las flechas son las direcciones de mayor varianza",
+       x = "Variable 1", y = "Variable 2", color = NULL) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+```
+
+------------------------------------------------------------------------
+
+# Cuestionario de repaso
+
+Estas preguntas son para trabajar en casa. No tienen una única respuesta "correcta" en el sentido de una ponderacón.
+
+1.  Con dos matrices `A` (2x2) y `B` (2x2) que se definan, verificar en R si `A %*% B` es igual a `B %*% A`. ¿Qué dice el resultado sobre el producto matricial?
+
+2.  Calcular de forma manual en RStudio el determinante de una matriz 2x2 que se defina, y verificar el resultado con `det()`. Si el determinante da cero, intentar calcular `solve()` sobre esa matriz. ¿Qué mensaje de error da R, y por qué ocurre?
+
+3.  Inventar dos matrices rectangulares (por ejemplo, mediciones de dos grupos de plantas) y calcular la covarianza generalizada entre ambas, ponderando por su número de filas menos uno. ¿Por qué se pondera así, en vez de simplemente promediar las dos covarianzas?
+
+4.  Calcular los valores y vectores propios de la matriz de covarianza de un conjunto de datos inventados o simulados por el estudiante (mínimo 3 filas, 2 columnas). ¿Cuál de los dos valores propios es mayor, y qué significa eso sobre la dispersión de los datos?
+
+5.  En sus propias palabras, explicar cómo se conecta cada una de estas cinco operaciones (producto/transpuesta, determinante, inversa, covarianza generalizada, valores/vectores propios) con un paso específico de los talleres de PCA y de LDA que se presentan a continuación.
+
+

@@ -1,0 +1,267 @@
+---
+title: "Taller 2.2b Aplicación matricial en un Análisis de Componentes Principales - PCA"
+subtitle: "Versión con código tidyverse y figuras en ggplot2"
+author: "Nombre del Estudiante"
+date: 2026-08-18
+lang: es
+toc: true
+toc-depth: 4
+toc-title: "Tabla de contenido"
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    colorlinks: true
+    csquotes: true
+    number-sections: false
+    toc: true
+    include-in-header:
+      - styles2.tex  
+    
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---
+
+\newpage
+
+**Nota**: Quitar el formato "Cambria" de las tablas. En algunos casos, los títitulos de las tablas pueden generar problemas en el renderizado del pdf, por lo que es mejor colocarlas como referencias cruzadas.
+
+Probar colocando algunas citas bibliográficas y referencias cruzadas de tablas y figuras, para entrenar este procedimiento.
+
+
+## 2. Aplicaciones de matrices (Análisis de Componentes Principales - PCA)
+
+### 2.1 Librerías requeridas
+
+```{r, message=FALSE, warning=FALSE}
+# install.packages(c("kableExtra","ggplot2","ggrepel","GGally"))
+
+# Librerías o paquetes requeridos
+library(tidyverse)
+library(ggplot2)    # Componente gráfico
+library(ggrepel)    # Etiquetas de texto que no se superponen
+library(GGally)     # Matriz de dispersión (ggpairs) - versión ggplot2 de plot(matriz)
+library(vegan)      # Para el pca de forma automatizada
+library(kableExtra) # Para la edición de las tablas 
+library(readxl)
+library(writexl)
+```
+
+### Directorio para guardar tablas y figuras
+
+```{r}
+dir.create("outputs/figuras", 
+           recursive = TRUE, 
+           showWarnings = FALSE)
+dir.create("outputs/tablas", 
+           recursive = TRUE, 
+           showWarnings = FALSE)
+```
+
+### 2.2 Cargar base de datos (datos1.csv)
+
+```{r}
+# 1) Cargar la base de datos de Excel *.xlsx y dejarla lista en un solo bloque tidyverse
+datos <- read_xlsx(...) %>% 
+  drop_na() %>%     # Elimina al estudiante 13 (dato faltante)
+  rename(Nombre = 1, Sexo = 2, LTot = 3, ...)
+
+glimpse(...)     # Estructura de la base de datos (equivalente tidyverse de str())
+
+# CTRL + SHIFT + M (%>%)
+datos %>% 
+  slice_head(n = 6) %>% 
+  kbl(booktabs = FALSE) %>% 
+  kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+
+```{r}
+# Guardar tabla directorio principal
+write_xlsx(...)
+```
+
+```{r}
+# 5. Exportar a Excel para el anexo
+write_xlsx(...)
+```
+
+### 2.3 Cálculo de la matriz centrada 
+
+```{r}
+# Selección de las variables morfométricas con dplyr
+variables <- ...
+  
+
+# glimpse(variables)
+
+promedio <- ...
+  
+
+# El centrado es una operación matricial (no una operación "tidy"),
+# por eso se deja explícita con álgebra de matrices
+m.centrada <- ...
+
+# Encabezado de la matriz centrada con las seis primeras filas
+head(...) %>% 
+  kbl(booktabs = FALSE) %>% 
+  kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+### 2.4 Valores y vectores propios 
+
+```{r}
+# Matriz centrada de covarianzas (S.centrada)
+S.centrada <- ...
+  
+
+# Valores y vectores propios de la S.centrada (vv.propios)
+vv.propios <- ...
+  
+
+# Vectores propios (vec.propios)
+vec.propios <- ...
+  
+```
+
+### 2.5 Matriz rotada y pca
+
+```{r}
+# Matriz centrada en formato matricial
+m.centrada <- ...
+
+# pca = matriz rotada (m.rotada)
+m.rotada <- ...
+colnames(m.rotada) <- c("CP1", "CP2",)
+
+# Encabezado de la matriz rotada con las seis primeras filas
+head(...) %>% 
+  kbl(booktabs = FALSE) %>% 
+  kable_classic(full_width = FALSE, html_font = "Cambria")
+
+# Se convierte la matriz a tibble y se une con Nombre y Sexo
+# para poder graficarla con ggplot2 en las siguientes secciones
+pca_manual <- ...
+  
+  
+```
+
+### 2.6 Varianza explicada por cada componente
+
+```{r}
+varianza <- 
+  tibble(
+  Componente     = factor(paste0("CP", seq_along(vv.propios$values)),
+                           levels = paste0("CP", seq_along(vv.propios$values))),
+  Valor_propio   = vv.propios$values,
+  Porc_varianza  = 100 * vv.propios$values / sum(vv.propios$values)
+)
+
+varianza
+
+ggplot(varianza, aes(x = Componente, y = Porc_varianza)) +
+  geom_col(fill = "#3BBDD9", color = "black") +
+  geom_line(aes(group = 1), color = "firebrick", linewidth = 0.8) +
+  geom_point(color = "firebrick", size = 2) +
+  geom_text(aes(label = paste0(round(Porc_varianza, 1), "%")),
+            vjust = -0.8, size = 3.5) +
+  labs(x = "Componente principal", y = "Varianza explicada (%)",
+       title = "Varianza explicada por cada componente principal") +
+  theme_minimal()
+```
+
+```{r}
+# Figura CP1 vs CP2 (versión ggplot2 del plot() + text() + abline() + grid())
+ggplot(pca_manual, aes(x = CP1, y = CP2, color = Sexo)) +
+  geom_point(size = 3) +
+  geom_text_repel(aes(label = Nombre), size = 3, show.legend = FALSE) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "blue") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "blue") +
+  coord_fixed(ratio = 2) +
+  labs(x = "Eje 1 (CP1)", y = "Eje 2 (CP2)",
+       title = "PCA manual: proyección de los estudiantes sobre CP1 y CP2") +
+  theme_bw()
+```
+
+### 2.8 pca de forma automatizada
+
+```{r, message=FALSE, warning=FALSE}
+# Nuevamente el pca, ahora con la función prcomp
+pca <-  ...
+# summary(pca)
+
+```
+
+### 2.9 Coordenadas de estudiantes y de las variables morfométricas
+
+```{r, message=FALSE, warning=FALSE}
+# Coordenadas de los estudiantes, con Nombre y Sexo reales (no el número de fila)
+coord.estud <- as_tibble(...) %>% 
+  mutate(estudiante = datos$Nombre,
+         sexo       = datos$Sexo)
+
+head(coord.estud)
+```
+
+```{r, message=FALSE, warning=FALSE}
+# Coordenadas de las variables morfométricas (dos primeros ejes)
+coord.var <- as_tibble(...) %>% 
+  mutate(variables = rownames(...))
+
+coord.var
+```
+
+### 2.10 Biplot del PCA automatizado (ggplot2)
+
+```{r, message=FALSE, warning=FALSE}
+#| label: fig-fig9
+#| fig-cap: Ordenación de los estudiantes y las variables morfométricas. 
+#| fig-format: png
+
+pca_fig <-
+ggplot() +
+  # Estudiantes, coloreados por sexo
+  geom_point(data = coord.estud, aes(PC1, PC2, color = sexo), size = 3) +
+  geom_text_repel(data = coord.estud, aes(PC1, PC2, label = estudiante), size = 3.5) +
+  # Variables morfométricas (flechas rojas)
+  geom_segment(data = coord.var, aes(x = 0, y = 0, xend = PC1 * 20, yend = PC2 * 20),
+               arrow = arrow(angle = 22.5, length = unit(0.25, "cm"), type = "closed"),
+               linetype = 1, linewidth = 0.6, colour = "red") +
+  geom_text_repel(data = coord.var, aes(PC1 * 20, PC2 * 20, label = variables), colour = "red") +
+  geom_hline(yintercept = 0, linetype = 3, linewidth = 0.8) +
+  geom_vline(xintercept = 0, linetype = 3, linewidth = 0.8) +
+  labs(x = "CP1", y = "CP2", color = "Sexo",
+       title = "Biplot PCA automatizado: estudiantes y variables morfométricas") +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+
+print(pca_fig)
+```
+
+#### Guardar la figura
+
+```{r}
+ggsave("outputs/figuras/...",
+       ..., width = 8, height = 5, dpi = 300)
+```
+
+------------------------------------------------------------------------
+
+## Cuestionario de repaso
+
+Estas preguntas son para trabajar en casa. No tienen una única respuesta "correcta" en el sentido de una ponderacón.
+
+1.  ¿Por qué es necesario centrar los datos (restar el promedio de cada variable) antes de calcular la matriz de covarianza en un PCA? ¿Qué pasaría con los resultados si no se centraran?
+
+2.  Usando `S.centrada`, verificar en R que el primer vector propio corresponde efectivamente al valor propio más grande. Luego relacionar ese valor propio con el porcentaje de varianza explicada por CP1 que se calculó en la sección 2.6.
+
+3.  En el biplot final (estudiantes + variables morfométricas), ¿qué significa que dos flechas de variables (por ejemplo `LTot` y `Cint`) apunten en direcciones muy parecidas? ¿Y qué significaría que apuntaran en direcciones opuestas?
+
+4.  Escoger dos estudiantes que queden muy separados en el eje CP1 del biplot. Revisar sus medidas morfométricas originales (`LTot`, `Cint`, `LEsp`, `LBra`) en la base de datos. ¿Qué variable(s) explican mejor por qué quedaron tan separados?
+
+5.  Si tuviera que resumir a cada estudiante con un solo número en vez de con las cuatro medidas originales, ¿usaría CP1, CP2, o alguna combinación? Justificar su respuesta con el porcentaje de varianza explicada de cada componente.

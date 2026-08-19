@@ -1,0 +1,28 @@
+---
+title: *Titulo de la actividad
+date: last-modified #now #today
+description: *Descripción de la actividad
+author: 
+  name: Nombre del Estudiante
+  url: https://www.unimagdalena.edu.co/
+  afiliation: Grupo GIEN
+  afiliation-url: https://grupogien.jimdofree.com/
+title-block-banner: "#3BBDD9"
+format:
+  html:
+    toc: true    # Tabla de contenido
+    toc-depth: 6 
+    toc-title: Menú flotante
+    code-tools: false   # Opción para descargar los códigos
+    code-fold: false    # Visualización de los códigos en el reporte
+    css: ["styles2.css"]    # Colores del texto.
+lang: ES-es
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---

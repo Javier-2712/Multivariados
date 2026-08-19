@@ -1,0 +1,10 @@
+- Ejecución resumida
+
+quarto::quarto_render("clase1.iris_clase_pdf.qmd")
+
+
+- Ejecución completa:
+
+system("quarto render clase1.iris_clase_pdf.qmd --to latex")
+library(tinytex)
+latexmk("clase1.iris_clase_pdf.tex", engine = "xelatex")

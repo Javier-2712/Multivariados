@@ -1,0 +1,227 @@
+---
+title: "Taller de Bases de datos - Asignatura de Multivariados"
+subtitle: "Taller 1. Para el análisis de datos biológicos y Ambientales"
+description: Se realizarán algunos ejercicios con el objetivo de fortalecer destrezas en manejo y análisis de bases de datos.
+author: "Nombre del Estudiante"
+lang: es
+toc: true         # <- tabla de contenido a nivel global
+toc-depth: 6      # <- profundidad hasta nivel 6
+
+format:
+  pdf:
+    colorlinks: true
+    number-sections: true
+    include-in-header: styles2.tex    
+    
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---
+
+------------------------------------------------------------------------
+
+# Resumen
+
+El presente taller tiene por objeto, brindar pautas generales para el manejo y visualización de datos biológicos en el lenguaje `tidyverse` de R. Se parte de un ejercicio inicial con la base de datos de lirios (**iris**), de distribución gratuita en R.
+
+------------------------------------------------------------------------
+
+# Taller 1. Introducción al Tidyverse
+
+[ESPACIO PARA LA FIGURA]
+
+------------------------------------------------------------------------
+
+## Cargar librerías o paquetes requeridos
+
+Cargar las librerías requeridas. El Tidyverse es una colección de paquetes diseñados para trabajar con datos de manera eficiente y legible. Incluye herramientas como `dplyr`, `ggplot2`, `tidyr`, y más.
+
+```{r, message=FALSE, warning=FALSE}
+# Instalar y cargar Tidyverse
+# install.packages("tidyverse") # Descomentar si no está instalado
+library(tidyverse)
+```
+
+## Carga y exploración de datos
+
+`glimpse` es el comando de tidyverse que reemplaza a `str` en el lenguaje anterior de R.
+
+```{r}
+# Base de datos de lirios
+data(iris)
+datos <- iris
+
+# Explorar estructura
+# glimpse(datos)
+# summary(datos)
+```
+
+Otra forma de cargar estas bases de datos. Se presentan unos cambios sutiles en los nombres de las variables, comparado a los comandos anteriores.
+
+```{r, message=FALSE, warning=FALSE}
+# Cargar un conjunto de datos ejemplo
+url <- "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
+datos <- read_csv(url)
+
+# Explorar estructura
+glimpse(datos)
+summary(datos)
+```
+
+## Selección y filtrado
+
+`select` funciona para escoger filas o columnas en particular. `filter` sirve para escoger elementos en particular de las bases de datos.
+
+```{r}
+# Seleccionar columnas
+
+```
+
+```{r}
+# Filtrar filas
+
+```
+
+## Creación de nuevas variables
+
+`mutate` se usa para generar columnas adicionales, que pueden ser variables derivadas de la combinación de una o más variables iniciales.
+
+```{r}
+# Crear una nueva columna
+
+```
+
+## Resumen estadístico de datos agrupados
+
+`group_by` depende de contar con factores (variables con datos en bloques) para poder realizar resúmenes, como promedios (mean), desviaciones estándar, entre otros. El argumento `na.rm = TRUE` indica que se deben ignorar los valores faltantes (`NA`) al calcular los estadísticos de `sepal_length` para cada especie de lirio.
+
+```{r}
+# Resumen estadístico "datos_resumidos"
+
+```
+
+## Transformación de datos
+
+`pivot_longer` emula a las tablas dinámicas de Excel, en el sentido de ajustar las bases de datos en formatos alargados o a lo ancho. Para el siguiente ejemplo, se filtran los datos de los sépalos con sus valores en frente, nombrando a las variables de sépalos como "**measurement**" y a sus valores como "**value**".
+
+```{r}
+# De formato ancho a largo
+
+```
+
+`pivot_wider`, permite convertir el formato alargado a uno similar a la base de datos original (datos)
+
+```{r}
+# De formato largo a ancho
+
+```
+
+## Unión de datos
+
+`tibble`, similar a `datos.frame`, permite fusionar elementos en las bases de datos. Para el siguiente ejemplo se crean dos vectores (species y region) y se unen los tres elementos de cada uno, para generar una base de datos de 3 x 3 elementos.
+
+```{r}
+# Unir bases de datos
+
+```
+
+`datos_combinados`, permite unir a los elementos de la base anterior con los de la base original de lirios, con el objetivo de insertar la columna "**region**".
+
+```{r}
+#
+
+```
+
+## Visualización básica
+
+`ggplot2` es el pricipal paquete gráfico de tidyverse y de manera similar a los comandos anteriores, se construye por capas, separadas con "**+**".
+
+```{r}
+library(forcats)  # Para manipulación de factores
+
+# Cambiar etiquetas de Layers con recode_factor()
+
+
+# Crear un gráfico de caja
+
+
+# se puede reemplazar scale por:   scale_color_viridis(discrete = TRUE)
+```
+
+------------------------------------------------------------------------
+
+## Cuestionario en clase
+
+### 1. Resumen estadístico
+
+**Pregunta:** ¿Cuántas especies diferentes hay en el conjunto de datos y cuántas observaciones hay para cada una?
+
+```{r}
+# Escribe el código necesario para contar las especies
+
+```
+
+**Pregunta:** Calcula los valores máximos, mínimos, la mediana, el rango y el coeficiente de variación de `sepal_length`.
+
+```{r}
+# Resumen estadístico "datos_resum"
+ 
+```
+
+### 2. Filtrado condicional
+
+**Pregunta:** Encuentra todas las observaciones donde el ancho del sépalo (`sepal_width`) es mayor a 3.5.
+
+```{r}
+# Filtrar observaciones con ancho de sépalo > 3.5
+
+```
+
+### 3. Creación de variables
+
+**Pregunta:** Calcula una nueva columna que sea la relación entre longitud y ancho del pétalo (`petal_length` / `petal_width`).
+
+```{r}
+# Crear nueva columna para relación de pétalos
+
+```
+
+### 4. Análisis resumido
+
+**Pregunta:** Calcula el promedio de la relación de pétalos (`petal_ratio`) para cada especie.
+
+```{r}
+# Resumir promedio de relación de pétalos por especie
+
+```
+
+### 5. Transformación de datos
+
+**Actividad:** Convierte el formato de los datos para que todas las mediciones de sepalos (longitudes y anchos) queden en una sola columna.
+
+```{r}
+# Transformar datos de ancho a largo
+
+```
+
+### 6. Visualización
+
+**Pregunta:** Crea un gráfico de dispersión donde el eje X sea el ancho del pétalo (`petal_width`) y el eje Y la longitud del pétalo (`petal_length`), diferenciando por especie.
+
+```{r, message=FALSE, warning=FALSE}
+library(forcats)  # Para manipulación de factores
+
+# Cambiar etiquetas de Layers con recode_factor()
+
+
+# Figura
+
+
+# Aplicar la transformación logarítmica:  scale_y_continuous(trans = "log10") 
+```
+
+------------------------------------------------------------------------

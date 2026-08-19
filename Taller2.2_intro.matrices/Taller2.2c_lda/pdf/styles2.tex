@@ -1,0 +1,135 @@
+% ============================================================
+% styles2.tex
+% Encabezado LaTeX para los TALLERES (en clase y en casa) del curso
+% Estadistica Multivariada - Programa de Biologia, Universidad del Magdalena
+% Prof. Javier Rodriguez Barrios
+%
+% Se incluye en cada taller .qmd asi:
+%   format:
+%     pdf:
+%       include-in-header: styles2.tex
+%
+% IMPORTANTE: el proyecto usa documentclass: scrartcl (KOMA-Script), NO la
+% clase "article" estandar. Por eso este archivo usa SOLO mecanismos nativos
+% de KOMA-Script para encabezados y estilos de titulo (\addtokomafont,
+% scrlayer-scrpage), y evita a proposito el paquete "titlesec" (rompe la
+% compilacion con scrartcl: error "Argument of \paragraph has an extra }")
+% y el paquete "tocloft" (genera advertencias/conflictos con el sistema de
+% tabla de contenido propio de KOMA-Script).
+%
+% Objetivo: una plantilla SENCILLA y didactica (no editorial tipo libro),
+% facil de leer para los estudiantes y facil de replicar por ellos mismos
+% en sus propios informes/manuscritos en RStudio.
+% ============================================================
+
+% ---------- 1) Tipografia segura ----------
+% lmodern solo tiene sentido con pdflatex (motor de 8-bits); con xelatex
+% (el motor que usa este proyecto) las fuentes las maneja fontspec, asi que
+% lmodern se carga condicionalmente para no interferir.
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage{lmodern}
+\fi
+
+% ---------- 2) BLOQUES DE CODIGO: nunca se salen del margen ----------
+% fvextra controla los entornos "Verbatim" que usa Pandoc/Quarto para los
+% chunks de codigo (Highlighting) y para las salidas de R.
+\usepackage{fvextra}
+\fvset{
+  breaklines    = true,  % permite cortar la linea
+  breakanywhere = true,  % corta aunque no haya espacios (rutas, strings largos, etc.)
+  fontsize      = \small,
+  breaksymbolleft = {}, breaksymbolright = {}   % sin flechas de continuacion: mas limpio para los estudiantes
+}
+% Redefinicion explicita del entorno que usa Pandoc/Quarto para el codigo con
+% resaltado de sintaxis (chunks de R). "commandchars" es INDISPENSABLE aqui:
+% permite que \NormalTok{}, \FunctionTok{}, \StringTok{}, etc. (los comandos
+% de color que Pandoc inserta token por token) se sigan interpretando como
+% LaTeX real dentro del entorno verbatim; sin esta opcion se verian como texto
+% literal en vez de como codigo coloreado.
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  breaklines, breakanywhere, fontsize=\small, breaksymbolleft={}, breaksymbolright={}, commandchars=\\\{\}
+}
+% Redefinicion del entorno "verbatim" comun (lo usa, por ejemplo, la salida de
+% consola de R que no lleva resaltado de sintaxis). Por defecto este entorno
+% NO corta linea, asi que sin esto una salida larga sigue desbordando el margen.
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{
+  breaklines, breakanywhere, fontsize=\small, breaksymbolleft={}, breaksymbolright={}
+}
+
+% Fondo gris suave para los chunks (entorno "Shaded" que ya define Pandoc;
+% aqui solo se le cambia el color de fondo)
+\usepackage{framed}
+\renewenvironment{Shaded}{%
+  \definecolor{shadecolor}{HTML}{F5F7FA}%
+  \begin{snugshade}%
+}{\end{snugshade}}
+
+% ---------- 3) Paleta de color del curso ("Analitico") ----------
+\usepackage{xcolor}
+\definecolor{azulcurso}{HTML}{0C447C}   % azul profundo
+\definecolor{azulclaro}{HTML}{85B7EB}   % azul cielo (linea de encabezado)
+\definecolor{ambarcurso}{HTML}{EF9F27}  % ambar de acento
+
+% ---------- 4) Enlaces y referencias cruzadas SIEMPRE en azul ----------
+% (Aqui no aplican normas editoriales de libro: todo enlace, cita o
+%  referencia cruzada se resalta en azul para que el estudiante la
+%  identifique de inmediato como algo "clicable"/consultable).
+% NOTA IMPORTANTE: como el YAML del taller trae "colorlinks: true", Pandoc
+% inserta su PROPIO \hypersetup (con enlaces en color "Maroon"/rojizo) justo
+% DESPUES de este archivo, lo que pisaria estos colores si se definieran aqui
+% directamente. Por eso el \hypersetup real se aplica con \AtBeginDocument,
+% que se ejecuta al iniciar el documento, es decir, DESPUES de que Pandoc ya
+% fijo sus propios colores por defecto -- asi estos colores de azules del
+% curso son siempre los que quedan.
+\usepackage{hyperref}
+\AtBeginDocument{%
+  \hypersetup{
+    colorlinks = true,
+    linkcolor  = azulcurso,   % referencias cruzadas internas (secciones, figuras, tablas)
+    citecolor  = azulcurso,   % citas bibliograficas (biblio.bib / apa.csl)
+    urlcolor   = azulcurso,   % enlaces web (p. ej. al repositorio de talleres)
+    filecolor  = azulcurso,
+    linktoc    = all,         % toda la tabla de contenido queda enlazada
+    breaklinks = true
+  }%
+}
+
+% ---------- 5) Titulos de seccion: color del curso, con el mecanismo NATIVO
+%               de KOMA-Script (\addtokomafont), sin tocar tamanos/espaciados
+%               que ya trae bien calculados scrartcl con DIV=11. ----------
+\addtokomafont{section}{\color{azulcurso}}
+\addtokomafont{subsection}{\color{azulcurso}}
+\addtokomafont{subsubsection}{\color{ambarcurso}}
+% El taller usa "block-headings: true" (definido a nivel de proyecto), que
+% hace que Pandoc traduzca "####" a \subparagraph (no a \paragraph) para que
+% se vea como un encabezado de bloque real en vez de texto "run-in". Por eso
+% se recolorea \subparagraph aqui, con \RedeclareSectionCommand (la
+% herramienta nativa de KOMA-Script para esto, ya que \addtokomafont no
+% tiene efecto visible en este nivel).
+\RedeclareSectionCommand[font=\normalfont\bfseries\color{ambarcurso}]{subparagraph}
+
+% ---------- 6) Encabezado y pie de pagina simples (KOMA-Script nativo:
+%               scrlayer-scrpage, en vez de fancyhdr) ----------
+% \tallertipo se puede sobrescribir en un taller puntual asi (en el YAML del .qmd):
+%   header-includes:
+%     - \renewcommand{\tallertipo}{Taller de entrenamiento}
+\providecommand{\tallertipo}{Taller en clase}
+
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\textcolor{azulcurso}{\small\bfseries \tallertipo\ -- Estad\'istica Multivariada}}
+\ohead{\small\pagemark}
+\cfoot{\small\color{gray}Universidad del Magdalena -- Programa de Biolog\'ia}
+\KOMAoptions{headsepline = true, footsepline = false}
+\setkomafont{headsepline}{\color{azulclaro}}
+\pagestyle{scrheadings}
+% \maketitle usa por defecto el estilo de pagina "plain" (sin encabezado) para
+% la portada. Se redirige a "scrheadings" para que la portada tambien lleve
+% el mismo encabezado que el resto del taller.
+\renewcommand*{\titlepagestyle}{scrheadings}
+
+% ---------- 7) Tablas (kableExtra) legibles y sin desbordes ----------
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}

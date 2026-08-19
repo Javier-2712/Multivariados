@@ -1,0 +1,386 @@
+---
+title: "Taller 2.2c Analisis discriminante lineal - lda, con datos morfométricos en estudiantes"
+subtitle: "Versión con código tidyverse y figuras en ggplot2"
+date: last-modified #now #today
+description: Aplicaciones de operaciones matriciales para el análisis discriminante lineal - lda.
+author: 
+    name: Javier Rodríguez Barrios
+    url: https://grupogien.jimdofree.com/
+    affiliation: Grupo de Investigación GIEN
+    affiliation-url: https://grupogien.jimdofree.com/ 
+title-block-banner: "#3BBDD9"
+format:
+  html:
+    toc: true    # Tabla de contenido
+    toc-depth: 6 
+    toc-title: Menú flotante
+    code-tools: false   # Opción para descargar los códigos
+    code-fold: false    # Visualización de los códigos en el reporte
+    css: ["styles2.css"]    # Colores del texto.
+lang: ES-es
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+bibliography: biblio.bib
+csl: apa.csl
+---
+
+------------------------------------------------------------------------
+
+## 2.1 Cargar librerías 
+
+```{r, message=FALSE, warning=FALSE}
+# install.packages(c("kableExtra","patchwork"))
+
+# Librerías o paquetes requeridos (se dejan todas aquí, al inicio)
+library(tidyverse)
+library(ggplot2)
+library(vegan)
+library(MASS)
+library(kableExtra)
+library(patchwork)  # Para combinar figuras ggplot2 (reemplaza a gridExtra/grid.arrange)
+library(readxl)     # Para leer datos1.xlsx
+
+# Nota: MASS también tiene una función select(), y como se carga después de
+# tidyverse, "tapa" a dplyr::select(). Por eso en este documento se escribe
+# siempre dplyr::select() de forma explícita, para evitar ese conflicto.
+```
+
+## 2.2 Cargar la base de datos
+
+```{r}
+# 2.2 Cargar la base de datos (datos1.xlsx) - misma fuente que el taller de PCA
+datos2 <- read_xlsx(...) %>% 
+  rename(... , Cint = 4, LEsp = 5, LBra = 6) %>% 
+  drop_na()                       # Elimina estudiantes con datos faltantes (estud. 13)
+
+glimpse(...)   # Estructura de la base de datos (equivalente tidyverse de str())
+
+head(...) %>% 
+  kbl(booktabs = FALSE) %>% 
+  kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+## 2.3 Matrices por cada sexo
+
+a\) Opción general
+
+```{r}
+# Matriz de hombres (hombres)
+hombres <- datos2 ...
+head(...)
+```
+
+b\) Opción en tidyverse
+
+```{r}
+# Matriz de hombres (hombres)
+hombres <- ... 
+  filter(...)
+head(...)
+```
+
+```{r}
+# Matriz de mujeres (mujeres)
+mujeres <- ...
+  filter(...)
+head(...)
+```
+
+## 2.4 Vectores de medias por cada sexo
+
+```{r}
+# Vector de medias de los hombres (promedio.h)
+# dplyr::select(LTot:LBra) evita depender de la posición de las columnas (más robusto que [,2:5])
+promedio.h <- ... 
+  dplyr::select(...) %>% 
+  colMeans()
+promedio.h
+```
+
+```{r}
+# Vector de medias de las mujeres (promedio.m)
+promedio.m <- ... 
+  dplyr::select(...) %>% 
+  colMeans()
+...
+```
+
+```{r}
+# Vector de diferencia de medias (dif)
+dif <- ...
+t.dif <- ...
+
+```
+
+```{r}
+# Vector de suma de medias (suma)
+# Nota: se renombra "sum" -> "suma" para no usar el mismo nombre de la función base sum()
+suma <- ...
+suma
+```
+
+## 2.5 Matriz de covarianza generalizada invertida (S-1)
+
+```{r}
+# Covarianza de hombres (cov.h)
+cov.h <- ...
+round(...)
+```
+
+```{r}
+# Covarianza de mujeres (cov.m)
+cov.m <- var(mujeres %>% 
+               ...)
+round(...)
+```
+
+```{r}
+# Tamaño de la muestra (No de estudiantes por cada sexo)
+datos2$Sexo <- as.factor(datos2$Sexo)
+summary(...)
+```
+
+```{r}
+# Matriz de varianza-covarianza generalizada (ponderada por grados de libertad n-1)
+# Se calcula n.h y n.m dinámicamente en vez de escribir 10, 14 y 24 "a mano":
+# así el código no se rompe si cambia el número de estudiantes
+n.h <- nrow(hombres)
+n.m <- nrow(mujeres)
+
+cov.g <- ((n.h - 1) * cov.h + (n.m - 1) * ...)
+cov.g.i <- solve(...)
+round(cov.g.i, 3)
+```
+
+## 2.6 Discriminante lineal de Wald y Anderson (W)
+
+```{r}
+# Convertir datos2 a formato matricial, solo variables numéricas (datos3)
+datos3 <- 
+  datos2 %>% 
+  dplyr::select(...) %>% 
+  as.matrix()
+
+head(...)
+```
+
+```{r}
+# Vectores de los estudiantes (xi) - se calcula "a mano" para los primeros 10 estudiantes
+x1  <- as.vector(datos3[1,])
+x2  <- as.vector(datos3[2,])
+x3  <- as.vector(datos3[3,])
+x4  <- as.vector(datos3[4,])
+x5  <- as.vector(datos3[5,])
+x6  <- ...
+x7  <- ...
+x8  <- ...
+x9  <- ...
+x10 <- ...
+```
+
+```{r}
+# Correr el modelo lda para los 10 estudiantes
+# t.dif, suma, xi, cov.g.i
+W1  <- ((t.dif %*% cov.g.i %*% x1)  - (1/2 * (t.dif %*% cov.g.i %*% suma)))
+W2  <- ((t.dif %*% cov.g.i %*% x2)  - (1/2 * (t.dif %*% cov.g.i %*% suma)))
+W3  <- ((t.dif %*% cov.g.i %*% x3)  - (1/2 * (t.dif %*% cov.g.i %*% suma)))
+W4  <- ((t.dif %*% cov.g.i %*% x4)  - (1/2 * (t.dif %*% cov.g.i %*% suma)))
+W5  <- ((t.dif %*% cov.g.i %*% x5)  - (1/2 * (t.dif %*% cov.g.i %*% suma)))
+W6  <- ((t.dif %*% cov.g.i %*% x6)  - (1/2 * (t.dif %*% cov.g.i %*% suma)))
+W7  <- ...
+W8  <- ...
+W9  <- ...
+W10 <- ...
+```
+
+```{r}
+# Data.frame de las 10 funciones discriminantes
+W <- data.frame(...)
+W
+```
+
+------------------------------------------------------------------------
+
+# 3. Discriminante - lda con Tidyverse
+
+**Base de datos del ejercicio**
+
+```{r}
+head(...)
+```
+
+## **3.1 Vectores de media**
+
+```{r}
+# Agrupar por sexo y calcular medias
+# across(LTot:LBra, mean) en vez de across(1:4, mean): selecciona por nombre,
+# no por posición, así no importa el orden de las columnas
+medias <- ... %>% 
+  group_by(..) %>% 
+  summarise(across(...))
+medias
+```
+
+```{r}
+# Vector de diferencia de medias (dif)
+dif <- as.matrix(medias[medias$Sexo == "M", -1]) - as.matrix(...)
+dif <- ...  # Vector de diferencia de medias transpuesto
+dif
+```
+
+```{r}
+# Vector de suma de medias (suma)
+suma <- as.matrix(...) + as.matrix(medias[medias$Sexo == "F", -1])
+suma <- ...
+suma
+```
+
+## 3.2 Función para automatizar el lda
+
+```{r}
+# Función discriminante para todos los estudiantes
+# Nota: el resultado se llama "lda_manual" y NO "lda", para no usar el mismo
+# nombre de la función MASS::lda() que se usa más adelante en la sección 3.5
+# (R sabe diferenciarlos al llamarlos con paréntesis, pero es más claro así)
+lda_manual <- datos2 %>% 
+  dplyr::select(LTot:LBra) %>% 
+  as.matrix() %>%
+  apply(1, function(x) {
+    x <- as.matrix(x)  # Convertir x a un vector columna (4x1)
+    W <- (t(dif) %*% cov.g.i %*% x) - (1/2 * t(dif) %*% cov.g.i %*% suma)
+    return(W)
+  }) %>%
+  tibble(Alumnos = datos2$Nombre, resultados_W = .) %>%             # Nombre real, no rownames()
+  mutate(Sexo_discriminado = ifelse(resultados_W < 0, "F", "M"),    # Discriminante
+         Sexo_original      = datos2$Sexo)                          # Sexo original
+
+head(lda_manual) %>% 
+  kbl(booktabs = FALSE) %>% 
+  kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+## 3.3 Tabla de contingencia
+
+```{r, message=FALSE}
+# with() evita usar attach(), que modifica el espacio de nombres global
+# y puede generar conflictos difíciles de rastrear en sesiones largas
+tabla_contingencia <- with(lda_manual, 
+                           table(Sexo_discriminado, Sexo_original))
+tabla_contingencia
+
+# Aciertos
+aciertos <- ...
+aciertos
+
+# Total de estudiantes
+total <- ...
+total
+
+# Porcentaje de aciertos
+aciertos2 <- ...
+aciertos2
+```
+
+## 3.4 Componente gráfico
+
+```{r}
+# Grafico de cajas para clasificación inicial
+fig_inicial <-
+  ggplot(lda_manual, aes(x = Sexo_original, 
+                         y = resultados_W, 
+                         fill = Sexo_original)) +
+  geom_boxplot() +
+  labs(title = "lda para clasificación inicial",
+       x = "Sexo Original", y = "Resultados iniciales", fill = "Sexo") +
+  theme_bw()
+
+# Grafico de cajas para clasificación con el lda
+fig_discriminada <-
+  ggplot(lda_manual, aes(x = Sexo_discriminado, 
+                         y = resultados_W, 
+                         fill = Sexo_discriminado)) +
+  geom_boxplot() +
+  labs(title = "lda para clasificación con lda",
+       x = "Sexo Discriminado", y = "Resultados lda", fill = "Sexo") +
+  theme_bw()
+
+# Graficar las dos figuras en un solo panel con patchwork
+# (versión ggplot2 de grid.arrange(), sin depender de gridExtra/grid)
+
+...
+
+```
+
+```{r}
+# Figura adicional: ¿a qué estudiantes clasificó bien o mal el lda?
+lda_manual <- 
+  lda_manual %>% 
+  mutate(Clasificacion = ifelse(Sexo_discriminado == Sexo_original, "Correcta", "Incorrecta"))
+
+ggplot(lda_manual, aes(x = Sexo_original, 
+                       y = resultados_W, 
+                       color = Clasificacion)) +
+  geom_jitter(width = 0.15, size = 3) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey40") +
+  scale_color_manual(values = c(Correcta = "#2E8B57", Incorrecta = "#D62728")) +
+  labs(title = "Clasificación individual de cada estudiante (lda manual)",
+       x = "Sexo original", y = "Puntaje discriminante (W)",
+       color = "Clasificación") +
+  theme_bw()
+```
+
+## 3.5 Comparación con la función automatizada MASS::lda()
+
+```{r}
+# Función automatizada de análisis discriminante lineal
+# (el mismo cierre que prcomp() le dio al taller de PCA: primero a mano, luego con la función de R)
+modelo_lda <- lda(Sexo ~ LTot + Cint + LEsp + LBra, data = datos2)
+modelo_lda
+```
+
+```{r}
+pred_lda <- predict(modelo_lda)
+
+# Se añade la predicción de MASS::lda() a la tabla de resultados manuales
+lda_manual <- lda_manual %>% 
+  mutate(Sexo_MASS = pred_lda$class,
+         LD1_MASS  = as.numeric(pred_lda$x[,1]))
+
+# Tabla de contingencia y porcentaje de aciertos de MASS::lda()
+tabla_MASS <- with(lda_manual, 
+                   table(Sexo_MASS, Sexo_original))
+tabla_MASS
+
+round((sum(diag(tabla_MASS)) / sum(tabla_MASS)) * 100, 1)
+```
+
+```{r}
+# Comparación visual: el discriminante calculado a mano (W) vs el de MASS::lda() (LD1)
+# Si ambos coinciden en tendencia, es evidencia de que el cálculo manual es correcto
+ggplot(lda_manual, 
+       aes(x = resultados_W, y = LD1_MASS, color = Sexo_original)) +
+  geom_point(size = 3) +
+  labs(title = "Comparación: discriminante manual (Wald-Anderson) vs MASS::lda()",
+       x = "W manual (Wald-Anderson)", y = "LD1 (MASS::lda())", color = "Sexo") +
+  theme_bw()
+```
+
+------------------------------------------------------------------------
+
+## Cuestionario de repaso
+
+Estas preguntas son para trabajar en casa. No tienen una única respuesta "correcta" en el sentido de una 
+
+1.  ¿Qué papel cumple el vector de diferencia de medias (`dif = promedio.h - promedio.m`) en la fórmula del discriminante de Wald y Anderson? ¿Qué pasaría con el discriminante si hombres y mujeres tuvieran promedios morfométricos casi idénticos?
+
+2.  Calcular paso a paso, en R, el puntaje discriminante `W` para un/a estudiante inventado/a por ti, usando `dif`, `suma` y `cov.g.i` ya calculados en el taller. ¿Lo clasificaría como hombre o mujer? ¿Por qué el signo de `W` es lo que decide la clasificación?
+
+3.  Observar la tabla de contingencia (`Sexo_discriminado` vs `Sexo_original`). ¿Qué tipo de error es más frecuente en sus datos: clasificar a un hombre como mujer, o a una mujer como hombre? Proponer una posible explicación morfométrica de ese error.
+
+4.  Comparar el porcentaje de aciertos del modelo manual (Wald-Anderson) con el de `MASS::lda()`. Si los porcentajes son muy parecidos, ¿qué dice eso sobre la fórmula que se calculó a mano?
+
+5.  En la figura de aciertos/errores por estudiante (sección 3.4), identificar un estudiante mal clasificado. Revisar sus cuatro medidas morfométricas originales: ¿se parecen más al promedio de su propio sexo o al del sexo opuesto? ¿Qué variable será la que más "confundió" al modelo?

@@ -1,0 +1,10 @@
+- Ejecución resumida
+
+quarto::quarto_render("taller.2.2b.pca_pdf_resp.qmd")
+
+
+- Ejecución completa:
+
+system("quarto render taller.2.2b.pca_pdf_resp.qmd --to latex")
+library(tinytex)
+latexmk("taller.2.2b.pca_pdf_resp.tex", engine = "xelatex")
